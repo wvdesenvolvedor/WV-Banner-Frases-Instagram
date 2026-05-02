@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>WV Banner Frases Instagram - Fontes Universais</title>
+<style>
+  :root{
+    --bg:#090909; --panel:#111318; --panel2:#171a21; --text:#f5f5f5; --muted:#aab0bb;
+    --accent:#f7b718; --accent2:#ffcf4a; --danger:#ff4d4d; --ok:#31d07f;
+    --line:rgba(255,255,255,.1);
+  }
+  *{box-sizing:border-box}
+  html,body{width:100%;overflow-x:hidden}
+  body{margin:0;background:radial-gradient(circle at top,#20222b 0,#090909 45%,#050505 100%);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+  header{padding:18px 18px 10px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0))}
+  header h1{margin:0;font-size:24px;letter-spacing:.3px;color:#fff}
+  header p{margin:6px 0 0;color:var(--muted);font-size:13px}
+  .wrap{display:grid;grid-template-columns:410px 1fr;gap:18px;max-width:1320px;margin:0 auto;padding:18px}
+  .panel{background:linear-gradient(180deg,var(--panel),#0c0e12);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+  .panel h2{margin:0 0 14px;font-size:17px;color:#fff}.group{margin-bottom:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  label{display:block;font-size:12px;font-weight:800;color:#dce0e8;margin:0 0 6px;text-transform:uppercase;letter-spacing:.5px}
+  input,textarea,select{width:100%;background:#090b0f;color:#fff;border:1px solid #303641;border-radius:12px;padding:11px;font-size:14px;outline:none}
+  textarea{min-height:112px;resize:vertical;line-height:1.35}.hint{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+  input[type="range"]{padding:0;accent-color:var(--accent)}input[type="color"]{height:46px;padding:4px;cursor:pointer}
+  .buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.buttons button,.fullbtn{border:0;border-radius:13px;padding:12px 14px;font-weight:900;cursor:pointer;color:#090909;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 26px rgba(0,0,0,.25)}
+  button.secondary{background:#232833;color:#fff;border:1px solid #3a4250}.fullbtn{width:100%;margin-top:8px}.danger{background:linear-gradient(135deg,#ff6b6b,#f43f5e)!important;color:#fff!important}.ok{background:linear-gradient(135deg,#36d399,#10b981)!important;color:#05120d!important}
+  .previewBox{display:flex;justify-content:center;align-items:flex-start;min-height:calc(100vh - 120px);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:18px;padding:16px;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+  canvas{width:min(100%,720px);height:auto;background:#000;border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.55);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
+  canvas:active{cursor:grabbing}
+
+  .fontPreview{font-size:13px;color:#f8fafc;padding:10px 12px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:#090b0f;line-height:1.35}
+  .mobileHelp{display:grid;gap:6px;margin:10px 0 0;padding:10px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:rgba(255,255,255,.035);color:#d8dde8;font-size:12px;line-height:1.35}
+  .phraseBox{display:grid;gap:10px;padding:12px;border:1px solid rgba(255,255,255,.10);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));margin:10px 0 14px}
+  .phraseBoxTitle{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:#fff}
+  .phraseBadge{font-size:11px;color:#090909;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:999px;padding:5px 8px;font-weight:900;white-space:nowrap}
+  .phraseActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .phraseActions button{border:0;border-radius:12px;padding:11px 12px;font-weight:900;cursor:pointer;color:#090909;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .phraseActions button.secondary{background:#232833;color:#fff;border:1px solid #3a4250}
+
+  .miniBtn{border:1px solid #3a4250;background:#232833;color:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;width:100%}
+  .presetGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.preset{height:38px;border-radius:11px;border:2px solid rgba(255,255,255,.15);cursor:pointer}.preset.active{outline:3px solid #fff;outline-offset:2px}
+  .check{display:flex;align-items:center;gap:8px;color:#dce0e8;font-size:13px;text-transform:none;letter-spacing:0;font-weight:700}.check input{width:auto}.small{font-size:11px;color:var(--muted)}
+  .divider{height:1px;background:var(--line);margin:16px 0}.pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:#090b0f;color:var(--muted);font-size:12px;margin-top:6px}
+  @media(max-width:950px){.wrap{grid-template-columns:1fr;padding:10px}.panel{order:2;border-radius:16px}.previewBox{order:1;min-height:auto;position:sticky;top:0;z-index:3;padding:10px;background:#070707}header{padding:14px 10px}header h1{font-size:18px}.row,.row3{grid-template-columns:1fr}.presetGrid{grid-template-columns:repeat(3,1fr)}canvas{width:100%;border-radius:10px;max-height:72vh;object-fit:contain}.buttons{grid-template-columns:1fr}input,textarea,select{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>WV Banner Frases Instagram</h1>
+<div class="wrap">
+  <section class="panel">
+    <h2>Configuração do banner</h2>
+    <div class="group">
+      <label>Frase principal</label>
+      <textarea id="frase" spellcheck="true">José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.</textarea>
+      <div class="hint">Dica: coloque no campo abaixo as palavras que quer destacar com a cor escolhida.</div>
+    </div>
+
+    <div class="phraseBox">
+      <div class="phraseBoxTitle">
+        <span>Frases prontas para banner</span>
+        <span class="phraseBadge">Novo</span>
+      </div>
+      <div class="row">
+        <div class="group"><label>Categoria</label><select id="categoriaFrase" onchange="carregarFrasesProntas()"></select></div>
+        <div class="group"><label>Frase pronta</label><select id="frasePronta"></select></div>
+      </div>
+      <div class="phraseActions">
+        <button type="button" onclick="aplicarFrasePronta()">Aplicar frase</button>
+        <button type="button" class="secondary" onclick="fraseAleatoria()">Frase aleatória</button>
+      </div>
+      <div class="hint">Categorias: motivação, homens históricos da Bíblia, palavra do dia, humor leve, fé, coragem, superação e dia a dia.</div>
+    </div>
+
+    <div class="phraseBox">
+      <div class="phraseBoxTitle">
+        <span>Modelos de layout</span>
+        <span class="phraseBadge">11 opções</span>
+      </div>
+      <div class="group">
+        <label>Escolher modelo visual</label>
+        <select id="modeloLayout" onchange="aplicarModeloLayout()"></select>
+        <div class="hint">Inclui: original, religião, fé, palavra do dia, humor, curiosidade, você sabia, esporte, fofoca, notícia e clean premium. O modelo original continua disponível.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="group"><label>Palavras destacadas</label><input id="destaques" value="negócio,te promove" /></div>
+      <div class="group"><label>Rodapé editável</label><input id="rodape" value="@wellingtonviana.pego" /></div>
+    </div>
+    <div class="row">
+      <div class="group"><label>Legenda pequena / Autor</label><input id="autor" value="" placeholder="Opcional" /></div>
+      <div class="group"><label>Tamanho do texto</label><input id="fontSize" type="range" min="45" max="92" value="69" /></div>
+    </div>
+
+    <div class="phraseBox">
+      <div class="phraseBoxTitle">
+        <span>Fonte da frase principal</span>
+        <span class="phraseBadge">Universal</span>
+      </div>
+      <div class="row">
+        <div class="group">
+          <label>Escolher fonte</label>
+          <select id="fonteTexto" onchange="atualizarFonteTexto()"></select>
+        </div>
+        <div class="group">
+          <label>Fonte personalizada</label>
+          <input id="fontePersonalizada" placeholder="Ex.: Montserrat, Poppins, Arial" oninput="atualizarFonteTexto()" />
+        </div>
+      </div>
+      <div id="previewFonte" class="fontPreview">Prévia: José nos ensina que Deus está no negócio.</div>
+      <div class="hint">O navegador não libera uma lista completa de todas as fontes instaladas no celular por segurança. Por isso, coloquei fontes universais + campo para digitar qualquer fonte instalada no aparelho.</div>
+    </div>
+
+    <div class="group">
+      <label>Buscar foto no computador ou celular</label>
+      <input type="file" id="foto" accept="image/*" />
+      <div class="hint">Funciona no PC e no celular. A imagem fica do lado direito como no modelo.</div>
+      <div class="hint">Novo: a foto carrega proporcional, sem esticar ou afinar o rosto. Depois você ajusta com 1 dedo ou zoom com 2 dedos.</div>
+    </div>
+
+    <div class="row">
+      <label class="check"><input id="removerFundo" type="checkbox" /> Tirar fundo da foto</label>
+      <label class="check"><input id="autoRemoverFundo" type="checkbox" /> Tirar fundo ao carregar</label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="group"><label>Força da remoção</label><input id="forcaRemove" type="range" min="15" max="95" value="52" /></div>
+      <div class="group"><label>Suavizar recorte</label><input id="suavizarRemove" type="range" min="0" max="8" value="3" /></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="group"><label>Modo de remoção</label><select id="modoRemove"><option value="seguro">Seguro - preserva rosto</option><option value="forte" selected>Forte inteligente</option><option value="ultra">Ultra parede clara</option></select></div>
+      <div class="group"><label>Limpar sobras da parede</label><input id="limparSobras" type="range" min="0" max="10" value="6" /></div>
+    </div>
+    <div class="buttons">
+      <button type="button" onclick="ligarRemoveFundo()">Remover fundo agora</button>
+      <button type="button" class="secondary" onclick="restaurarFundo()">Restaurar fundo</button>
+    </div>
+    <div class="hint">Remoção segura: remove somente o fundo ligado às bordas da foto, protegendo rosto, pele e camisa contra manchas.</div>
+
+    <div class="row" style="margin-top:10px">
+      <label class="check"><input id="corrigirCabelo" type="checkbox" checked /> Corrigir branco no cabelo</label>
+      <div class="group"><label>Força cabelo</label><input id="forcaCabelo" type="range" min="0" max="10" value="5" /></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label class="check"><input id="protegerOlhos" type="checkbox" checked /> Proteger olhos e rosto</label>
+      <div class="group"><label>Área cabelo segura</label><input id="areaCabelo" type="range" min="16" max="30" value="24" /></div>
+    </div>
+    <div class="hint">Esta opção corrige somente pequenos halos brancos no topo/contorno do cabelo, usando a cor natural do próprio cabelo. A proteção bloqueia olhos, sobrancelhas, testa e rosto.</div>
+
+    <div class="divider"></div>
+
+    <div class="row3">
+      <div class="group"><label>Zoom foto</label><input id="zoom" type="range" min="70" max="260" value="122" /></div>
+      <div class="group"><label>Horizontal</label><input id="posX" type="range" min="-420" max="420" value="80" /></div>
+      <div class="group"><label>Vertical</label><input id="posY" type="range" min="-420" max="420" value="0" /></div>
+    </div>
+    <div class="mobileHelp">
+      <strong>Ajuste pelo dedo no celular</strong>
+      <span>1 dedo: arrastar a foto • 2 dedos: dar zoom • toque duplo: centralizar a foto.</span>
+      <button class="miniBtn" type="button" onclick="centralizarFoto()">Centralizar foto</button>
+    </div>
+    <div class="row3">
+      <div class="group"><label>Brilho</label><input id="brilho" type="range" min="60" max="145" value="104" /></div>
+      <div class="group"><label>Contraste</label><input id="contraste" type="range" min="70" max="155" value="112" /></div>
+      <div class="group"><label>Escurecer fundo</label><input id="sombra" type="range" min="0" max="90" value="58" /></div>
+    </div>
+
+    <div class="group">
+      <label>Cores automáticas</label>
+      <div class="presetGrid" id="presetGrid"></div>
+      <div class="hint">Modelo original + 5 opções de cor.</div>
+    </div>
+
+    <div class="group">
+      <label>Calendário de cores por mês - opcional</label>
+      <select id="campanhaMes" onchange="aplicarCampanhaMes()"></select>
+      <div class="hint">Selecione uma campanha mensal para aplicar as cores automaticamente no banner. Se não quiser usar, deixe em “Nenhuma”.</div>
+    </div>
+
+    <div class="row">
+      <div class="group"><label>Paleta celular/Windows - cor principal</label><input type="color" id="cor1" value="#f7b718" /></div>
+      <div class="group"><label>Paleta celular/Windows - cor secundária</label><input type="color" id="cor2" value="#ffcf4a" /></div>
+    </div>
+    <span class="pill">Toque no quadrado de cor para abrir a paleta nativa do celular ou Windows.</span>
+
+    <div class="divider"></div>
+
+    <div class="row">
+      <label class="check"><input id="mostrarAspas" type="checkbox" checked /> Mostrar aspas</label>
+      <label class="check"><input id="mostrarRodape" type="checkbox" checked /> Mostrar rodapé</label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <label class="check"><input id="textura" type="checkbox" checked /> Textura premium</label>
+      <label class="check"><input id="fotoDireita" type="checkbox" checked /> Foto à direita</label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div class="group"><label>Tamanho rodapé</label><input id="footerSize" type="range" min="18" max="34" value="25" /></div>
+      <div class="group"><label>Largura rodapé</label><input id="footerWidth" type="range" min="250" max="520" value="400" /></div>
+    </div>
+
+    <div class="buttons" style="margin-top:14px">
+      <button onclick="corrigirTexto()">Corrigir ortografia</button>
+      <button class="secondary" onclick="salvarConfig()">Salvar configuração</button>
+      <button class="secondary" onclick="carregarConfig()">Carregar configuração</button>
+      <button class="danger" onclick="resetar()">Zerar</button>
+    </div>
+    <button class="fullbtn ok" onclick="baixarPNG()">Baixar PNG alta qualidade</button>
+    <p class="small">Exporta em 3240×3240 PNG, mantendo formato quadrado para feed do Instagram.</p>
+  </section>
+  <section class="previewBox"><canvas id="canvas" width="1080" height="1080"></canvas></section>
+</div>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let img = null;
+let processedImgCanvas = null;
+const $ = id => document.getElementById(id);
+
+const fontesTexto = [
+  {nome:'Impacto premium (padrão)', valor:'Impact, "Arial Black", sans-serif'},
+  {nome:'Fonte do sistema do celular', valor:'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'},
+  {nome:'San Francisco / iPhone', valor:'-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif'},
+  {nome:'Roboto / Android', valor:'Roboto, system-ui, sans-serif'},
+  {nome:'Samsung One / Android', valor:'"SamsungOne", Roboto, system-ui, sans-serif'},
+  {nome:'Arial Black', valor:'"Arial Black", Arial, sans-serif'},
+  {nome:'Arial', valor:'Arial, Helvetica, sans-serif'},
+  {nome:'Helvetica', valor:'Helvetica, Arial, sans-serif'},
+  {nome:'Verdana', valor:'Verdana, Geneva, sans-serif'},
+  {nome:'Tahoma', valor:'Tahoma, Geneva, sans-serif'},
+  {nome:'Trebuchet MS', valor:'"Trebuchet MS", Arial, sans-serif'},
+  {nome:'Georgia', valor:'Georgia, serif'},
+  {nome:'Times New Roman', valor:'"Times New Roman", Times, serif'},
+  {nome:'Courier New', valor:'"Courier New", monospace'},
+  {nome:'Montserrat se tiver instalada', valor:'Montserrat, system-ui, sans-serif'},
+  {nome:'Poppins se tiver instalada', valor:'Poppins, system-ui, sans-serif'},
+  {nome:'Oswald se tiver instalada', valor:'Oswald, Impact, sans-serif'},
+  {nome:'Bebas Neue se tiver instalada', valor:'"Bebas Neue", Impact, sans-serif'},
+  {nome:'Anton se tiver instalada', valor:'Anton, Impact, sans-serif'},
+  {nome:'Lobster se tiver instalada', valor:'Lobster, cursive'},
+  {nome:'Pacifico se tiver instalada', valor:'Pacifico, cursive'},
+  {nome:'Fonte digitada no campo abaixo', valor:'custom'}
+];
+function initFontesTexto(){
+  const sel=$('fonteTexto'); if(!sel) return;
+  sel.innerHTML='';
+  fontesTexto.forEach((f,idx)=>{const opt=document.createElement('option'); opt.value=f.valor; opt.textContent=f.nome; sel.appendChild(opt);});
+  sel.value='Impact, "Arial Black", sans-serif';
+  atualizarFonteTexto();
+}
+function fonteStackTexto(){
+  const custom=($('fontePersonalizada') && $('fontePersonalizada').value.trim()) || '';
+  const selected=($('fonteTexto') && $('fonteTexto').value) || 'Impact, "Arial Black", sans-serif';
+  if(custom){
+    // Aceita nome simples ou pilha de fontes. Se houver vírgula, mantém como o usuário escreveu.
+    if(custom.includes(',')) return custom;
+    return `"${custom.replace(/"/g,'')}" , system-ui, -apple-system, "Segoe UI", sans-serif`;
+  }
+  if(selected==='custom') return 'system-ui, -apple-system, "Segoe UI", sans-serif';
+  return selected;
+}
+function atualizarFonteTexto(){
+  const p=$('previewFonte');
+  if(p) p.style.fontFamily=fonteStackTexto();
+  draw();
+}
+function textoFont(sizePx){
+  return `900 ${sizePx}px ${fonteStackTexto()}`;
+}
+
+const frasesProntas = {
+  "Motivacionais conhecidas": [
+    {t:"Acredite no processo: quem planta com fé colhe com força.", d:"acredite,fé,força", a:"Motivação"},
+    {t:"O impossível começa a mudar quando você decide não desistir.", d:"impossível,não desistir", a:"Motivação"},
+    {t:"Grandes vitórias nascem de pequenas atitudes repetidas todos os dias.", d:"vitórias,atitudes,todos os dias", a:"Motivação"},
+    {t:"Você não precisa ver a escada inteira para dar o primeiro passo.", d:"primeiro passo", a:"Motivação"},
+    {t:"Disciplina é fazer hoje o que o seu futuro vai agradecer amanhã.", d:"disciplina,futuro,amanhã", a:"Motivação"},
+    {t:"Quem não para no cansaço chega onde muitos só sonham.", d:"não para,sonham", a:"Motivação"}
+  ],
+  "Homens históricos da Bíblia": [
+    {t:"José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.", d:"Deus,negócio,te promove", a:"Inspiração: José"},
+    {t:"Moisés nos lembra que Deus abre caminho até onde parece não existir saída.", d:"Deus,abre caminho,saída", a:"Inspiração: Moisés"},
+    {t:"Davi venceu gigantes porque confiou mais em Deus do que no tamanho do problema.", d:"Davi,gigantes,Deus", a:"Inspiração: Davi"},
+    {t:"Neemias reconstruiu muros porque não perdeu o foco diante das críticas.", d:"reconstruiu,foco,críticas", a:"Inspiração: Neemias"},
+    {t:"Daniel permaneceu firme mesmo quando a pressão tentou mudar seus princípios.", d:"Daniel,firme,princípios", a:"Inspiração: Daniel"},
+    {t:"Abraão saiu sem ver tudo, mas confiou naquele que já conhecia o caminho.", d:"Abraão,confiou,caminho", a:"Inspiração: Abraão"},
+    {t:"Paulo transformou prisões em propósito e dor em mensagem.", d:"Paulo,propósito,mensagem", a:"Inspiração: Paulo"},
+    {t:"Josué nos ensina que coragem também é obedecer mesmo com medo.", d:"Josué,coragem,medo", a:"Inspiração: Josué"}
+  ],
+  "Palavra do dia": [
+    {t:"Palavra do dia: constância. Quem continua, avança.", d:"constância,continua,avança", a:"Palavra do dia"},
+    {t:"Palavra do dia: coragem. O medo grita, mas a fé guia.", d:"coragem,medo,fé", a:"Palavra do dia"},
+    {t:"Palavra do dia: gratidão. O coração grato enxerga melhor o caminho.", d:"gratidão,coração,caminho", a:"Palavra do dia"},
+    {t:"Palavra do dia: recomeço. Ainda dá tempo de fazer diferente.", d:"recomeço,ainda dá tempo", a:"Palavra do dia"},
+    {t:"Palavra do dia: foco. Menos distração, mais direção.", d:"foco,direção", a:"Palavra do dia"},
+    {t:"Palavra do dia: paz. Nem toda batalha merece sua energia.", d:"paz,batalha,energia", a:"Palavra do dia"}
+  ],
+  "Fé e esperança": [
+    {t:"Quando Deus cuida, até o atraso vira livramento.", d:"Deus,atraso,livramento", a:"Fé"},
+    {t:"A fé não elimina a luta, mas coloca esperança dentro dela.", d:"fé,luta,esperança", a:"Fé"},
+    {t:"Deus não perdeu o controle; o tempo também obedece a Ele.", d:"Deus,controle,tempo", a:"Fé"},
+    {t:"Ore, confie e continue. Algumas portas se abrem no caminho.", d:"ore,confie,continue", a:"Fé"},
+    {t:"A resposta pode demorar, mas Deus não se atrasa.", d:"resposta,Deus,não se atrasa", a:"Fé"}
+  ],
+  "Coragem e superação": [
+    {t:"Você já venceu dias que pareciam impossíveis. Continue.", d:"venceu,impossíveis,continue", a:"Superação"},
+    {t:"A queda não define você; a decisão de levantar define.", d:"queda,levantar", a:"Superação"},
+    {t:"Se o caminho ficou pesado, ajuste o passo, não abandone o destino.", d:"pesado,não abandone,destino", a:"Superação"},
+    {t:"Todo gigante parece maior antes do primeiro passo de coragem.", d:"gigante,primeiro passo,coragem", a:"Superação"},
+    {t:"A pressão que te aperta também pode revelar sua força.", d:"pressão,força", a:"Superação"}
+  ],
+  "Dia a dia": [
+    {t:"Hoje é um bom dia para fazer o simples bem feito.", d:"hoje,simples,bem feito", a:"Dia a dia"},
+    {t:"Menos pressa, mais presença. O dia rende melhor assim.", d:"menos pressa,presença", a:"Dia a dia"},
+    {t:"Faça o que dá, com o que tem, onde você está.", d:"faça,o que tem", a:"Dia a dia"},
+    {t:"Nem todo dia será perfeito, mas todo dia pode ter propósito.", d:"perfeito,propósito", a:"Dia a dia"},
+    {t:"Organize a mente, respire fundo e dê o próximo passo.", d:"mente,respire,próximo passo", a:"Dia a dia"}
+  ],
+  "Descontração e humor leve": [
+    {t:"Acordei motivado, mas o café pediu uma reunião primeiro.", d:"motivado,café,reunião", a:"Humor leve"},
+    {t:"Foco, força e um carregador por perto.", d:"foco,força,carregador", a:"Humor leve"},
+    {t:"Hoje eu só preciso de paz, café e Wi-Fi funcionando.", d:"paz,café,Wi-Fi", a:"Humor leve"},
+    {t:"O plano era ser fitness, mas o pão de queijo tinha outros planos.", d:"plano,fitness,pão de queijo", a:"Humor leve"},
+    {t:"Se der certo, foi estratégia. Se der errado, foi aprendizado.", d:"estratégia,aprendizado", a:"Humor leve"}
+  ]
+};
+function carregarFrasesProntas(){
+  const cat=$('categoriaFrase'), frase=$('frasePronta');
+  if(!cat||!frase) return;
+  const selected=cat.value || Object.keys(frasesProntas)[0];
+  frase.innerHTML='';
+  (frasesProntas[selected]||[]).forEach((item,idx)=>{
+    const opt=document.createElement('option');
+    opt.value=String(idx);
+    opt.textContent=item.t.length>82 ? item.t.slice(0,82)+'...' : item.t;
+    frase.appendChild(opt);
+  });
+}
+function initFrasesProntas(){
+  const cat=$('categoriaFrase');
+  if(!cat) return;
+  cat.innerHTML='';
+  Object.keys(frasesProntas).forEach(nome=>{
+    const opt=document.createElement('option');
+    opt.value=nome; opt.textContent=nome;
+    cat.appendChild(opt);
+  });
+  cat.value='Homens históricos da Bíblia';
+  carregarFrasesProntas();
+}
+function aplicarFrasePronta(){
+  const cat=$('categoriaFrase'), frase=$('frasePronta');
+  if(!cat||!frase) return;
+  const item=(frasesProntas[cat.value]||[])[+frase.value || 0];
+  if(!item) return;
+  $('frase').value=item.t;
+  $('destaques').value=item.d || '';
+  if($('autor')) $('autor').value=item.a || '';
+  draw();
+}
+function fraseAleatoria(){
+  const cats=Object.keys(frasesProntas);
+  const catName=cats[Math.floor(Math.random()*cats.length)];
+  const list=frasesProntas[catName];
+  const idx=Math.floor(Math.random()*list.length);
+  if($('categoriaFrase')) $('categoriaFrase').value=catName;
+  carregarFrasesProntas();
+  if($('frasePronta')) $('frasePronta').value=String(idx);
+  aplicarFrasePronta();
+}
+
+const campanhasMes = [
+  {nome:'Nenhuma - manter cores atuais', a:'', b:''},
+  {nome:'Janeiro Branco/Roxo - saúde mental / hanseníase', a:'#ffffff', b:'#7c3aed'},
+  {nome:'Fevereiro Roxo/Laranja - lúpus / leucemia', a:'#7c3aed', b:'#f97316'},
+  {nome:'Março Azul/Lilás - câncer colorretal / colo do útero', a:'#1e88ff', b:'#c084fc'},
+  {nome:'Abril Azul/Verde - autismo / prevenção', a:'#1e88ff', b:'#22c55e'},
+  {nome:'Maio Amarelo - trânsito', a:'#facc15', b:'#ffcf4a'},
+  {nome:'Junho Vermelho/Laranja - sangue / anemia', a:'#ef4444', b:'#f97316'},
+  {nome:'Julho Amarelo - hepatites', a:'#facc15', b:'#fde047'},
+  {nome:'Agosto Dourado/Lilás - amamentação / violência', a:'#fbbf24', b:'#c084fc'},
+  {nome:'Setembro Amarelo - prevenção ao suicídio', a:'#facc15', b:'#fde047'},
+  {nome:'Outubro Rosa - câncer de mama', a:'#ec4899', b:'#f9a8d4'},
+  {nome:'Novembro Azul - câncer de próstata', a:'#1e88ff', b:'#65c7ff'},
+  {nome:'Dezembro Vermelho/Laranja - AIDS / pele', a:'#ef4444', b:'#f97316'}
+];
+function initCampanhasMes(){
+  const sel=$('campanhaMes');
+  if(!sel) return;
+  sel.innerHTML='';
+  campanhasMes.forEach((item,idx)=>{
+    const opt=document.createElement('option');
+    opt.value=String(idx);
+    opt.textContent=item.nome;
+    sel.appendChild(opt);
+  });
+  sel.value='0';
+}
+function aplicarCampanhaMes(){
+  const sel=$('campanhaMes');
+  if(!sel) return;
+  const item=campanhasMes[+sel.value || 0];
+  if(!item || !item.a || !item.b) return;
+  $('cor1').value=item.a;
+  $('cor2').value=item.b;
+  document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));
+  setVars();
+  draw();
+}
+
+const modelosLayout = [
+  {id:'original', nome:'Original premium - frase com foto lateral', etiqueta:'INSPIRAÇÃO', x:32, y:430, w:525, align:'left'},
+  {id:'religiao', nome:'Religião - elegante com cruz e luz', etiqueta:'RELIGIÃO', x:42, y:405, w:535, align:'left', a:'#f7b718', b:'#fff3b0'},
+  {id:'fe', nome:'Fé - luz dourada e esperança', etiqueta:'FÉ', x:42, y:410, w:535, align:'left', a:'#fbbf24', b:'#fde68a'},
+  {id:'palavra', nome:'Palavra do dia - selo superior', etiqueta:'PALAVRA DO DIA', x:54, y:392, w:560, align:'left', a:'#22c55e', b:'#a3e635'},
+  {id:'humor', nome:'Humor - moderno e descontraído', etiqueta:'HUMOR', x:42, y:405, w:560, align:'left', a:'#f97316', b:'#facc15'},
+  {id:'curiosidade', nome:'Curiosidade - visual científico', etiqueta:'CURIOSIDADE', x:42, y:395, w:560, align:'left', a:'#06b6d4', b:'#67e8f9'},
+  {id:'voce_sabia', nome:'Você sabia? - impacto educativo', etiqueta:'VOCÊ SABIA?', x:42, y:405, w:560, align:'left', a:'#8b5cf6', b:'#ec4899'},
+  {id:'esporte', nome:'Esporte - energia de estádio', etiqueta:'ESPORTE', x:42, y:390, w:555, align:'left', a:'#22c55e', b:'#facc15'},
+  {id:'fofoca', nome:'Fofoca - pop e chamativo', etiqueta:'FOFOCA', x:42, y:405, w:560, align:'left', a:'#ec4899', b:'#f9a8d4'},
+  {id:'noticia', nome:'Notícia - jornal premium', etiqueta:'NOTÍCIA', x:45, y:365, w:585, align:'left', a:'#ef4444', b:'#facc15'},
+  {id:'clean', nome:'Clean premium - minimalista', etiqueta:'REFLEXÃO', x:55, y:415, w:535, align:'left', a:'#f8fafc', b:'#94a3b8'}
+];
+function modeloAtual(){
+  const sel=$('modeloLayout');
+  const id=sel?sel.value:'original';
+  return modelosLayout.find(m=>m.id===id) || modelosLayout[0];
+}
+function initModelosLayout(){
+  const sel=$('modeloLayout');
+  if(!sel) return;
+  sel.innerHTML='';
+  modelosLayout.forEach(m=>{
+    const opt=document.createElement('option');
+    opt.value=m.id; opt.textContent=m.nome;
+    sel.appendChild(opt);
+  });
+  sel.value='original';
+}
+function aplicarModeloLayout(){
+  const m=modeloAtual();
+  if(m.a && m.b){
+    $('cor1').value=m.a; $('cor2').value=m.b;
+    document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));
+  }
+  setVars();
+  draw();
+}
+function drawTag(c,s,m,x,y){
+  const txt=m.etiqueta || 'WV';
+  c.save();
+  c.font=`900 ${26*s}px Arial, sans-serif`;
+  const pad=18*s, h=48*s, w=Math.min(450*s,c.measureText(txt).width+pad*2);
+  const g=c.createLinearGradient(x,y,x+w,y+h);
+  g.addColorStop(0,$('cor1').value); g.addColorStop(1,$('cor2').value);
+  c.fillStyle=g; roundRect(c,x,y,w,h,16*s,true,false);
+  c.fillStyle='#070707'; c.textBaseline='middle'; c.fillText(txt,x+pad,y+h/2+1*s);
+  c.restore();
+}
+function drawLayoutDecor(c,W,H,s){
+  const m=modeloAtual();
+  if(m.id==='original') return;
+  c.save();
+  const a=$('cor1').value,b=$('cor2').value;
+  if(m.id==='religiao'){
+    c.globalAlpha=.45; c.strokeStyle=rgba(a,.9); c.lineWidth=6*s;
+    c.beginPath(); c.moveTo(100*s,128*s); c.lineTo(100*s,270*s); c.moveTo(45*s,180*s); c.lineTo(155*s,180*s); c.stroke();
+    c.globalAlpha=.18; c.fillStyle=rgba(a,.7); c.beginPath(); c.arc(105*s,190*s,120*s,0,Math.PI*2); c.fill();
+    drawTag(c,s,m,36*s,84*s);
+  }else if(m.id==='fe'){
+    c.globalAlpha=.95; drawTag(c,s,m,36*s,88*s);
+    c.globalAlpha=.35; c.strokeStyle=rgba(a,.9); c.lineWidth=4*s;
+    for(let i=0;i<8;i++){c.beginPath(); c.moveTo(80*s,235*s); c.lineTo((30+i*58)*s,315*s); c.stroke();}
+  }else if(m.id==='palavra'){
+    c.fillStyle=rgba(a,.16); roundRect(c,22*s,70*s,610*s,925*s,38*s,true,false);
+    c.strokeStyle=rgba(a,.85); c.lineWidth=3*s; roundRect(c,22*s,70*s,610*s,925*s,38*s,false,true);
+    drawTag(c,s,m,48*s,105*s);
+  }else if(m.id==='humor'){
+    drawTag(c,s,m,42*s,90*s);
+    c.fillStyle=rgba(a,.22); c.beginPath(); c.arc(105*s,250*s,34*s,0,Math.PI*2); c.arc(220*s,185*s,20*s,0,Math.PI*2); c.arc(520*s,280*s,26*s,0,Math.PI*2); c.fill();
+    c.fillStyle=rgba(b,.20); c.beginPath(); c.arc(64*s,865*s,55*s,0,Math.PI*2); c.fill();
+  }else if(m.id==='curiosidade'){
+    drawTag(c,s,m,42*s,88*s);
+    c.strokeStyle=rgba(a,.35); c.lineWidth=2*s;
+    for(let r=55;r<250;r+=48){c.beginPath(); c.arc(280*s,230*s,r*s,0,Math.PI*2); c.stroke();}
+    c.fillStyle=rgba(b,.75); c.beginPath(); c.arc(280*s,230*s,10*s,0,Math.PI*2); c.fill();
+  }else if(m.id==='voce_sabia'){
+    c.fillStyle=rgba(a,.20); roundRect(c,35*s,78*s,480*s,92*s,24*s,true,false);
+    drawTag(c,s,m,55*s,100*s);
+    c.font=`900 ${190*s}px Arial Black, Impact, sans-serif`; c.fillStyle=rgba(a,.20); c.fillText('?',420*s,305*s);
+  }else if(m.id==='esporte'){
+    drawTag(c,s,m,40*s,88*s);
+    c.strokeStyle=rgba(a,.55); c.lineWidth=5*s;
+    c.beginPath(); c.moveTo(25*s,900*s); c.lineTo(620*s,775*s); c.stroke();
+    c.strokeStyle=rgba(b,.28); c.lineWidth=3*s; for(let i=0;i<5;i++){c.beginPath(); c.moveTo((40+i*90)*s,910*s); c.lineTo((140+i*90)*s,780*s); c.stroke();}
+  }else if(m.id==='fofoca'){
+    drawTag(c,s,m,42*s,90*s);
+    c.fillStyle=rgba(a,.18); roundRect(c,34*s,178*s,540*s,85*s,34*s,true,false);
+    c.fillStyle=rgba(b,.18); roundRect(c,110*s,265*s,420*s,62*s,28*s,true,false);
+    c.font=`900 ${72*s}px Arial Black, Impact, sans-serif`; c.fillStyle=rgba(a,.28); c.fillText('!',545*s,160*s);
+  }else if(m.id==='noticia'){
+    c.fillStyle=rgba(a,.92); c.fillRect(0,70*s,W,76*s);
+    c.fillStyle='#fff'; c.font=`900 ${32*s}px Arial Black, sans-serif`; c.textBaseline='middle'; c.fillText('ÚLTIMAS NOTÍCIAS',40*s,108*s);
+    c.fillStyle=rgba('#000000',.45); c.fillRect(0,910*s,W,92*s);
+    c.strokeStyle=rgba(b,.85); c.lineWidth=5*s; c.beginPath(); c.moveTo(38*s,330*s); c.lineTo(620*s,330*s); c.stroke();
+  }else if(m.id==='clean'){
+    c.fillStyle='rgba(255,255,255,.055)'; roundRect(c,34*s,102*s,590*s,805*s,34*s,true,false);
+    c.strokeStyle=rgba(a,.35); c.lineWidth=2*s; roundRect(c,34*s,102*s,590*s,805*s,34*s,false,true);
+    drawTag(c,s,m,58*s,132*s);
+  }
+  c.restore();
+}
+
+const presets = [
+  {nome:'Ouro', a:'#f7b718', b:'#ffcf4a'},
+  {nome:'Azul', a:'#1e88ff', b:'#65c7ff'},
+  {nome:'Vermelho', a:'#ff3131', b:'#ff8a3d'},
+  {nome:'Verde', a:'#22c55e', b:'#a3e635'},
+  {nome:'Roxo', a:'#8b5cf6', b:'#ec4899'},
+  {nome:'Ciano', a:'#06b6d4', b:'#67e8f9'}
+];
+function hexToRgb(hex){hex=hex.replace('#','');return {r:parseInt(hex.slice(0,2),16),g:parseInt(hex.slice(2,4),16),b:parseInt(hex.slice(4,6),16)}}
+function rgba(hex,a){const c=hexToRgb(hex);return `rgba(${c.r},${c.g},${c.b},${a})`}
+function initPresets(){const grid=$('presetGrid'); grid.innerHTML=''; presets.forEach((p,i)=>{const d=document.createElement('button'); d.className='preset'+(i==0?' active':''); d.title=p.nome; d.style.background=`linear-gradient(135deg,${p.a},${p.b})`; d.onclick=()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active')); d.classList.add('active'); $('cor1').value=p.a; $('cor2').value=p.b; setVars(); draw();}; grid.appendChild(d);});}
+function setVars(){document.documentElement.style.setProperty('--accent',$('cor1').value);document.documentElement.style.setProperty('--accent2',$('cor2').value)}
+function wrapWords(context, text, maxWidth, font){context.font = font; const words=text.replace(/\s+/g,' ').trim().split(' '); let lines=[], line=''; for(const w of words){const test=line?line+' '+w:w; if(context.measureText(test).width>maxWidth && line){lines.push(line); line=w;} else line=test;} if(line) lines.push(line); return lines;}
+function highlightTerms(){return $('destaques').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean)}
+function drawTextLine(c, line, x, y, size, maxWidth, scale){const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let w=words[i]; let token=w + (i<words.length-1?' ':''); let clean=w.toLowerCase().replace(/[.,;:!?]/g,''); let isHi=highlightTerms().some(h=> clean===h || token.toLowerCase().includes(h) || line.toLowerCase().includes(h)); c.fillStyle=isHi?$('cor1').value:'#f4f4f4'; c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; }}
+function background(c,W,H,s){let g=c.createLinearGradient(0,0,W,H); g.addColorStop(0,'#0a0a0a'); g.addColorStop(.45,'#050505'); g.addColorStop(1,'#12100a'); c.fillStyle=g; c.fillRect(0,0,W,H); let rg=c.createRadialGradient(W*.72,H*.48,0,W*.72,H*.48,W*.42); rg.addColorStop(0,rgba($('cor1').value,.30)); rg.addColorStop(.42,rgba($('cor1').value,.08)); rg.addColorStop(1,'rgba(0,0,0,0)'); c.fillStyle=rg; c.fillRect(0,0,W,H); if($('textura').checked){c.save(); c.globalAlpha=.38; for(let i=0;i<42;i++){c.strokeStyle=i%2?rgba($('cor1').value,.16):'rgba(255,255,255,.045)'; c.lineWidth=(2+((i*7)%13))*s; c.beginPath(); let x=-80*s+((i*97)%1080)*s, y=((i*61)%1080)*s; c.moveTo(x,y); c.lineTo(x+260*s+((i*37)%340)*s,y-80*s+((i*43)%160)*s); c.stroke();} c.restore(); c.save(); c.strokeStyle=rgba($('cor1').value,.95); c.lineWidth=8*s; c.beginPath(); c.moveTo(36*s,952*s); c.bezierCurveTo(185*s,925*s,295*s,919*s,455*s,933*s); c.stroke(); c.lineWidth=3*s; c.globalAlpha=.65; c.beginPath(); c.moveTo(40*s,975*s); c.bezierCurveTo(170*s,946*s,330*s,948*s,438*s,943*s); c.stroke(); c.restore(); }}
+function averageCornerColor(data,w,h){
+  // Amostra várias faixas de borda para entender a cor real da parede.
+  // Evita o centro porque ali normalmente está rosto/corpo.
+  const pts=[];
+  const band=Math.max(10,Math.floor(Math.min(w,h)*0.045));
+  const step=Math.max(6,Math.floor(Math.min(w,h)/36));
+  for(let x=0;x<w;x+=step){ for(let y=0;y<band;y+=step){pts.push([x,y],[x,h-1-y]);} }
+  for(let y=0;y<h;y+=step){ for(let x=0;x<band;x+=step){pts.push([x,y],[w-1-x,y]);} }
+  let rs=[],gs=[],bs=[];
+  for(const [x,y] of pts){
+    const i=(Math.max(0,Math.min(h-1,y))*w+Math.max(0,Math.min(w-1,x)))*4;
+    if(data[i+3] < 20) continue;
+    const r=data[i], g=data[i+1], b=data[i+2];
+    const max=Math.max(r,g,b), min=Math.min(r,g,b), lum=0.299*r+0.587*g+0.114*b;
+    // Prioriza parede clara/cinza. Ignora preto da camisa e tons muito quentes de pele no braço.
+    if(lum>90 && (max-min)<85){ rs.push(r); gs.push(g); bs.push(b); }
+  }
+  function median(a,def){ if(!a.length) return def; a.sort((x,y)=>x-y); return a[Math.floor(a.length/2)]; }
+  return {r:median(rs,230),g:median(gs,230),b:median(bs,230)};
+}
+function pixelStats(r,g,b){
+  const max=Math.max(r,g,b), min=Math.min(r,g,b);
+  return {sat:max-min, lum:(0.299*r+0.587*g+0.114*b), max, min};
+}
+function bgDistance(r,g,b,bg){
+  return Math.sqrt((r-bg.r)*(r-bg.r)*0.80 + (g-bg.g)*(g-bg.g)*1.12 + (b-bg.b)*(b-bg.b)*0.92);
+}
+function isWarmSkin(r,g,b){
+  // Proteção simples contra pele: R dominante, tom quente e saturação média.
+  const ps=pixelStats(r,g,b);
+  return ps.lum>55 && ps.lum<245 && r>g+8 && g>b+3 && (r-b)>22 && ps.sat>28;
+}
+function isDarkSubject(r,g,b){
+  const ps=pixelStats(r,g,b);
+  return ps.lum<76 || (ps.lum<115 && ps.sat>35);
+}
+function isBackgroundCandidate(d,i,bg,tol,mode,extra){
+  if(d[i+3] < 20) return true;
+  const r=d[i], g=d[i+1], b=d[i+2];
+  if(isDarkSubject(r,g,b) || isWarmSkin(r,g,b)) return false;
+  const ps=pixelStats(r,g,b);
+  const bs=pixelStats(bg.r,bg.g,bg.b);
+  const dist=bgDistance(r,g,b,bg);
+  const lumDiff=Math.abs(ps.lum-bs.lum);
+  const grayWall = ps.sat < (mode==='ultra'?88:mode==='forte'?72:55);
+  const lightWall = ps.lum > (mode==='seguro'?115:88);
+  const closeToBg = dist < tol + extra;
+  const closeByLum = grayWall && lumDiff < (mode==='ultra'?150:mode==='forte'?125:92);
+  return lightWall && grayWall && (closeToBg || closeByLum);
+}
+
+function sampleHairColor(d,w,h){
+  // Pega a cor escura predominante do cabelo no topo central da cabeça.
+  const rs=[],gs=[],bs=[];
+  const yMax=Math.floor(h*0.34), yMin=Math.floor(h*0.02);
+  const xMin=Math.floor(w*0.22), xMax=Math.floor(w*0.78);
+  const step=Math.max(1,Math.floor(Math.min(w,h)/180));
+  for(let y=yMin;y<yMax;y+=step){
+    for(let x=xMin;x<xMax;x+=step){
+      const i=(y*w+x)*4;
+      if(d[i+3]<120) continue;
+      const r=d[i],g=d[i+1],b=d[i+2];
+      const ps=pixelStats(r,g,b);
+      if(ps.lum<72 && ps.sat<105){rs.push(r);gs.push(g);bs.push(b);}
+    }
+  }
+  function med(a,def){if(!a.length)return def; a.sort((x,y)=>x-y); return a[Math.floor(a.length/2)];}
+  return {r:Math.max(8,med(rs,18)), g:Math.max(8,med(gs,17)), b:Math.max(8,med(bs,16))};
+}
+function nearDarkHair(d,w,h,x,y,radius){
+  const r2=radius*radius;
+  for(let yy=Math.max(0,y-radius);yy<=Math.min(h-1,y+radius);yy++){
+    for(let xx=Math.max(0,x-radius);xx<=Math.min(w-1,x+radius);xx++){
+      const dx=xx-x, dy=yy-y;
+      if(dx*dx+dy*dy>r2) continue;
+      const i=(yy*w+xx)*4;
+      if(d[i+3]<110) continue;
+      const ps=pixelStats(d[i],d[i+1],d[i+2]);
+      if(ps.lum<78 && !isWarmSkin(d[i],d[i+1],d[i+2])) return true;
+    }
+  }
+  return false;
+}
+function isProtectedEyeFaceZone(w,h,x,y){
+  if(!$('protegerOlhos') || !$('protegerOlhos').checked) return false;
+  const nx=x/w, ny=y/h;
+  // Proteção forte: bloqueia olhos, sobrancelhas, testa, nariz e região central do rosto.
+  // A correção do cabelo só pode agir no topo/contorno, nunca na área dos olhos.
+  const eyeAndBrowBand = nx>0.16 && nx<0.84 && ny>0.18 && ny<0.53;
+  const centralFace = nx>0.12 && nx<0.88 && ny>0.22 && ny<0.76;
+  const foreheadSafety = nx>0.20 && nx<0.80 && ny>0.18 && ny<0.34;
+  return eyeAndBrowBand || centralFace || foreheadSafety;
+}
+function hasSkinNearby(d,w,h,x,y,radius){
+  const r2=radius*radius;
+  for(let yy=Math.max(0,y-radius);yy<=Math.min(h-1,y+radius);yy++){
+    for(let xx=Math.max(0,x-radius);xx<=Math.min(w-1,x+radius);xx++){
+      const dx=xx-x, dy=yy-y;
+      if(dx*dx+dy*dy>r2) continue;
+      const i=(yy*w+xx)*4;
+      if(d[i+3]<90) continue;
+      if(isWarmSkin(d[i],d[i+1],d[i+2])) return true;
+    }
+  }
+  return false;
+}
+function fixWhiteInHair(d,w,h,bg){
+  if(!$('corrigirCabelo') || !$('corrigirCabelo').checked) return;
+  const force=+$('forcaCabelo').value;
+  if(force<=0) return;
+
+  const hair=sampleHairColor(d,w,h);
+  const safeArea=(($('areaCabelo') && +$('areaCabelo').value) || 24)/100;
+  // V6.1: limite real ao topo da cabeça. Mesmo que aumente o controle,
+  // a pintura nunca desce para os olhos/rosto.
+  const maxY=Math.floor(h*Math.min(safeArea,0.285));
+  const minY=Math.floor(h*0.006);
+  const radius=2+Math.floor(force/3);
+  const toFix=[];
+
+  function isLikelyWhiteHalo(i){
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const ps=pixelStats(r,g,b);
+    const closeBg=bgDistance(r,g,b,bg)<150+force*16;
+    const whiteOrGray = ps.lum>(105-force*2) && ps.lum<(252) && ps.sat<(95+force*7);
+    return whiteOrGray && closeBg;
+  }
+
+  function isAllowedHairPixel(x,y,i){
+    if(d[i+3]<70) return false;
+    if(isProtectedEyeFaceZone(w,h,x,y)) return false;
+    const r=d[i],g=d[i+1],b=d[i+2];
+    if(isWarmSkin(r,g,b)) return false;
+    // Bloqueia qualquer pixel colado à pele: evita pintar testa, olhos e rosto.
+    if(hasSkinNearby(d,w,h,x,y,Math.max(7,radius+5))) return false;
+    // Precisa estar grudado no cabelo escuro real, não apenas em sobrancelha/olho.
+    if(!nearDarkHair(d,w,h,x,y,radius+1)) return false;
+    return true;
+  }
+
+  // Corrige apenas pixels claros no topo/contorno do cabelo.
+  for(let y=minY;y<maxY;y++){
+    for(let x=0;x<w;x++){
+      const p=y*w+x, i=p*4;
+      if(!isAllowedHairPixel(x,y,i)) continue;
+      if(isLikelyWhiteHalo(i)) toFix.push(p);
+    }
+  }
+
+  // Fecha pequenas falhas brancas adjacentes, ainda travado na área do cabelo.
+  const passes=Math.max(1,Math.floor(force/4));
+  for(let pass=0; pass<passes; pass++){
+    const seen=new Set(toFix);
+    const extra=[];
+    for(const p of toFix){
+      const x=p%w, y=(p/w)|0;
+      const ns=[p-1,p+1,p-w,p+w,p-w-1,p-w+1,p+w-1,p+w+1];
+      for(const np of ns){
+        if(np<0||np>=w*h||seen.has(np)) continue;
+        const nx=np%w, ny=(np/w)|0;
+        if(Math.abs(nx-x)>1 || Math.abs(ny-y)>1 || ny<minY || ny>maxY) continue;
+        const i=np*4;
+        if(isAllowedHairPixel(nx,ny,i) && isLikelyWhiteHalo(i)) extra.push(np);
+      }
+    }
+    for(const p of extra) if(!seen.has(p)) toFix.push(p);
+  }
+
+  // Preenche com a cor natural do cabelo, preservando textura original.
+  for(const p of toFix){
+    const x=p%w, y=(p/w)|0, i=p*4;
+    if(!isAllowedHairPixel(x,y,i)) continue;
+    const blend=0.62 + Math.min(0.20, force*0.018);
+    d[i]=Math.round(d[i]*(1-blend)+hair.r*blend);
+    d[i+1]=Math.round(d[i+1]*(1-blend)+hair.g*blend);
+    d[i+2]=Math.round(d[i+2]*(1-blend)+hair.b*blend);
+    d[i+3]=Math.max(d[i+3],230);
+  }
+}
+function dilateBackgroundMask(mask,d,w,h,bg,mode,rounds){
+  for(let r=0;r<rounds;r++){
+    const add=[];
+    const extra=18 + r*8;
+    for(let y=1;y<h-1;y++){
+      for(let x=1;x<w-1;x++){
+        const p=y*w+x;
+        if(mask[p]) continue;
+        const near = mask[p-1]||mask[p+1]||mask[p-w]||mask[p+w]||mask[p-w-1]||mask[p-w+1]||mask[p+w-1]||mask[p+w+1];
+        if(!near) continue;
+        const i=p*4;
+        if(isBackgroundCandidate(d,i,bg,72,mode,extra)) add.push(p);
+      }
+    }
+    if(!add.length) break;
+    for(const p of add) mask[p]=1;
+  }
+}
+function processBackgroundRemoval(){
+  processedImgCanvas=null;
+  if(!img || !$('removerFundo').checked) return;
+
+  const maxSide=1700;
+  const ratio=Math.min(1,maxSide/Math.max(img.naturalWidth||img.width,img.naturalHeight||img.height));
+  const w=Math.max(1,Math.round((img.naturalWidth||img.width)*ratio));
+  const h=Math.max(1,Math.round((img.naturalHeight||img.height)*ratio));
+  const off=document.createElement('canvas');
+  off.width=w; off.height=h;
+  const oc=off.getContext('2d',{willReadFrequently:true});
+  oc.drawImage(img,0,0,w,h);
+  const im=oc.getImageData(0,0,w,h);
+  const d=im.data;
+  const bg=averageCornerColor(d,w,h);
+  const mode=$('modoRemove') ? $('modoRemove').value : 'forte';
+  const userForce=+$('forcaRemove').value;
+  const leftover=+$('limparSobras').value;
+  const modeBoost = mode==='ultra'?34:mode==='forte'?18:0;
+  const tol=38 + userForce*1.10 + modeBoost;
+  const growTol=tol + 20 + leftover*4;
+  const mask=new Uint8Array(w*h);
+  const queue=[];
+  function tryPush(x,y,first){
+    if(x<0||y<0||x>=w||y>=h) return;
+    const p=y*w+x;
+    if(mask[p]) return;
+    const i=p*4;
+    if(isBackgroundCandidate(d,i,bg,first?tol:growTol,mode,first?0:leftover*5)){
+      mask[p]=1; queue.push(p);
+    }
+  }
+  for(let x=0;x<w;x++){tryPush(x,0,true);tryPush(x,h-1,true);}
+  for(let y=0;y<h;y++){tryPush(0,y,true);tryPush(w-1,y,true);}
+  for(let q=0;q<queue.length;q++){
+    const p=queue[q], x=p%w, y=(p/w)|0;
+    tryPush(x+1,y,false); tryPush(x-1,y,false); tryPush(x,y+1,false); tryPush(x,y-1,false);
+  }
+  // Limpa halos e pedaços de parede ainda grudados no contorno, sem apagar pele/camisa.
+  dilateBackgroundMask(mask,d,w,h,bg,mode,Math.max(1,leftover));
+
+  for(let p=0;p<w*h;p++) if(mask[p]) d[p*4+3]=0;
+
+  const smooth=+$('suavizarRemove').value;
+  if(smooth>0){
+    const softened=new Uint8ClampedArray(w*h);
+    for(let p=0;p<w*h;p++) softened[p]=d[p*4+3];
+    for(let y=1;y<h-1;y++){
+      for(let x=1;x<w-1;x++){
+        const p=y*w+x;
+        if(mask[p]) continue;
+        let bgN=0;
+        bgN += mask[p-1]; bgN += mask[p+1]; bgN += mask[p-w]; bgN += mask[p+w];
+        bgN += mask[p-w-1]; bgN += mask[p-w+1]; bgN += mask[p+w-1]; bgN += mask[p+w+1];
+        if(bgN>0){
+          const i=p*4;
+          const r=d[i],g=d[i+1],b=d[i+2];
+          if(!isWarmSkin(r,g,b) && !isDarkSubject(r,g,b) && isBackgroundCandidate(d,i,bg,growTol+smooth*16,mode,leftover*6)){
+            softened[p]=Math.max(40,255-bgN*(18+smooth*9));
+          }
+        }
+      }
+    }
+    for(let p=0;p<w*h;p++) d[p*4+3]=softened[p];
+  }
+
+  fixWhiteInHair(d,w,h,bg);
+
+  oc.putImageData(im,0,0);
+  processedImgCanvas=off;
+}
+function ligarRemoveFundo(){if(!img){alert('Carregue uma foto primeiro.');return;} $('removerFundo').checked=true; processBackgroundRemoval(); draw();}
+function restaurarFundo(){ $('removerFundo').checked=false; processedImgCanvas=null; draw();}
+function drawPhoto(c,W,H,s){
+  if(!img) return;
+  if($('removerFundo').checked && !processedImgCanvas) processBackgroundRemoval();
+  const source=($('removerFundo').checked && processedImgCanvas)?processedImgCanvas:img;
+  let right=$('fotoDireita').checked;
+  let zoom=+$('zoom').value/100;
+
+  // V7.1: desenha a foto SEM distorcer a proporção original.
+  // Antes usava largura/altura fixas e isso podia afinar o rosto ao carregar.
+  const sw=source.naturalWidth || source.width || 1;
+  const sh=source.naturalHeight || source.height || 1;
+  const imgRatio=sw/sh;
+  const fitBoxW=560*s;
+  const fitBoxH=820*s;
+  const boxRatio=fitBoxW/fitBoxH;
+  let dw, dh;
+  if(imgRatio >= boxRatio){
+    dh=fitBoxH*zoom;
+    dw=dh*imgRatio;
+  }else{
+    dw=fitBoxW*zoom;
+    dh=dw/imgRatio;
+  }
+
+  let cx=(right?805:275)*s + (+$('posX').value*s);
+  let cy=565*s + (+$('posY').value*s);
+  c.save();
+  c.filter=`brightness(${$('brilho').value}%) contrast(${$('contraste').value}%)`;
+  c.beginPath();
+  if(right){c.rect(445*s,70*s,635*s,955*s)}else{c.rect(0,70*s,635*s,955*s)}
+  c.clip();
+  c.drawImage(source,cx-dw/2,cy-dh/2,dw,dh);
+  c.filter='none';
+  if(!$('removerFundo').checked){
+    let grd=c.createLinearGradient(right?445*s:635*s,0,right?640*s:440*s,0);
+    grd.addColorStop(0,'rgba(0,0,0,.96)');
+    grd.addColorStop(1,'rgba(0,0,0,0)');
+    c.fillStyle=grd;
+    c.fillRect(right?430*s:420*s,0,280*s,H);
+  }
+  c.restore();
+}
+function drawBanner(target=ctx, scale=1){const W=1080*scale,H=1080*scale; target.clearRect(0,0,W,H); background(target,W,H,scale); drawLayoutDecor(target,W,H,scale); drawPhoto(target,W,H,scale); const dark=+$('sombra').value/100; let sideGrad=target.createLinearGradient(0,0,W*.72,0); sideGrad.addColorStop(0,`rgba(0,0,0,${.25+dark*.65})`); sideGrad.addColorStop(.62,`rgba(0,0,0,${.10+dark*.18})`); sideGrad.addColorStop(1,'rgba(0,0,0,0)'); target.fillStyle=sideGrad; target.fillRect(0,0,W,H); if($('mostrarAspas').checked){target.save(); target.fillStyle=$('cor1').value; target.font=`900 ${170*scale}px Georgia,serif`; target.shadowColor=rgba($('cor1').value,.35); target.shadowBlur=20*scale; target.fillText('“',45*scale,275*scale); target.strokeStyle=rgba($('cor1').value,.7); target.lineWidth=3*scale; target.beginPath(); target.moveTo(170*scale,350*scale); target.lineTo(560*scale,350*scale); target.stroke(); target.restore();}
+ const m=modeloAtual(); const phrase=$('frase').value.trim(); let size=+$('fontSize').value*scale; let tx=(m.x||32)*scale, tw=(m.w||525)*scale; let font=textoFont(size); let lines=wrapWords(target, phrase, tw, font); while(lines.length>7 && size>45*scale){size-=3*scale; font=textoFont(size); lines=wrapWords(target, phrase, tw, font);} let baseY=(m.y||430); let y=(baseY - Math.max(0,lines.length-5)*22)*scale; let lh=size*1.14; for(const line of lines){drawTextLine(target,line,tx,y,size/scale,tw,scale); y+=lh;} const autor=$('autor').value.trim(); if(autor){target.font=`700 ${24*scale}px Arial, sans-serif`; target.fillStyle='rgba(255,255,255,.82)'; target.fillText(autor,tx,905*scale)} if($('mostrarRodape').checked){drawFooter(target,scale);} }
+function drawFooter(c,s){const txt=$('rodape').value.trim(); const x=28*s,y=996*s,w=+$('footerWidth').value*s,h=66*s; c.save(); c.strokeStyle=$('cor1').value;c.lineWidth=2.5*s;c.fillStyle='rgba(0,0,0,.62)'; roundRect(c,x,y,w,h,15*s,true,true); let ig=c.createLinearGradient(x+24*s,y+12*s,x+62*s,y+50*s); ig.addColorStop(0,'#f9ce34');ig.addColorStop(.45,'#ee2a7b');ig.addColorStop(1,'#6228d7');c.fillStyle=ig;roundRect(c,x+22*s,y+14*s,38*s,38*s,10*s,true,false);c.strokeStyle='#fff';c.lineWidth=3*s;roundRect(c,x+31*s,y+23*s,20*s,20*s,6*s,false,true);c.beginPath();c.arc(x+41*s,y+33*s,5*s,0,Math.PI*2);c.stroke();c.fillStyle='#fff';let fs=+$('footerSize').value*s;c.font=`900 ${fs}px Arial, sans-serif`;c.textBaseline='middle';let tx=x+75*s, max=w-90*s; while(c.measureText(txt).width>max && fs>15*s){fs-=1*s;c.font=`900 ${fs}px Arial, sans-serif`;} c.fillText(txt,tx,y+34*s);c.restore();}
+function roundRect(c,x,y,w,h,r,fill,stroke){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r); if(fill)c.fill(); if(stroke)c.stroke();}
+function draw(){setVars(); drawBanner(ctx,1)}
+
+function clampNum(v,min,max){return Math.max(min,Math.min(max,v));}
+function setRangeValue(id,val){const el=$(id); if(!el) return; el.value=String(Math.round(clampNum(val,+el.min,+el.max)));}
+function centralizarFoto(){
+  setRangeValue('posX',80);
+  setRangeValue('posY',0);
+  if($('zoom')) setRangeValue('zoom',122);
+  processedImgCanvas=null;
+  draw();
+}
+const touchState={pointers:new Map(), lastX:0, lastY:0, startDist:0, startZoom:122, lastTap:0};
+function canvasPoint(ev){
+  const r=canvas.getBoundingClientRect();
+  return {x:ev.clientX-r.left,y:ev.clientY-r.top};
+}
+function pointerDistance(){
+  const pts=[...touchState.pointers.values()];
+  if(pts.length<2) return 0;
+  const dx=pts[0].x-pts[1].x, dy=pts[0].y-pts[1].y;
+  return Math.hypot(dx,dy);
+}
+function installTouchEditor(){
+  canvas.addEventListener('pointerdown',ev=>{
+    if(!img) return;
+    ev.preventDefault();
+    canvas.setPointerCapture(ev.pointerId);
+    const p=canvasPoint(ev);
+    touchState.pointers.set(ev.pointerId,p);
+    if(touchState.pointers.size===1){
+      touchState.lastX=p.x; touchState.lastY=p.y;
+      const now=Date.now();
+      if(now-touchState.lastTap<330){ centralizarFoto(); touchState.lastTap=0; return; }
+      touchState.lastTap=now;
+    }else if(touchState.pointers.size===2){
+      touchState.startDist=pointerDistance();
+      touchState.startZoom=+$('zoom').value;
+    }
+  },{passive:false});
+  canvas.addEventListener('pointermove',ev=>{
+    if(!img || !touchState.pointers.has(ev.pointerId)) return;
+    ev.preventDefault();
+    const p=canvasPoint(ev);
+    touchState.pointers.set(ev.pointerId,p);
+    if(touchState.pointers.size===1){
+      const rect=canvas.getBoundingClientRect();
+      const factor=1080/Math.max(1,rect.width);
+      const dx=(p.x-touchState.lastX)*factor;
+      const dy=(p.y-touchState.lastY)*factor;
+      setRangeValue('posX',+$('posX').value+dx);
+      setRangeValue('posY',+$('posY').value+dy);
+      touchState.lastX=p.x; touchState.lastY=p.y;
+      draw();
+    }else if(touchState.pointers.size>=2){
+      const dist=pointerDistance();
+      if(touchState.startDist>0){
+        const next=touchState.startZoom*(dist/touchState.startDist);
+        setRangeValue('zoom',next);
+        draw();
+      }
+    }
+  },{passive:false});
+  function endPointer(ev){
+    if(touchState.pointers.has(ev.pointerId)) touchState.pointers.delete(ev.pointerId);
+    if(touchState.pointers.size===1){
+      const p=[...touchState.pointers.values()][0];
+      touchState.lastX=p.x; touchState.lastY=p.y;
+    }
+  }
+  canvas.addEventListener('pointerup',endPointer,{passive:false});
+  canvas.addEventListener('pointercancel',endPointer,{passive:false});
+  canvas.addEventListener('pointerleave',endPointer,{passive:false});
+  canvas.addEventListener('wheel',ev=>{
+    if(!img) return;
+    ev.preventDefault();
+    const step=ev.deltaY<0?6:-6;
+    setRangeValue('zoom',+$('zoom').value+step);
+    draw();
+  },{passive:false});
+}
+
+function corrigirTexto(){let t=$('frase').value; const rep={ 'voce':'você','Voce':'Você','nao':'não','Nao':'Não','esta ':'está ','Esta ':'Está ','negocio':'negócio','atrassar':'atrasar','atrazar':'atrasar','jose':'José','Jose':'José','ate':'até','Ate':'Até','tambem':'também','pra':'para','vc':'você','q ':'que '}; Object.keys(rep).forEach(k=>{t=t.replaceAll(k,rep[k])}); t=t.replace(/\s+/g,' ').trim(); if(t && !/[.!?]$/.test(t)) t+='.'; t=t.charAt(0).toUpperCase()+t.slice(1); $('frase').value=t; draw(); alert('Correção básica aplicada. O navegador também marca erros com sublinhado no campo de frase.');}
+function salvarConfig(){const ids=['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','forcaRemove','suavizarRemove','modoRemove','limparSobras','forcaCabelo','areaCabelo','footerSize','footerWidth','categoriaFrase','frasePronta','campanhaMes','modeloLayout']; const cfg={}; ids.forEach(id=>cfg[id]=$(id).value); ['mostrarAspas','mostrarRodape','textura','fotoDireita','removerFundo','autoRemoverFundo','corrigirCabelo','protegerOlhos'].forEach(id=>cfg[id]=$(id).checked); localStorage.setItem('wv_banner_frase_cfg_v2',JSON.stringify(cfg)); alert('Configuração salva neste navegador.');}
+function carregarConfig(){const cfg=JSON.parse(localStorage.getItem('wv_banner_frase_cfg_v2')||localStorage.getItem('wv_banner_frase_cfg')||'{}'); Object.keys(cfg).forEach(id=>{if($(id)){if(typeof cfg[id]==='boolean') $(id).checked=cfg[id]; else $(id).value=cfg[id];}}); if($('categoriaFrase')) carregarFrasesProntas(); processedImgCanvas=null; draw();}
+function resetar(){if(!confirm('Zerar os campos do banner?'))return; $('frase').value='José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.'; $('destaques').value='Deus,negócio,te promove'; if($('categoriaFrase')){$('categoriaFrase').value='Homens históricos da Bíblia'; carregarFrasesProntas(); $('frasePronta').value='0';} if($('campanhaMes')) $('campanhaMes').value='0'; if($('modeloLayout')) $('modeloLayout').value='original'; $('rodape').value='@wellingtonviana.pego'; $('autor').value=''; $('fontSize').value=69; if($('fonteTexto')) $('fonteTexto').value='Impact, "Arial Black", sans-serif'; if($('fontePersonalizada')) $('fontePersonalizada').value=''; atualizarFonteTexto(); $('zoom').value=122; $('posX').value=80; $('posY').value=0; $('brilho').value=104; $('contraste').value=112; $('sombra').value=58; $('forcaRemove').value=52; $('suavizarRemove').value=3; if($('modoRemove')) $('modoRemove').value='forte'; if($('limparSobras')) $('limparSobras').value=6; if($('forcaCabelo')) $('forcaCabelo').value=5; if($('areaCabelo')) $('areaCabelo').value=24; if($('corrigirCabelo')) $('corrigirCabelo').checked=true; if($('protegerOlhos')) $('protegerOlhos').checked=true; $('footerSize').value=25; $('footerWidth').value=400; $('mostrarAspas').checked=true; $('mostrarRodape').checked=true; $('textura').checked=true; $('fotoDireita').checked=true; $('removerFundo').checked=false; img=null; processedImgCanvas=null; $('foto').value=''; draw();}
+function baixarPNG(){const out=document.createElement('canvas'); out.width=3240; out.height=3240; const oc=out.getContext('2d'); drawBanner(oc,3); const a=document.createElement('a'); a.download='WV_Banner_Instagram_Alta_Qualidade.png'; a.href=out.toDataURL('image/png',1.0); a.click();}
+$('foto').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return; const reader=new FileReader(); reader.onload=ev=>{img=new Image(); img.onload=()=>{processedImgCanvas=null; /* V7.1: ao carregar nova foto, volta para o enquadramento padrão proporcional */ setRangeValue('zoom',122); setRangeValue('posX',80); setRangeValue('posY',0); if($('autoRemoverFundo').checked){$('removerFundo').checked=true; processBackgroundRemoval();} draw();}; img.src=ev.target.result}; reader.readAsDataURL(f);});
+['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','mostrarAspas','mostrarRodape','textura','fotoDireita','removerFundo','autoRemoverFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','protegerOlhos','forcaCabelo','areaCabelo','footerSize','footerWidth','campanhaMes','modeloLayout'].forEach(id=>$(id).addEventListener('input',()=>{if(['removerFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','forcaCabelo','protegerOlhos','areaCabelo'].includes(id)) processedImgCanvas=null; draw();}));
+initPresets(); initFrasesProntas(); initCampanhasMes(); initModelosLayout(); initFontesTexto(); installTouchEditor(); draw();
+</script>
+</body>
+</html>
