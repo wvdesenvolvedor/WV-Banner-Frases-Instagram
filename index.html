@@ -48,7 +48,7 @@
 <body>
 <header>
   <h1>WV Banner</h1>
-  <p>Modelo escuro premium • fontes universais • 11 layouts • OCR de imagem • sem foto opcional • auto texto • PNG alta qualidade</p>
+  <p>@wellingtonviana.pego</p>
 </header>
 <div class="wrap">
   <section class="panel">
@@ -914,6 +914,26 @@ function calcularLayoutTexto(context, phrase, area, scale){
   y=Math.max(area.top, Math.min(Math.max(area.top, area.bottom-chosen.totalHeight), y));
   return {...chosen,y};
 }
+function calcularLayoutAspas(context, area, scale){
+  const m=modeloAtual();
+  const tagBottoms={
+    religiao:132, fe:136, palavra:153, humor:138, curiosidade:136,
+    voce_sabia:148, esporte:136, fofoca:138, noticia:150, clean:180
+  };
+  const tagBottom=(tagBottoms[m.id] || 0) * scale;
+  const quoteSize=(m.id==='clean' || m.id==='palavra' || m.id==='noticia') ? 148*scale : 156*scale;
+  context.font=`900 ${quoteSize}px Georgia,serif`;
+  const mt=context.measureText('“');
+  const ascent=mt.actualBoundingBoxAscent || quoteSize*.74;
+  const lineOffset=quoteSize*.42;
+  const minY=tagBottom + 18*scale + ascent;
+  const maxY=area.top - 40*scale - lineOffset;
+  let quoteY=Math.max(238*scale, minY);
+  if(maxY>0) quoteY=Math.min(quoteY,maxY);
+  const lineY=Math.min(area.top-38*scale, quoteY+lineOffset);
+  const lineEnd=(fraseExpandidaSemFoto()?760:560)*scale;
+  return {quoteSize, quoteY, lineY, lineEnd};
+}
 function drawPhoto(c,W,H,s){
   if(!bannerUsaFoto()) return;
   if($('removerFundo').checked && !processedImgCanvas) processBackgroundRemoval();
@@ -986,23 +1006,24 @@ function drawBanner(target=ctx, scale=1){
     target.fillRect(0,0,W,H);
     target.restore();
   }
+  const phrase=$('frase').value.trim();
+  const area=obterAreaTexto(scale);
   if($('mostrarAspas').checked){
+    const aspas=calcularLayoutAspas(target, area, scale);
     target.save();
     target.fillStyle=$('cor1').value;
-    target.font=`900 ${170*scale}px Georgia,serif`;
+    target.font=`900 ${aspas.quoteSize}px Georgia,serif`;
     target.shadowColor=rgba($('cor1').value,.35);
     target.shadowBlur=20*scale;
-    target.fillText('“',45*scale,275*scale);
+    target.fillText('“',45*scale,aspas.quoteY);
     target.strokeStyle=rgba($('cor1').value,.7);
     target.lineWidth=3*scale;
     target.beginPath();
-    target.moveTo(170*scale,350*scale);
-    target.lineTo((fraseExpandidaSemFoto()?760:560)*scale,350*scale);
+    target.moveTo(170*scale,aspas.lineY);
+    target.lineTo(aspas.lineEnd,aspas.lineY);
     target.stroke();
     target.restore();
   }
-  const phrase=$('frase').value.trim();
-  const area=obterAreaTexto(scale);
   const tx=area.x, tw=area.w;
   const layoutTexto=calcularLayoutTexto(target, phrase, area, scale);
   let y=layoutTexto.y;
