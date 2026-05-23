@@ -95,12 +95,12 @@
     <div class="phraseBox">
       <div class="phraseBoxTitle">
         <span>Modelos de layout</span>
-        <span class="phraseBadge">18 opções</span>
+        <span class="phraseBadge">24 opções</span>
       </div>
       <div class="group">
         <label>Escolher modelo visual</label>
         <select id="modeloLayout" onchange="aplicarModeloLayout()"></select>
-        <div class="hint">Inclui: original, religião, fé, palavra do dia, frase do dia, reflexão, motivacional, luxo, azul premium, neon, alerta, bíblico, humor, curiosidade, você sabia, esporte, fofoca, notícia e clean premium. O modelo original continua disponível.</div>
+        <div class="hint">Inclui: original, religião, fé, palavra do dia, frase do dia, reflexão, motivacional, luxo, azul premium, neon, alerta, bíblico, humor, curiosidade, você sabia, esporte, fofoca, notícia, clean premium e mais 5 novos temas inspirados em banners minimalistas abstratos: minimal artístico, orgânico pastel, moldura editorial, recorte abstrato e ondas premium. Todos aceitam troca de cores pela paleta.</div>
       </div>
     </div>
 
@@ -189,6 +189,99 @@
       <div class="group"><label>Escurecer fundo</label><input id="sombra" type="range" min="0" max="90" value="58" /></div>
     </div>
 
+    <div class="phraseBox">
+      <div class="phraseBoxTitle">
+        <span>Efeitos da foto</span>
+        <span class="phraseBadge">Estilo câmera</span>
+      </div>
+      <div class="row">
+        <div class="group">
+          <label>Filtro rápido</label>
+          <select id="efeitoFoto" onchange="aplicarPresetEfeitoFoto()">
+            <option value="normal">Normal</option>
+            <option value="pb">Preto e branco</option>
+            <option value="velha">Foto velha / vintage</option>
+            <option value="quente">Quente</option>
+            <option value="fria">Fria</option>
+            <option value="vibrante">Vibrante</option>
+            <option value="retro">Retrô colorido</option>
+            <option value="sonho">Suave / sonho</option>
+            <option value="cinema">Cinema</option>
+            <option value="dourado">Dourado premium</option>
+            <option value="jornal">Jornal antigo</option>
+            <option value="azul_pro">Azul profissional</option>
+            <option value="biblico_suave">Bíblico suave</option>
+            <option value="personalizado">Personalizado</option>
+          </select>
+        </div>
+        <div class="group">
+          <label>Matiz / mudar cor</label>
+          <input id="matizFoto" type="range" min="-180" max="180" value="0" />
+        </div>
+      </div>
+      <div class="row3">
+        <div class="group"><label>Saturação</label><input id="saturacaoFoto" type="range" min="0" max="220" value="100" /></div>
+        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaFoto" type="range" min="0" max="100" value="0" /></div>
+        <div class="group"><label>Preto e branco</label><input id="pbFoto" type="range" min="0" max="100" value="0" /></div>
+      </div>
+      <div class="phraseActions">
+        <button type="button" onclick="aplicarPresetEfeitoFoto()">Aplicar efeito</button>
+        <button type="button" class="secondary" onclick="resetarEfeitoFoto()">Resetar efeito</button>
+      </div>
+      <div class="hint">Funciona com foto normal e também com foto sem fundo. Você pode usar os filtros prontos ou ajustar manualmente, no estilo câmera de celular.</div>
+    </div>
+
+    <div class="phraseBox">
+      <div class="phraseBoxTitle">
+        <span>Efeitos do banner</span>
+        <span class="phraseBadge">Banner / banner todo</span>
+      </div>
+      <div class="row">
+        <div class="group">
+          <label>Aplicar em</label>
+          <select id="alvoEfeitoBanner" onchange="draw()">
+            <option value="banner">Só banner</option>
+            <option value="completo">Banner todo com foto</option>
+          </select>
+        </div>
+        <div class="group">
+          <label>Filtro rápido</label>
+          <select id="efeitoBanner" onchange="aplicarPresetEfeitoBanner()">
+            <option value="normal">Normal</option>
+            <option value="pb">Preto e branco</option>
+            <option value="velha">Foto velha / vintage</option>
+            <option value="quente">Quente</option>
+            <option value="fria">Fria</option>
+            <option value="vibrante">Vibrante</option>
+            <option value="retro">Retrô colorido</option>
+            <option value="sonho">Suave / sonho</option>
+            <option value="cinema">Cinema</option>
+            <option value="dourado">Dourado premium</option>
+            <option value="jornal">Jornal antigo</option>
+            <option value="azul_pro">Azul profissional</option>
+            <option value="biblico_suave">Bíblico suave</option>
+            <option value="personalizado">Personalizado</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="group">
+          <label>Matiz / mudar cor</label>
+          <input id="matizBanner" type="range" min="-180" max="180" value="0" />
+        </div>
+      </div>
+      <div class="row3">
+        <div class="group"><label>Saturação</label><input id="saturacaoBanner" type="range" min="0" max="220" value="100" /></div>
+        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaBanner" type="range" min="0" max="100" value="0" /></div>
+        <div class="group"><label>Preto e branco</label><input id="pbBanner" type="range" min="0" max="100" value="0" /></div>
+      </div>
+      <div class="phraseActions">
+        <button type="button" onclick="aplicarPresetEfeitoBanner()">Aplicar efeito</button>
+        <button type="button" class="secondary" onclick="resetarEfeitoBanner()">Resetar efeito</button>
+      </div>
+      <div class="hint">Você pode mudar só o banner, sem alterar a foto, ou aplicar no banner todo com a foto junto. A opção de mudar somente a foto continua separada acima.</div>
+    </div>
+
     <div class="group">
       <label>Cores automáticas</label>
       <div class="presetGrid" id="presetGrid"></div>
@@ -234,7 +327,20 @@
       <button class="danger" onclick="resetar()">Zerar</button>
     </div>
     <button class="fullbtn ok" onclick="baixarPNG()">Baixar PNG alta qualidade</button>
+    <div class="group" style="margin-top:12px">
+      <label>Gerar versões automáticas - opcional</label>
+      <select id="modoVariacao">
+        <option value="principal">Gerar só o banner principal</option>
+        <option value="principal_e_3">Gerar banner principal + 3 variações</option>
+        <option value="so_3">Gerar só as 3 variações</option>
+        <option value="var1">Gerar só a variação 1</option>
+        <option value="var2">Gerar só a variação 2</option>
+        <option value="var3">Gerar só a variação 3</option>
+      </select>
+    </div>
+    <button class="fullbtn secondary" onclick="duplicarVariacao()">Gerar conforme seletor</button>
     <p class="small">Exporta em 3240×3240 PNG, mantendo formato quadrado para feed do Instagram.</p>
+    <p class="small">Novo: você pode gerar o banner principal, o principal + 3 variações, só as 3 variações ou escolher uma variação específica no seletor.</p>
   </section>
   <section class="previewBox"><canvas id="canvas" width="1080" height="1080"></canvas></section>
 </div>
@@ -548,7 +654,12 @@ const modelosLayout = [
   {id:'esporte', nome:'Esporte - energia de estádio', etiqueta:'ESPORTE', x:42, y:390, w:555, align:'left', a:'#22c55e', b:'#facc15'},
   {id:'fofoca', nome:'Fofoca - pop e chamativo', etiqueta:'FOFOCA', x:42, y:405, w:560, align:'left', a:'#ec4899', b:'#f9a8d4'},
   {id:'noticia', nome:'Notícia - jornal premium', etiqueta:'NOTÍCIA', x:45, y:365, w:585, align:'left', a:'#ef4444', b:'#facc15'},
-  {id:'clean', nome:'Clean premium - minimalista', etiqueta:'REFLEXÃO', x:55, y:415, w:535, align:'left', a:'#f8fafc', b:'#94a3b8'}
+  {id:'clean', nome:'Clean premium - minimalista', etiqueta:'REFLEXÃO', x:55, y:415, w:535, align:'left', a:'#f8fafc', b:'#94a3b8'},
+  {id:'minimal_artistico', nome:'Minimal artístico - abstrato desenhado à mão', etiqueta:'CITAÇÃO', x:58, y:418, w:520, align:'left', a:'#f59e0b', b:'#fbcfe8'},
+  {id:'organico_pastel', nome:'Orgânico pastel - formas abstratas', etiqueta:'INSPIRAÇÃO', x:56, y:408, w:530, align:'left', a:'#f472b6', b:'#fcd34d'},
+  {id:'moldura_editorial', nome:'Moldura editorial - clean sofisticado', etiqueta:'EDITORIAL', x:60, y:420, w:510, align:'left', a:'#cbd5e1', b:'#f8fafc'},
+  {id:'recorte_abstrato', nome:'Recorte abstrato - camadas suaves', etiqueta:'DESTAQUE', x:52, y:404, w:545, align:'left', a:'#60a5fa', b:'#f9a8d4'},
+  {id:'ondas_premium', nome:'Ondas premium - banner quote minimal', etiqueta:'REFLEXÃO', x:54, y:414, w:535, align:'left', a:'#a78bfa', b:'#fda4af'}
 ];
 function modeloAtual(){
   const sel=$('modeloLayout');
@@ -677,6 +788,59 @@ function drawLayoutDecor(c,W,H,s){
     c.fillStyle='rgba(255,255,255,.055)'; roundRect(c,34*s,102*s,590*s,805*s,34*s,true,false);
     c.strokeStyle=rgba(a,.35); c.lineWidth=2*s; roundRect(c,34*s,102*s,590*s,805*s,34*s,false,true);
     drawTag(c,s,m,58*s,132*s);
+  }else if(m.id==='minimal_artistico'){
+    c.fillStyle='rgba(255,255,255,.045)'; roundRect(c,36*s,104*s,586*s,816*s,30*s,true,false);
+    c.strokeStyle=rgba(a,.34); c.lineWidth=2.2*s; roundRect(c,36*s,104*s,586*s,816*s,30*s,false,true);
+    drawTag(c,s,m,62*s,130*s);
+    c.globalAlpha=.16; c.fillStyle=rgba(a,.90); c.beginPath(); c.arc(520*s,178*s,78*s,0,Math.PI*2); c.fill();
+    c.fillStyle=rgba(b,.95); c.beginPath(); c.arc(585*s,258*s,48*s,0,Math.PI*2); c.fill();
+    c.fillStyle=rgba(a,.22); c.fillRect(76*s,250*s,165*s,28*s);
+    c.fillStyle=rgba(b,.22); c.fillRect(84*s,292*s,220*s,18*s);
+    c.strokeStyle=rgba(a,.60); c.lineWidth=3*s;
+    c.beginPath(); c.moveTo(452*s,130*s); c.quadraticCurveTo(565*s,110*s,620*s,185*s); c.stroke();
+    c.beginPath(); c.moveTo(468*s,214*s); c.quadraticCurveTo(560*s,252*s,622*s,214*s); c.stroke();
+  }else if(m.id==='organico_pastel'){
+    c.globalAlpha=.22; c.fillStyle=rgba(a,.95);
+    c.beginPath(); c.moveTo(44*s,132*s); c.bezierCurveTo(92*s,58*s,244*s,72*s,258*s,174*s); c.bezierCurveTo(272*s,276*s,122*s,314*s,62*s,242*s); c.bezierCurveTo(20*s,206*s,18*s,170*s,44*s,132*s); c.fill();
+    c.fillStyle=rgba(b,.92);
+    c.beginPath(); c.moveTo(432*s,92*s); c.bezierCurveTo(560*s,34*s,668*s,126*s,624*s,240*s); c.bezierCurveTo(596*s,326*s,488*s,342*s,418*s,286*s); c.bezierCurveTo(338*s,226*s,344*s,134*s,432*s,92*s); c.fill();
+    c.fillStyle='rgba(255,255,255,.06)'; roundRect(c,38*s,98*s,584*s,820*s,42*s,true,false);
+    c.strokeStyle=rgba('#ffffff',.16); c.lineWidth=1.8*s; roundRect(c,38*s,98*s,584*s,820*s,42*s,false,true);
+    drawTag(c,s,m,60*s,128*s);
+    c.globalAlpha=.36; c.strokeStyle=rgba(a,.72); c.lineWidth=3*s;
+    c.beginPath(); c.moveTo(74*s,870*s); c.quadraticCurveTo(180*s,830*s,288*s,872*s); c.quadraticCurveTo(420*s,925*s,590*s,860*s); c.stroke();
+    c.globalAlpha=.26; c.fillStyle=rgba(b,.90); c.beginPath(); c.arc(120*s,840*s,26*s,0,Math.PI*2); c.arc(174*s,808*s,14*s,0,Math.PI*2); c.fill();
+  }else if(m.id==='moldura_editorial'){
+    c.fillStyle='rgba(255,255,255,.035)'; roundRect(c,44*s,104*s,566*s,812*s,26*s,true,false);
+    c.strokeStyle=rgba(a,.60); c.lineWidth=2*s; roundRect(c,44*s,104*s,566*s,812*s,26*s,false,true);
+    c.strokeStyle=rgba(a,.22); c.lineWidth=8*s; roundRect(c,58*s,118*s,538*s,784*s,20*s,false,true);
+    drawTag(c,s,m,64*s,134*s);
+    c.globalAlpha=.32; c.strokeStyle=rgba(b,.85); c.lineWidth=2.4*s;
+    c.beginPath(); c.moveTo(82*s,248*s); c.lineTo(562*s,248*s); c.stroke();
+    c.beginPath(); c.moveTo(82*s,760*s); c.lineTo(562*s,760*s); c.stroke();
+    c.globalAlpha=.20; c.fillStyle=rgba(a,.75); c.fillRect(84*s,188*s,110*s,8*s); c.fillRect(84*s,782*s,170*s,8*s);
+    c.fillStyle=rgba(b,.70); c.fillRect(470*s,188*s,92*s,8*s); c.fillRect(446*s,782*s,116*s,8*s);
+  }else if(m.id==='recorte_abstrato'){
+    c.fillStyle='rgba(255,255,255,.045)'; roundRect(c,34*s,88*s,596*s,844*s,38*s,true,false);
+    c.strokeStyle=rgba(a,.24); c.lineWidth=2*s; roundRect(c,34*s,88*s,596*s,844*s,38*s,false,true);
+    c.globalAlpha=.18; c.fillStyle=rgba(a,.95); roundRect(c,54*s,120*s,250*s,140*s,40*s,true,false);
+    c.fillStyle=rgba(b,.92); roundRect(c,220*s,188*s,320*s,110*s,36*s,true,false);
+    c.fillStyle=rgba(a,.78); roundRect(c,86*s,780*s,300*s,92*s,34*s,true,false);
+    c.fillStyle=rgba(b,.64); roundRect(c,350*s,730*s,200*s,132*s,34*s,true,false);
+    drawTag(c,s,m,58*s,138*s);
+    c.globalAlpha=.32; c.strokeStyle=rgba('#ffffff',.34); c.lineWidth=2.4*s;
+    c.beginPath(); c.moveTo(414*s,120*s); c.quadraticCurveTo(540*s,150*s,592*s,236*s); c.stroke();
+  }else if(m.id==='ondas_premium'){
+    c.fillStyle='rgba(255,255,255,.04)'; roundRect(c,36*s,96*s,588*s,824*s,34*s,true,false);
+    c.strokeStyle=rgba(a,.30); c.lineWidth=2*s; roundRect(c,36*s,96*s,588*s,824*s,34*s,false,true);
+    drawTag(c,s,m,58*s,128*s);
+    c.globalAlpha=.22; c.fillStyle=rgba(a,.96);
+    c.beginPath(); c.moveTo(18*s,770*s); c.bezierCurveTo(126*s,718*s,220*s,832*s,332*s,790*s); c.bezierCurveTo(426*s,758*s,526*s,678*s,650*s,740*s); c.lineTo(650*s,1032*s); c.lineTo(18*s,1032*s); c.closePath(); c.fill();
+    c.fillStyle=rgba(b,.92);
+    c.beginPath(); c.moveTo(0,846*s); c.bezierCurveTo(124*s,804*s,238*s,914*s,342*s,878*s); c.bezierCurveTo(466*s,836*s,564*s,782*s,690*s,854*s); c.lineTo(690*s,1036*s); c.lineTo(0,1036*s); c.closePath(); c.fill();
+    c.globalAlpha=.34; c.strokeStyle=rgba('#ffffff',.55); c.lineWidth=3*s;
+    c.beginPath(); c.moveTo(88*s,286*s); c.quadraticCurveTo(178*s,232*s,280*s,266*s); c.quadraticCurveTo(352*s,290*s,452*s,242*s); c.stroke();
+    c.beginPath(); c.moveTo(92*s,332*s); c.quadraticCurveTo(190*s,382*s,292*s,336*s); c.quadraticCurveTo(384*s,296*s,488*s,342*s); c.stroke();
   }
   c.restore();
 }
@@ -705,12 +869,137 @@ const presets = [
   {nome:'Café', a:'#d97706', b:'#92400e'},
   {nome:'Gelo', a:'#e0f2fe', b:'#38bdf8'},
   {nome:'Magenta', a:'#d946ef', b:'#f0abfc'},
-  {nome:'Lima', a:'#84cc16', b:'#fef08a'}
+  {nome:'Lima', a:'#84cc16', b:'#fef08a'},
+  {nome:'Rosé Minimal', a:'#f9a8d4', b:'#fde68a'},
+  {nome:'Lavanda Suave', a:'#c4b5fd', b:'#f5d0fe'},
+  {nome:'Areia Premium', a:'#f59e0b', b:'#fde68a'},
+  {nome:'Editorial Clean', a:'#e2e8f0', b:'#94a3b8'},
+  {nome:'Pastel Moderno', a:'#60a5fa', b:'#f9a8d4'}
 ];
 function hexToRgb(hex){hex=hex.replace('#','');return {r:parseInt(hex.slice(0,2),16),g:parseInt(hex.slice(2,4),16),b:parseInt(hex.slice(4,6),16)}}
 function rgba(hex,a){const c=hexToRgb(hex);return `rgba(${c.r},${c.g},${c.b},${a})`}
 function initPresets(){const grid=$('presetGrid'); grid.innerHTML=''; presets.forEach((p,i)=>{const d=document.createElement('button'); d.className='preset'+(i==0?' active':''); d.title=p.nome; d.style.background=`linear-gradient(135deg,${p.a},${p.b})`; d.onclick=()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active')); d.classList.add('active'); $('cor1').value=p.a; $('cor2').value=p.b; setVars(); draw();}; grid.appendChild(d);});}
 function setVars(){document.documentElement.style.setProperty('--accent',$('cor1').value);document.documentElement.style.setProperty('--accent2',$('cor2').value)}
+function rgbToHex(r,g,b){const toHex=v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0'); return `#${toHex(r)}${toHex(g)}${toHex(b)}`;}
+function hexToHsl(hex){
+  const {r,g,b}=hexToRgb(hex);
+  let rr=r/255, gg=g/255, bb=b/255;
+  const max=Math.max(rr,gg,bb), min=Math.min(rr,gg,bb);
+  let h=0,s=0,l=(max+min)/2;
+  if(max!==min){
+    const d=max-min;
+    s=l>0.5 ? d/(2-max-min) : d/(max+min);
+    switch(max){
+      case rr: h=(gg-bb)/d + (gg<bb?6:0); break;
+      case gg: h=(bb-rr)/d + 2; break;
+      default: h=(rr-gg)/d + 4;
+    }
+    h*=60;
+  }
+  return {h,s:s*100,l:l*100};
+}
+function hslToHex(h,s,l){
+  h=((h%360)+360)%360; s=Math.max(0,Math.min(100,s))/100; l=Math.max(0,Math.min(100,l))/100;
+  const c=(1-Math.abs(2*l-1))*s;
+  const x=c*(1-Math.abs((h/60)%2-1));
+  const m=l-c/2;
+  let r=0,g=0,b=0;
+  if(h<60){r=c;g=x;b=0;} else if(h<120){r=x;g=c;b=0;} else if(h<180){r=0;g=c;b=x;} else if(h<240){r=0;g=x;b=c;} else if(h<300){r=x;g=0;b=c;} else {r=c;g=0;b=x;}
+  return rgbToHex((r+m)*255,(g+m)*255,(b+m)*255);
+}
+function transformarHex(hex, hueShift=0, satDelta=0, lightDelta=0){
+  const hsl=hexToHsl(hex);
+  return hslToHex(hsl.h+hueShift,hsl.s+satDelta,hsl.l+lightDelta);
+}
+function aplicarCoresBanner(c1,c2,redesenhar=true){
+  if($('cor1')) $('cor1').value=c1;
+  if($('cor2')) $('cor2').value=c2;
+  if(redesenhar) draw();
+}
+function criarPaletasVariacao(c1,c2){
+  return [
+    {nome:'var1_quente_premium', a:transformarHex(c1,22,10,3), b:transformarHex(c2,34,8,8)},
+    {nome:'var2_azul_profissional', a:transformarHex(c1,-36,6,1), b:transformarHex(c2,-18,10,6)},
+    {nome:'var3_destaque_criativo', a:transformarHex(c1,72,4,-2), b:transformarHex(c2,96,6,4)}
+  ];
+}
+const efeitosFotoPresets = {
+  normal:{saturacao:100, sepia:0, pb:0, matiz:0},
+  pb:{saturacao:0, sepia:0, pb:100, matiz:0},
+  velha:{saturacao:82, sepia:62, pb:12, matiz:-10},
+  quente:{saturacao:118, sepia:12, pb:0, matiz:-12},
+  fria:{saturacao:108, sepia:0, pb:0, matiz:18},
+  vibrante:{saturacao:155, sepia:0, pb:0, matiz:0},
+  retro:{saturacao:125, sepia:38, pb:0, matiz:8},
+  sonho:{saturacao:112, sepia:16, pb:6, matiz:14},
+  cinema:{saturacao:88, sepia:18, pb:10, matiz:-6},
+  dourado:{saturacao:126, sepia:46, pb:0, matiz:-18},
+  jornal:{saturacao:48, sepia:74, pb:24, matiz:-8},
+  azul_pro:{saturacao:108, sepia:0, pb:0, matiz:24},
+  biblico_suave:{saturacao:94, sepia:18, pb:4, matiz:10},
+  personalizado:{saturacao:100, sepia:0, pb:0, matiz:0}
+};
+function aplicarPresetGenerico(prefixo, manual=false){
+  const sel=$(prefixo==='Foto' ? 'efeitoFoto' : 'efeitoBanner');
+  if(!sel) return;
+  const preset=efeitosFotoPresets[sel.value] || efeitosFotoPresets.normal;
+  if(!manual && sel.value!=='personalizado'){
+    if($('saturacao'+prefixo)) $('saturacao'+prefixo).value=preset.saturacao;
+    if($('sepia'+prefixo)) $('sepia'+prefixo).value=preset.sepia;
+    if($('pb'+prefixo)) $('pb'+prefixo).value=preset.pb;
+    if($('matiz'+prefixo)) $('matiz'+prefixo).value=preset.matiz;
+  }
+  draw();
+}
+function aplicarPresetEfeitoFoto(manual=false){ aplicarPresetGenerico('Foto', manual); }
+function aplicarPresetEfeitoBanner(manual=false){ aplicarPresetGenerico('Banner', manual); }
+function marcarEfeitoPersonalizado(prefixo){
+  const sel=$(prefixo==='Foto' ? 'efeitoFoto' : 'efeitoBanner');
+  if(!sel) return;
+  if(sel.value!=='personalizado') sel.value='personalizado';
+  draw();
+}
+function resetarEfeitoFoto(){
+  if($('efeitoFoto')) $('efeitoFoto').value='normal';
+  if($('saturacaoFoto')) $('saturacaoFoto').value=100;
+  if($('sepiaFoto')) $('sepiaFoto').value=0;
+  if($('pbFoto')) $('pbFoto').value=0;
+  if($('matizFoto')) $('matizFoto').value=0;
+  draw();
+}
+function resetarEfeitoBanner(){
+  if($('alvoEfeitoBanner')) $('alvoEfeitoBanner').value='banner';
+  if($('efeitoBanner')) $('efeitoBanner').value='normal';
+  if($('saturacaoBanner')) $('saturacaoBanner').value=100;
+  if($('sepiaBanner')) $('sepiaBanner').value=0;
+  if($('pbBanner')) $('pbBanner').value=0;
+  if($('matizBanner')) $('matizBanner').value=0;
+  draw();
+}
+function filtroFotoAtual(){
+  const brilho=($('brilho') && $('brilho').value) || 100;
+  const contraste=($('contraste') && $('contraste').value) || 100;
+  const saturacao=($('saturacaoFoto') && $('saturacaoFoto').value) || 100;
+  const sepia=($('sepiaFoto') && $('sepiaFoto').value) || 0;
+  const pb=($('pbFoto') && $('pbFoto').value) || 0;
+  const matiz=($('matizFoto') && $('matizFoto').value) || 0;
+  return `brightness(${brilho}%) contrast(${contraste}%) saturate(${saturacao}%) sepia(${sepia}%) grayscale(${pb}%) hue-rotate(${matiz}deg)`;
+}
+function filtroBannerAtual(){
+  const saturacao=($('saturacaoBanner') && $('saturacaoBanner').value) || 100;
+  const sepia=($('sepiaBanner') && $('sepiaBanner').value) || 0;
+  const pb=($('pbBanner') && $('pbBanner').value) || 0;
+  const matiz=($('matizBanner') && $('matizBanner').value) || 0;
+  return `saturate(${saturacao}%) sepia(${sepia}%) grayscale(${pb}%) hue-rotate(${matiz}deg)`;
+}
+function bannerTemEfeitoAtivo(){
+  return (($('efeitoBanner') && $('efeitoBanner').value) || 'normal') !== 'normal'
+    || +(($('saturacaoBanner') && $('saturacaoBanner').value) || 100) !== 100
+    || +(($('sepiaBanner') && $('sepiaBanner').value) || 0) !== 0
+    || +(($('pbBanner') && $('pbBanner').value) || 0) !== 0
+    || +(($('matizBanner') && $('matizBanner').value) || 0) !== 0;
+}
+function makeCanvas(w,h){ const c=document.createElement('canvas'); c.width=w; c.height=h; return c; }
 function wrapWords(context, text, maxWidth, font){context.font = font; const words=text.replace(/\s+/g,' ').trim().split(' '); let lines=[], line=''; for(const w of words){const test=line?line+' '+w:w; if(context.measureText(test).width>maxWidth && line){lines.push(line); line=w;} else line=test;} if(line) lines.push(line); return lines;}
 function highlightTerms(){return $('destaques').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean)}
 function drawTextLine(c, line, x, y, size, maxWidth, scale){const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let w=words[i]; let token=w + (i<words.length-1?' ':''); let clean=w.toLowerCase().replace(/[.,;:!?]/g,''); let isHi=highlightTerms().some(h=> clean===h || token.toLowerCase().includes(h) || line.toLowerCase().includes(h)); c.fillStyle=isHi?$('cor1').value:'#f4f4f4'; c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; }}
@@ -1089,7 +1378,7 @@ function drawPhoto(c,W,H,s){
   let cx=(right?805:275)*s + (+$('posX').value*s);
   let cy=565*s + (+$('posY').value*s);
   c.save();
-  c.filter=`brightness(${$('brilho').value}%) contrast(${$('contraste').value}%)`;
+  c.filter=filtroFotoAtual();
   c.beginPath();
   if(right){c.rect(445*s,70*s,635*s,955*s)}else{c.rect(0,70*s,635*s,955*s)}
   c.clip();
@@ -1104,12 +1393,7 @@ function drawPhoto(c,W,H,s){
   }
   c.restore();
 }
-function drawBanner(target=ctx, scale=1){
-  const W=1080*scale,H=1080*scale;
-  target.clearRect(0,0,W,H);
-  background(target,W,H,scale);
-  drawLayoutDecor(target,W,H,scale);
-  drawPhoto(target,W,H,scale);
+function drawSombreamentoBanner(target,W,H,scale){
   const dark=+$('sombra').value/100;
   if(bannerUsaFoto()){
     let sideGrad=target.createLinearGradient(0,0,W*.72,0);
@@ -1134,6 +1418,8 @@ function drawBanner(target=ctx, scale=1){
     target.fillRect(0,0,W,H);
     target.restore();
   }
+}
+function drawTextoPrincipal(target,scale){
   const phrase=$('frase').value.trim();
   const area=obterAreaTexto(scale);
   if($('mostrarAspas').checked){
@@ -1166,6 +1452,58 @@ function drawBanner(target=ctx, scale=1){
     target.fillText(autor,tx,905*scale);
   }
   if($('mostrarRodape').checked){drawFooter(target,scale);}
+}
+function renderBannerLayer(target,scale=1){
+  const W=1080*scale,H=1080*scale;
+  target.clearRect(0,0,W,H);
+  background(target,W,H,scale);
+  drawLayoutDecor(target,W,H,scale);
+  drawSombreamentoBanner(target,W,H,scale);
+  drawTextoPrincipal(target,scale);
+}
+function renderPhotoLayer(target,scale=1){
+  const W=1080*scale,H=1080*scale;
+  target.clearRect(0,0,W,H);
+  drawPhoto(target,W,H,scale);
+}
+function renderBannerCompleto(target,scale=1){
+  const W=1080*scale,H=1080*scale;
+  target.clearRect(0,0,W,H);
+  background(target,W,H,scale);
+  drawLayoutDecor(target,W,H,scale);
+  drawPhoto(target,W,H,scale);
+  drawSombreamentoBanner(target,W,H,scale);
+  drawTextoPrincipal(target,scale);
+}
+function drawBanner(target=ctx, scale=1){
+  const W=1080*scale,H=1080*scale;
+  target.clearRect(0,0,W,H);
+  if(!bannerTemEfeitoAtivo()){
+    renderBannerCompleto(target,scale);
+    return;
+  }
+  const modo=(($('alvoEfeitoBanner') && $('alvoEfeitoBanner').value) || 'banner');
+  if(modo==='completo'){
+    const full=makeCanvas(W,H);
+    const fc=full.getContext('2d');
+    renderBannerCompleto(fc,scale);
+    target.save();
+    target.filter=filtroBannerAtual();
+    target.drawImage(full,0,0);
+    target.restore();
+    return;
+  }
+  const bannerLayer=makeCanvas(W,H);
+  const photoLayer=makeCanvas(W,H);
+  const bc=bannerLayer.getContext('2d');
+  const pc=photoLayer.getContext('2d');
+  renderBannerLayer(bc,scale);
+  renderPhotoLayer(pc,scale);
+  target.save();
+  target.filter=filtroBannerAtual();
+  target.drawImage(bannerLayer,0,0);
+  target.restore();
+  target.drawImage(photoLayer,0,0);
 }
 function drawFooter(c,s){const txt=$('rodape').value.trim(); const x=28*s,y=996*s,w=+$('footerWidth').value*s,h=66*s; c.save(); c.strokeStyle=$('cor1').value;c.lineWidth=2.5*s;c.fillStyle='rgba(0,0,0,.62)'; roundRect(c,x,y,w,h,15*s,true,true); let ig=c.createLinearGradient(x+24*s,y+12*s,x+62*s,y+50*s); ig.addColorStop(0,'#f9ce34');ig.addColorStop(.45,'#ee2a7b');ig.addColorStop(1,'#6228d7');c.fillStyle=ig;roundRect(c,x+22*s,y+14*s,38*s,38*s,10*s,true,false);c.strokeStyle='#fff';c.lineWidth=3*s;roundRect(c,x+31*s,y+23*s,20*s,20*s,6*s,false,true);c.beginPath();c.arc(x+41*s,y+33*s,5*s,0,Math.PI*2);c.stroke();c.fillStyle='#fff';let fs=+$('footerSize').value*s;c.font=`900 ${fs}px Arial, sans-serif`;c.textBaseline='middle';let tx=x+75*s, max=w-90*s; while(c.measureText(txt).width>max && fs>15*s){fs-=1*s;c.font=`900 ${fs}px Arial, sans-serif`;} c.fillText(txt,tx,y+34*s);c.restore();}
 function roundRect(c,x,y,w,h,r,fill,stroke){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r); if(fill)c.fill(); if(stroke)c.stroke();}
@@ -1251,14 +1589,75 @@ function installTouchEditor(){
 }
 
 function corrigirTexto(){let t=$('frase').value; const rep={ 'voce':'você','Voce':'Você','nao':'não','Nao':'Não','esta ':'está ','Esta ':'Está ','negocio':'negócio','atrassar':'atrasar','atrazar':'atrasar','jose':'José','Jose':'José','ate':'até','Ate':'Até','tambem':'também','pra':'para','vc':'você','q ':'que '}; Object.keys(rep).forEach(k=>{t=t.replaceAll(k,rep[k])}); t=t.replace(/\s+/g,' ').trim(); if(t && !/[.!?]$/.test(t)) t+='.'; t=t.charAt(0).toUpperCase()+t.slice(1); $('frase').value=t; draw(); alert('Correção básica aplicada. O navegador também marca erros com sublinhado no campo de frase.');}
-function salvarConfig(){const ids=['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','forcaRemove','suavizarRemove','modoRemove','limparSobras','forcaCabelo','areaCabelo','footerSize','footerWidth','categoriaFrase','frasePronta','campanhaMes','modeloLayout']; const cfg={}; ids.forEach(id=>cfg[id]=$(id).value); ['mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','corrigirCabelo','protegerOlhos'].forEach(id=>cfg[id]=$(id).checked); localStorage.setItem('wv_banner_frase_cfg_v3',JSON.stringify(cfg)); alert('Configuração salva neste navegador.');}
-function carregarConfig(){const cfg=JSON.parse(localStorage.getItem('wv_banner_frase_cfg_v3')||localStorage.getItem('wv_banner_frase_cfg_v2')||localStorage.getItem('wv_banner_frase_cfg')||'{}'); Object.keys(cfg).forEach(id=>{if($(id)){if(typeof cfg[id]==='boolean') $(id).checked=cfg[id]; else $(id).value=cfg[id];}}); if($('categoriaFrase')) carregarFrasesProntas(); processedImgCanvas=null; draw();}
-function resetar(){if(!confirm('Zerar os campos do banner?'))return; $('frase').value='José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.'; $('destaques').value='Deus,negócio,te promove'; if($('categoriaFrase')){$('categoriaFrase').value='Homens históricos da Bíblia'; carregarFrasesProntas(); $('frasePronta').value='0';} if($('campanhaMes')) $('campanhaMes').value='0'; if($('modeloLayout')) $('modeloLayout').value='original'; $('rodape').value='@wellingtonviana.pego'; $('autor').value=''; $('fontSize').value=69; if($('fonteTexto')) $('fonteTexto').value='Arial, Helvetica, sans-serif'; if($('fontePersonalizada')) $('fontePersonalizada').value=''; atualizarFonteTexto(); $('zoom').value=122; $('posX').value=80; $('posY').value=0; $('brilho').value=104; $('contraste').value=112; $('sombra').value=58; $('forcaRemove').value=52; $('suavizarRemove').value=3; if($('modoRemove')) $('modoRemove').value='forte'; if($('limparSobras')) $('limparSobras').value=6; if($('forcaCabelo')) $('forcaCabelo').value=5; if($('areaCabelo')) $('areaCabelo').value=24; if($('corrigirCabelo')) $('corrigirCabelo').checked=true; if($('protegerOlhos')) $('protegerOlhos').checked=true; $('footerSize').value=25; $('footerWidth').value=400; $('mostrarAspas').checked=true; $('mostrarRodape').checked=true; $('textura').checked=true; $('fotoDireita').checked=true; if($('modoSemFoto')) $('modoSemFoto').checked=false; if($('expandirSemFoto')) $('expandirSemFoto').checked=true; if($('autoFontSize')) $('autoFontSize').checked=true; $('removerFundo').checked=false; img=null; processedImgCanvas=null; $('foto').value=''; draw();}
+function salvarConfig(){const ids=['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','forcaRemove','suavizarRemove','modoRemove','limparSobras','forcaCabelo','areaCabelo','footerSize','footerWidth','categoriaFrase','frasePronta','campanhaMes','modeloLayout','efeitoFoto','saturacaoFoto','sepiaFoto','pbFoto','matizFoto','alvoEfeitoBanner','efeitoBanner','saturacaoBanner','sepiaBanner','pbBanner','matizBanner']; const cfg={}; ids.forEach(id=>cfg[id]=$(id).value); ['mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','corrigirCabelo','protegerOlhos'].forEach(id=>cfg[id]=$(id).checked); localStorage.setItem('wv_banner_frase_cfg_v5',JSON.stringify(cfg)); alert('Configuração salva neste navegador.');}
+function carregarConfig(){const cfg=JSON.parse(localStorage.getItem('wv_banner_frase_cfg_v5')||localStorage.getItem('wv_banner_frase_cfg_v4')||localStorage.getItem('wv_banner_frase_cfg_v3')||localStorage.getItem('wv_banner_frase_cfg_v2')||localStorage.getItem('wv_banner_frase_cfg')||'{}'); Object.keys(cfg).forEach(id=>{if($(id)){if(typeof cfg[id]==='boolean') $(id).checked=cfg[id]; else $(id).value=cfg[id];}}); if($('categoriaFrase')) carregarFrasesProntas(); if($('efeitoFoto') && !$('efeitoFoto').value) $('efeitoFoto').value='normal'; if($('efeitoBanner') && !$('efeitoBanner').value) $('efeitoBanner').value='normal'; if($('alvoEfeitoBanner') && !$('alvoEfeitoBanner').value) $('alvoEfeitoBanner').value='banner'; processedImgCanvas=null; draw();}
+function resetar(){if(!confirm('Zerar os campos do banner?'))return; $('frase').value='José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.'; $('destaques').value='Deus,negócio,te promove'; if($('categoriaFrase')){$('categoriaFrase').value='Homens históricos da Bíblia'; carregarFrasesProntas(); $('frasePronta').value='0';} if($('campanhaMes')) $('campanhaMes').value='0'; if($('modeloLayout')) $('modeloLayout').value='original'; $('rodape').value='@wellingtonviana.pego'; $('autor').value=''; $('fontSize').value=69; if($('fonteTexto')) $('fonteTexto').value='Arial, Helvetica, sans-serif'; if($('fontePersonalizada')) $('fontePersonalizada').value=''; atualizarFonteTexto(); $('zoom').value=122; $('posX').value=80; $('posY').value=0; $('brilho').value=104; $('contraste').value=112; $('sombra').value=58; if($('efeitoFoto')) $('efeitoFoto').value='normal'; if($('saturacaoFoto')) $('saturacaoFoto').value=100; if($('sepiaFoto')) $('sepiaFoto').value=0; if($('pbFoto')) $('pbFoto').value=0; if($('matizFoto')) $('matizFoto').value=0; if($('alvoEfeitoBanner')) $('alvoEfeitoBanner').value='banner'; if($('efeitoBanner')) $('efeitoBanner').value='normal'; if($('saturacaoBanner')) $('saturacaoBanner').value=100; if($('sepiaBanner')) $('sepiaBanner').value=0; if($('pbBanner')) $('pbBanner').value=0; if($('matizBanner')) $('matizBanner').value=0; $('forcaRemove').value=52; $('suavizarRemove').value=3; if($('modoRemove')) $('modoRemove').value='forte'; if($('limparSobras')) $('limparSobras').value=6; if($('forcaCabelo')) $('forcaCabelo').value=5; if($('areaCabelo')) $('areaCabelo').value=24; if($('corrigirCabelo')) $('corrigirCabelo').checked=true; if($('protegerOlhos')) $('protegerOlhos').checked=true; $('footerSize').value=25; $('footerWidth').value=400; $('mostrarAspas').checked=true; $('mostrarRodape').checked=true; $('textura').checked=true; $('fotoDireita').checked=true; if($('modoSemFoto')) $('modoSemFoto').checked=false; if($('expandirSemFoto')) $('expandirSemFoto').checked=true; if($('autoFontSize')) $('autoFontSize').checked=true; $('removerFundo').checked=false; img=null; processedImgCanvas=null; $('foto').value=''; draw();}
 function baixarPNG(){const out=document.createElement('canvas'); out.width=3240; out.height=3240; const oc=out.getContext('2d'); drawBanner(oc,3); const a=document.createElement('a'); a.download='WV_Banner_Instagram_Alta_Qualidade.png'; a.href=out.toDataURL('image/png',1.0); a.click();}
+function baixarBannerPrincipalComNome(nomeArquivo='WV_Banner_Instagram_Alta_Qualidade.png'){
+  const out=document.createElement('canvas'); out.width=3240; out.height=3240; const oc=out.getContext('2d');
+  drawBanner(oc,3);
+  const a=document.createElement('a');
+  a.download=nomeArquivo;
+  a.href=out.toDataURL('image/png',1.0);
+  a.click();
+}
+function baixarPNGComCores(nomeArquivo,c1,c2){
+  const cor1Atual=$('cor1').value, cor2Atual=$('cor2').value;
+  aplicarCoresBanner(c1,c2,false);
+  const out=document.createElement('canvas'); out.width=3240; out.height=3240; const oc=out.getContext('2d');
+  drawBanner(oc,3);
+  const a=document.createElement('a');
+  a.download=nomeArquivo;
+  a.href=out.toDataURL('image/png',1.0);
+  a.click();
+  aplicarCoresBanner(cor1Atual,cor2Atual,false);
+}
+function duplicarVariacao(){
+  const base1=$('cor1').value, base2=$('cor2').value;
+  const variacoes=criarPaletasVariacao(base1,base2);
+  const modo=(($('modoVariacao') && $('modoVariacao').value) || 'principal_e_3');
+  if(!variacoes.length){
+    if(modo==='principal') baixarBannerPrincipalComNome();
+    return;
+  }
+  const tarefas=[];
+  if(modo==='principal'){
+    tarefas.push({tipo:'principal', nome:'WV_Banner_Principal.png'});
+  }else if(modo==='principal_e_3'){
+    tarefas.push({tipo:'principal', nome:'WV_Banner_Principal.png'});
+    variacoes.forEach((v,i)=>tarefas.push({tipo:'var', idx:i, nome:`WV_Banner_Variacao_${i+1}_${v.nome}.png`, a:v.a, b:v.b}));
+  }else if(modo==='so_3'){
+    variacoes.forEach((v,i)=>tarefas.push({tipo:'var', idx:i, nome:`WV_Banner_Variacao_${i+1}_${v.nome}.png`, a:v.a, b:v.b}));
+  }else if(modo==='var1' && variacoes[0]){
+    tarefas.push({tipo:'var', idx:0, nome:`WV_Banner_Variacao_1_${variacoes[0].nome}.png`, a:variacoes[0].a, b:variacoes[0].b});
+  }else if(modo==='var2' && variacoes[1]){
+    tarefas.push({tipo:'var', idx:1, nome:`WV_Banner_Variacao_2_${variacoes[1].nome}.png`, a:variacoes[1].a, b:variacoes[1].b});
+  }else if(modo==='var3' && variacoes[2]){
+    tarefas.push({tipo:'var', idx:2, nome:`WV_Banner_Variacao_3_${variacoes[2].nome}.png`, a:variacoes[2].a, b:variacoes[2].b});
+  }
+  if(!tarefas.length) return;
+  tarefas.forEach((t,i)=>{
+    setTimeout(()=>{
+      if(t.tipo==='principal') baixarBannerPrincipalComNome(t.nome);
+      else baixarPNGComCores(t.nome,t.a,t.b);
+      if(i===tarefas.length-1){
+        aplicarCoresBanner(base1,base2,false);
+        draw();
+        let msg='Pronto!';
+        if(modo==='principal') msg='Pronto! Foi gerado o banner principal.';
+        else if(modo==='principal_e_3') msg='Pronto! Foram gerados o banner principal + 3 variações automáticas.';
+        else if(modo==='so_3') msg='Pronto! Foram geradas 3 variações automáticas.';
+        else msg='Pronto! Foi gerada a variação escolhida no seletor.';
+        setTimeout(()=>alert(msg),180);
+      }
+    }, i*350);
+  });
+}
+
 $('foto').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return; const reader=new FileReader(); reader.onload=ev=>{img=new Image(); img.onload=()=>{processedImgCanvas=null; if($('modoSemFoto')) $('modoSemFoto').checked=false; setRangeValue('zoom',122); setRangeValue('posX',80); setRangeValue('posY',0); if($('autoRemoverFundo').checked){$('removerFundo').checked=true; processBackgroundRemoval();} draw();}; img.onerror=()=>{img=null; processedImgCanvas=null; alert('Não foi possível carregar essa foto. Tente outra imagem.'); draw();}; img.src=ev.target.result}; reader.readAsDataURL(f);});
-['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','protegerOlhos','forcaCabelo','areaCabelo','footerSize','footerWidth','campanhaMes','modeloLayout'].forEach(id=>$(id).addEventListener('input',()=>{if(['removerFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','forcaCabelo','protegerOlhos','areaCabelo'].includes(id)) processedImgCanvas=null; draw();}));
+['frase','destaques','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','protegerOlhos','forcaCabelo','areaCabelo','footerSize','footerWidth','campanhaMes','modeloLayout','saturacaoFoto','sepiaFoto','pbFoto','matizFoto','efeitoFoto','alvoEfeitoBanner','saturacaoBanner','sepiaBanner','pbBanner','matizBanner','efeitoBanner'].forEach(id=>$(id).addEventListener('input',()=>{if(['removerFundo','forcaRemove','suavizarRemove','modoRemove','limparSobras','corrigirCabelo','forcaCabelo','protegerOlhos','areaCabelo'].includes(id)) processedImgCanvas=null; if(['saturacaoFoto','sepiaFoto','pbFoto','matizFoto'].includes(id)) marcarEfeitoPersonalizado('Foto'); else if(['saturacaoBanner','sepiaBanner','pbBanner','matizBanner'].includes(id)) marcarEfeitoPersonalizado('Banner'); else draw();}));
 if($('imagemTextoOCR')) $('imagemTextoOCR').addEventListener('change',()=>{const f=$('imagemTextoOCR').files && $('imagemTextoOCR').files[0]; setStatusOCR(f ? 'Imagem carregada. Clique em Extrair mensagem.' : 'Aguardando imagem com texto...');});
-initPresets(); initFrasesProntas(); initCampanhasMes(); initModelosLayout(); initFontesTexto(); installTouchEditor(); draw();
+initPresets(); initFrasesProntas(); initCampanhasMes(); initModelosLayout(); initFontesTexto(); installTouchEditor(); resetarEfeitoFoto(); resetarEfeitoBanner();
 </script>
 </body>
 </html>
