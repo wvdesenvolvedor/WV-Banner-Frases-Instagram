@@ -1000,6 +1000,81 @@ function bannerTemEfeitoAtivo(){
     || +(($('matizBanner') && $('matizBanner').value) || 0) !== 0;
 }
 function makeCanvas(w,h){ const c=document.createElement('canvas'); c.width=w; c.height=h; return c; }
+
+function clamp255(v){return Math.max(0,Math.min(255,Math.round(v)));}
+function valoresFiltroFoto(){
+  return {
+    brightness:(+$('brilho').value || 100)/100,
+    contrast:(+$('contraste').value || 100)/100,
+    saturation:(+($('saturacaoFoto') && $('saturacaoFoto').value || 100))/100,
+    sepia:(+($('sepiaFoto') && $('sepiaFoto').value || 0))/100,
+    grayscale:(+($('pbFoto') && $('pbFoto').value || 0))/100,
+    hue:+(($('matizFoto') && $('matizFoto').value) || 0)
+  };
+}
+function valoresFiltroBanner(){
+  return {
+    brightness:1,
+    contrast:1,
+    saturation:(+($('saturacaoBanner') && $('saturacaoBanner').value || 100))/100,
+    sepia:(+($('sepiaBanner') && $('sepiaBanner').value || 0))/100,
+    grayscale:(+($('pbBanner') && $('pbBanner').value || 0))/100,
+    hue:+(($('matizBanner') && $('matizBanner').value) || 0)
+  };
+}
+function aplicarHueRotateRGB(r,g,b,deg){
+  if(!deg) return [r,g,b];
+  const rad=deg*Math.PI/180;
+  const cos=Math.cos(rad), sin=Math.sin(rad);
+  return [
+    r*(0.213+cos*0.787-sin*0.213)+g*(0.715-cos*0.715-sin*0.715)+b*(0.072-cos*0.072+sin*0.928),
+    r*(0.213-cos*0.213+sin*0.143)+g*(0.715+cos*0.285+sin*0.140)+b*(0.072-cos*0.072-sin*0.283),
+    r*(0.213-cos*0.213-sin*0.787)+g*(0.715-cos*0.715+sin*0.715)+b*(0.072+cos*0.928+sin*0.072)
+  ];
+}
+function aplicarFiltroManualCanvas(canvas, vals){
+  if(!canvas || !vals) return canvas;
+  const w=canvas.width, h=canvas.height;
+  if(!w || !h) return canvas;
+  const cx=canvas.getContext('2d', {willReadFrequently:true});
+  let imgData;
+  try{ imgData=cx.getImageData(0,0,w,h); }catch(e){ return canvas; }
+  const d=imgData.data;
+  const bright=vals.brightness || 1;
+  const contrast=vals.contrast || 1;
+  const sat=vals.saturation ?? 1;
+  const sepia=vals.sepia || 0;
+  const grayAmount=vals.grayscale || 0;
+  const hue=vals.hue || 0;
+  for(let i=0;i<d.length;i+=4){
+    if(d[i+3]===0) continue;
+    let r=d[i], g=d[i+1], b=d[i+2];
+    r*=bright; g*=bright; b*=bright;
+    r=(r-128)*contrast+128; g=(g-128)*contrast+128; b=(b-128)*contrast+128;
+    let lum=0.299*r+0.587*g+0.114*b;
+    r=lum+(r-lum)*sat; g=lum+(g-lum)*sat; b=lum+(b-lum)*sat;
+    if(sepia>0){
+      const sr=r*0.393+g*0.769+b*0.189;
+      const sg=r*0.349+g*0.686+b*0.168;
+      const sb=r*0.272+g*0.534+b*0.131;
+      r=r*(1-sepia)+sr*sepia; g=g*(1-sepia)+sg*sepia; b=b*(1-sepia)+sb*sepia;
+    }
+    if(grayAmount>0){
+      lum=0.299*r+0.587*g+0.114*b;
+      r=r*(1-grayAmount)+lum*grayAmount;
+      g=g*(1-grayAmount)+lum*grayAmount;
+      b=b*(1-grayAmount)+lum*grayAmount;
+    }
+    [r,g,b]=aplicarHueRotateRGB(r,g,b,hue);
+    d[i]=clamp255(r); d[i+1]=clamp255(g); d[i+2]=clamp255(b);
+  }
+  cx.putImageData(imgData,0,0);
+  return canvas;
+}
+function desenharCanvasComFiltroManual(destino, origem, vals){
+  aplicarFiltroManualCanvas(origem, vals);
+  destino.drawImage(origem,0,0);
+}
 function wrapWords(context, text, maxWidth, font){context.font = font; const words=text.replace(/\s+/g,' ').trim().split(' '); let lines=[], line=''; for(const w of words){const test=line?line+' '+w:w; if(context.measureText(test).width>maxWidth && line){lines.push(line); line=w;} else line=test;} if(line) lines.push(line); return lines;}
 function highlightTerms(){return $('destaques').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean)}
 function drawTextLine(c, line, x, y, size, maxWidth, scale){const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let w=words[i]; let token=w + (i<words.length-1?' ':''); let clean=w.toLowerCase().replace(/[.,;:!?]/g,''); let isHi=highlightTerms().some(h=> clean===h || token.toLowerCase().includes(h) || line.toLowerCase().includes(h)); c.fillStyle=isHi?$('cor1').value:'#f4f4f4'; c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; }}
@@ -1377,21 +1452,24 @@ function drawPhoto(c,W,H,s){
 
   let cx=(right?805:275)*s + (+$('posX').value*s);
   let cy=565*s + (+$('posY').value*s);
-  c.save();
-  c.filter=filtroFotoAtual();
-  c.beginPath();
-  if(right){c.rect(445*s,70*s,635*s,955*s)}else{c.rect(0,70*s,635*s,955*s)}
-  c.clip();
-  c.drawImage(source,cx-dw/2,cy-dh/2,dw,dh);
-  c.filter='none';
+  const layer=makeCanvas(W,H);
+  const lc=layer.getContext('2d');
+  lc.save();
+  lc.beginPath();
+  if(right){lc.rect(445*s,70*s,635*s,955*s)}else{lc.rect(0,70*s,635*s,955*s)}
+  lc.clip();
+  lc.drawImage(source,cx-dw/2,cy-dh/2,dw,dh);
+  lc.restore();
+  desenharCanvasComFiltroManual(c, layer, valoresFiltroFoto());
   if(!$('removerFundo').checked){
+    c.save();
     let grd=c.createLinearGradient(right?445*s:635*s,0,right?640*s:440*s,0);
     grd.addColorStop(0,'rgba(0,0,0,.96)');
     grd.addColorStop(1,'rgba(0,0,0,0)');
     c.fillStyle=grd;
     c.fillRect(right?430*s:420*s,0,280*s,H);
+    c.restore();
   }
-  c.restore();
 }
 function drawSombreamentoBanner(target,W,H,scale){
   const dark=+$('sombra').value/100;
@@ -1487,10 +1565,7 @@ function drawBanner(target=ctx, scale=1){
     const full=makeCanvas(W,H);
     const fc=full.getContext('2d');
     renderBannerCompleto(fc,scale);
-    target.save();
-    target.filter=filtroBannerAtual();
-    target.drawImage(full,0,0);
-    target.restore();
+    desenharCanvasComFiltroManual(target, full, valoresFiltroBanner());
     return;
   }
   const bannerLayer=makeCanvas(W,H);
@@ -1499,10 +1574,7 @@ function drawBanner(target=ctx, scale=1){
   const pc=photoLayer.getContext('2d');
   renderBannerLayer(bc,scale);
   renderPhotoLayer(pc,scale);
-  target.save();
-  target.filter=filtroBannerAtual();
-  target.drawImage(bannerLayer,0,0);
-  target.restore();
+  desenharCanvasComFiltroManual(target, bannerLayer, valoresFiltroBanner());
   target.drawImage(photoLayer,0,0);
 }
 function drawFooter(c,s){const txt=$('rodape').value.trim(); const x=28*s,y=996*s,w=+$('footerWidth').value*s,h=66*s; c.save(); c.strokeStyle=$('cor1').value;c.lineWidth=2.5*s;c.fillStyle='rgba(0,0,0,.62)'; roundRect(c,x,y,w,h,15*s,true,true); let ig=c.createLinearGradient(x+24*s,y+12*s,x+62*s,y+50*s); ig.addColorStop(0,'#f9ce34');ig.addColorStop(.45,'#ee2a7b');ig.addColorStop(1,'#6228d7');c.fillStyle=ig;roundRect(c,x+22*s,y+14*s,38*s,38*s,10*s,true,false);c.strokeStyle='#fff';c.lineWidth=3*s;roundRect(c,x+31*s,y+23*s,20*s,20*s,6*s,false,true);c.beginPath();c.arc(x+41*s,y+33*s,5*s,0,Math.PI*2);c.stroke();c.fillStyle='#fff';let fs=+$('footerSize').value*s;c.font=`900 ${fs}px Arial, sans-serif`;c.textBaseline='middle';let tx=x+75*s, max=w-90*s; while(c.measureText(txt).width>max && fs>15*s){fs-=1*s;c.font=`900 ${fs}px Arial, sans-serif`;} c.fillText(txt,tx,y+34*s);c.restore();}
