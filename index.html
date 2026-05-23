@@ -48,7 +48,7 @@
 <body>
 <header>
   <h1>WV Banner</h1>
-  <p>Modelo escuro premium • fontes universais • 11 layouts • OCR de imagem • sem foto opcional • auto texto • PNG alta qualidade</p>
+  <p>@wellingtonviana.pego</p>
 </header>
 <div class="wrap">
   <section class="panel">
@@ -89,18 +89,18 @@
         <button type="button" onclick="aplicarFrasePronta()">Aplicar frase</button>
         <button type="button" class="secondary" onclick="fraseAleatoria()">Frase aleatória</button>
       </div>
-      <div class="hint">Categorias: motivação, homens históricos da Bíblia, palavra do dia, humor leve, fé, coragem, superação e dia a dia.</div>
+      <div class="hint">Categorias: motivação, inspiração para vida, homens históricos da Bíblia, palavra do dia, humor leve, fé, coragem, superação e dia a dia.</div>
     </div>
 
     <div class="phraseBox">
       <div class="phraseBoxTitle">
         <span>Modelos de layout</span>
-        <span class="phraseBadge">11 opções</span>
+        <span class="phraseBadge">18 opções</span>
       </div>
       <div class="group">
         <label>Escolher modelo visual</label>
         <select id="modeloLayout" onchange="aplicarModeloLayout()"></select>
-        <div class="hint">Inclui: original, religião, fé, palavra do dia, humor, curiosidade, você sabia, esporte, fofoca, notícia e clean premium. O modelo original continua disponível.</div>
+        <div class="hint">Inclui: original, religião, fé, palavra do dia, frase do dia, reflexão, motivacional, luxo, azul premium, neon, alerta, bíblico, humor, curiosidade, você sabia, esporte, fofoca, notícia e clean premium. O modelo original continua disponível.</div>
       </div>
     </div>
 
@@ -192,7 +192,7 @@
     <div class="group">
       <label>Cores automáticas</label>
       <div class="presetGrid" id="presetGrid"></div>
-      <div class="hint">Modelo original + 5 opções de cor.</div>
+      <div class="hint">Mais cores rápidas premium. As cores também podem ser ajustadas manualmente na paleta abaixo e mudam os modelos já existentes.</div>
     </div>
 
     <div class="group">
@@ -202,8 +202,8 @@
     </div>
 
     <div class="row">
-      <div class="group"><label>Paleta celular/Windows - cor principal</label><input type="color" id="cor1" value="#f7b718" /></div>
-      <div class="group"><label>Paleta celular/Windows - cor secundária</label><input type="color" id="cor2" value="#ffcf4a" /></div>
+      <div class="group"><label>Paleta celular/Windows - cor principal do modelo</label><input type="color" id="cor1" value="#f7b718" /></div>
+      <div class="group"><label>Paleta celular/Windows - cor secundária do modelo</label><input type="color" id="cor2" value="#ffcf4a" /></div>
     </div>
     <span class="pill">Toque no quadrado de cor para abrir a paleta nativa do celular ou Windows.</span>
 
@@ -338,7 +338,53 @@ const frasesProntas = {
     {t:"Grandes vitórias nascem de pequenas atitudes repetidas todos os dias.", d:"vitórias,atitudes,todos os dias", a:"Motivação"},
     {t:"Você não precisa ver a escada inteira para dar o primeiro passo.", d:"primeiro passo", a:"Motivação"},
     {t:"Disciplina é fazer hoje o que o seu futuro vai agradecer amanhã.", d:"disciplina,futuro,amanhã", a:"Motivação"},
-    {t:"Quem não para no cansaço chega onde muitos só sonham.", d:"não para,sonham", a:"Motivação"}
+    {t:"Quem não para no cansaço chega onde muitos só sonham.", d:"não para,sonham", a:"Motivação"},
+    {t:"A constância transforma tentativas pequenas em resultados grandes.", d:"constância,resultados grandes", a:"Motivação"},
+    {t:"Não espere coragem para começar; comece e a coragem aparece no caminho.", d:"coragem,comece,caminho", a:"Motivação"},
+    {t:"O dia muda quando a atitude muda primeiro.", d:"dia muda,atitude", a:"Motivação"},
+    {t:"Quem vence por dentro começa a vencer por fora.", d:"vence por dentro,vencer por fora", a:"Motivação"},
+    {t:"O progresso pode ser silencioso, mas nunca é perdido.", d:"progresso,silencioso,nunca é perdido", a:"Motivação"},
+    {t:"Foco é dizer não ao que distrai e sim ao que constrói.", d:"foco,não,constrói", a:"Motivação"},
+    {t:"A vida recompensa quem continua mesmo quando ninguém está vendo.", d:"recompensa,continua,ninguém", a:"Motivação"},
+    {t:"Você não precisa estar pronto; precisa estar disposto.", d:"pronto,disposto", a:"Motivação"},
+    {t:"Cada passo certo diminui a distância entre você e o seu propósito.", d:"passo certo,distância,propósito", a:"Motivação"},
+    {t:"A vitória começa na mente antes de aparecer na vida.", d:"vitória,mente,vida", a:"Motivação"},
+    {t:"Não pare porque está difícil; ajuste a rota e continue.", d:"não pare,ajuste,continue", a:"Motivação"},
+    {t:"O esforço de hoje é a resposta que o futuro vai agradecer.", d:"esforço,hoje,futuro", a:"Motivação"},
+    {t:"Quem tem propósito não se perde em opinião.", d:"propósito,opinião", a:"Motivação"},
+    {t:"A diferença entre sonho e conquista é a ação repetida.", d:"sonho,conquista,ação", a:"Motivação"},
+    {t:"Não diminua sua meta; aumente sua disciplina.", d:"meta,disciplina", a:"Motivação"},
+    {t:"Você pode até ir devagar, mas não aceite ficar parado.", d:"devagar,não aceite,parado", a:"Motivação"},
+    {t:"Quando a mente decide, o corpo encontra caminho.", d:"mente decide,caminho", a:"Motivação"},
+    {t:"O que você faz todos os dias constrói o que você terá amanhã.", d:"todos os dias,constrói,amanhã", a:"Motivação"},
+    {t:"Persistência é continuar acreditando quando o resultado ainda não apareceu.", d:"persistência,acreditando,resultado", a:"Motivação"},
+    {t:"A sua melhor versão nasce quando você para de negociar com a preguiça.", d:"melhor versão,preguiça", a:"Motivação"},
+    {t:"O impossível perde força quando você trabalha todos os dias.", d:"impossível,trabalha,todos os dias", a:"Motivação"},
+    {t:"Seja maior que suas desculpas e mais forte que seus medos.", d:"maior,desculpas,medos", a:"Motivação"},
+    {t:"Quem cuida do processo não se assusta com o tempo.", d:"processo,tempo", a:"Motivação"},
+    {t:"Hoje é mais uma chance de provar para você mesmo que dá.", d:"hoje,chance,dá", a:"Motivação"}
+  ],
+  "Inspiração para vida": [
+    {t:"Às vezes, a vida muda quando você decide mudar a direção.", d:"vida,muda,direção", a:"Inspiração"},
+    {t:"Nem todo recomeço é perda; às vezes é Deus abrindo espaço para algo melhor.", d:"recomeço,Deus,algo melhor", a:"Inspiração"},
+    {t:"A paz também é uma resposta: ela mostra onde você deve permanecer.", d:"paz,resposta,permanecer", a:"Inspiração"},
+    {t:"Há fases que não vieram para te quebrar, vieram para te revelar.", d:"fases,quebrar,revelar", a:"Inspiração"},
+    {t:"Quando o coração aprende a esperar, a alma para de se desesperar.", d:"coração,esperar,alma", a:"Inspiração"},
+    {t:"Você não perdeu tempo; ganhou experiência para escolher melhor.", d:"tempo,experiência,escolher melhor", a:"Inspiração"},
+    {t:"O silêncio de hoje pode ser a preparação da resposta de amanhã.", d:"silêncio,preparação,resposta", a:"Inspiração"},
+    {t:"Ser forte também é saber descansar sem abandonar o propósito.", d:"forte,descansar,propósito", a:"Inspiração"},
+    {t:"A vida não exige pressa; exige direção.", d:"vida,pressa,direção", a:"Inspiração"},
+    {t:"Às vezes, amadurecer é entender que nem toda porta fechada foi perda.", d:"amadurecer,porta fechada,perda", a:"Inspiração"},
+    {t:"Quem caminha com fé aprende a florescer até em terreno difícil.", d:"fé,florescer,terreno difícil", a:"Inspiração"},
+    {t:"O que é verdadeiro permanece, mesmo depois das fases difíceis.", d:"verdadeiro,permanece,fases difíceis", a:"Inspiração"},
+    {t:"A mudança começa no instante em que você decide não repetir o mesmo erro.", d:"mudança,decide,erro", a:"Inspiração"},
+    {t:"Você não precisa carregar tudo; algumas coisas precisam ser entregues.", d:"carregar,entregues", a:"Inspiração"},
+    {t:"Existem respostas que só chegam quando a gente para de forçar caminhos errados.", d:"respostas,caminhos errados", a:"Inspiração"},
+    {t:"O tempo não cura tudo sozinho; ele ensina quando você permite aprender.", d:"tempo,cura,aprender", a:"Inspiração"},
+    {t:"A melhor escolha é aquela que protege sua paz e aproxima você do propósito.", d:"escolha,paz,propósito", a:"Inspiração"},
+    {t:"Quando você muda por dentro, muita coisa começa a fazer sentido por fora.", d:"muda por dentro,sentido", a:"Inspiração"},
+    {t:"Não confunda pausa com fim; às vezes é só Deus reorganizando o caminho.", d:"pausa,fim,Deus", a:"Inspiração"},
+    {t:"A vida floresce melhor quando o coração para de insistir no que machuca.", d:"vida floresce,coração,machuca", a:"Inspiração"}
   ],
   "Homens históricos da Bíblia": [
     {t:"José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.", d:"Deus,negócio,te promove", a:"Inspiração: José"},
@@ -348,7 +394,19 @@ const frasesProntas = {
     {t:"Daniel permaneceu firme mesmo quando a pressão tentou mudar seus princípios.", d:"Daniel,firme,princípios", a:"Inspiração: Daniel"},
     {t:"Abraão saiu sem ver tudo, mas confiou naquele que já conhecia o caminho.", d:"Abraão,confiou,caminho", a:"Inspiração: Abraão"},
     {t:"Paulo transformou prisões em propósito e dor em mensagem.", d:"Paulo,propósito,mensagem", a:"Inspiração: Paulo"},
-    {t:"Josué nos ensina que coragem também é obedecer mesmo com medo.", d:"Josué,coragem,medo", a:"Inspiração: Josué"}
+    {t:"Josué nos ensina que coragem também é obedecer mesmo com medo.", d:"Josué,coragem,medo", a:"Inspiração: Josué"},
+    {t:"Noé construiu antes da chuva porque a fé enxerga antes dos olhos.", d:"Noé,fé,olhos", a:"Inspiração: Noé"},
+    {t:"Elias nos mostra que até os fortes precisam de descanso e direção de Deus.", d:"Elias,fortes,Deus", a:"Inspiração: Elias"},
+    {t:"Pedro caiu, chorou e voltou; uma falha não precisa ser o fim da história.", d:"Pedro,falha,história", a:"Inspiração: Pedro"},
+    {t:"Jó perdeu muito, mas não perdeu a fé que sustentava sua alma.", d:"Jó,fé,alma", a:"Inspiração: Jó"},
+    {t:"Salomão nos lembra que sabedoria vale mais que aparência e pressa.", d:"Salomão,sabedoria,pressa", a:"Inspiração: Salomão"},
+    {t:"Gideão se achava pequeno, mas Deus enxergava nele um valente.", d:"Gideão,Deus,valente", a:"Inspiração: Gideão"},
+    {t:"Samuel ouviu a voz de Deus porque aprendeu a silenciar o coração.", d:"Samuel,voz de Deus,coração", a:"Inspiração: Samuel"},
+    {t:"Calebe envelheceu, mas não deixou a promessa envelhecer dentro dele.", d:"Calebe,promessa,dentro dele", a:"Inspiração: Calebe"},
+    {t:"Estêvão permaneceu fiel mesmo quando a verdade custou caro.", d:"Estêvão,fiel,verdade", a:"Inspiração: Estêvão"},
+    {t:"Barnabé nos ensina que encorajar alguém também é cumprir propósito.", d:"Barnabé,encorajar,propósito", a:"Inspiração: Barnabé"},
+    {t:"Timóteo mostra que juventude com propósito também carrega autoridade.", d:"Timóteo,juventude,propósito", a:"Inspiração: Timóteo"},
+    {t:"João Batista preparou o caminho sem precisar ocupar o centro da cena.", d:"João Batista,caminho,cena", a:"Inspiração: João Batista"}
   ],
   "Palavra do dia": [
     {t:"Palavra do dia: constância. Quem continua, avança.", d:"constância,continua,avança", a:"Palavra do dia"},
@@ -386,7 +444,7 @@ const frasesProntas = {
     {t:"O plano era ser fitness, mas o pão de queijo tinha outros planos.", d:"plano,fitness,pão de queijo", a:"Humor leve"},
     {t:"Se der certo, foi estratégia. Se der errado, foi aprendizado.", d:"estratégia,aprendizado", a:"Humor leve"}
   ]
-};
+}
 function carregarFrasesProntas(){
   const cat=$('categoriaFrase'), frase=$('frasePronta');
   if(!cat||!frase) return;
@@ -476,6 +534,14 @@ const modelosLayout = [
   {id:'religiao', nome:'Religião - elegante com cruz e luz', etiqueta:'RELIGIÃO', x:42, y:405, w:535, align:'left', a:'#f7b718', b:'#fff3b0'},
   {id:'fe', nome:'Fé - luz dourada e esperança', etiqueta:'FÉ', x:42, y:410, w:535, align:'left', a:'#fbbf24', b:'#fde68a'},
   {id:'palavra', nome:'Palavra do dia - selo superior', etiqueta:'PALAVRA DO DIA', x:54, y:392, w:560, align:'left', a:'#22c55e', b:'#a3e635'},
+  {id:'frase_dia', nome:'Frase do dia - destaque moderno', etiqueta:'FRASE DO DIA', x:54, y:398, w:560, align:'left', a:'#38bdf8', b:'#a78bfa'},
+  {id:'reflexao_plus', nome:'Reflexão premium - moldura elegante', etiqueta:'REFLEXÃO', x:55, y:415, w:535, align:'left', a:'#f8fafc', b:'#94a3b8'},
+  {id:'motivacional', nome:'Motivacional - energia e foco', etiqueta:'MOTIVAÇÃO', x:44, y:398, w:560, align:'left', a:'#f97316', b:'#facc15'},
+  {id:'luxo', nome:'Luxo dourado - premium escuro', etiqueta:'PREMIUM', x:48, y:405, w:545, align:'left', a:'#f59e0b', b:'#fde68a'},
+  {id:'azul_premium', nome:'Azul premium - corporativo', etiqueta:'PROFISSIONAL', x:45, y:400, w:560, align:'left', a:'#2563eb', b:'#60a5fa'},
+  {id:'neon', nome:'Neon moderno - impacto visual', etiqueta:'IMPACTO', x:44, y:405, w:560, align:'left', a:'#22d3ee', b:'#a855f7'},
+  {id:'alerta', nome:'Alerta - mensagem forte', etiqueta:'ATENÇÃO', x:44, y:392, w:565, align:'left', a:'#ef4444', b:'#f97316'},
+  {id:'biblico', nome:'Bíblico - luz e esperança', etiqueta:'VERSÍCULO', x:48, y:408, w:550, align:'left', a:'#facc15', b:'#fff7ad'},
   {id:'humor', nome:'Humor - moderno e descontraído', etiqueta:'HUMOR', x:42, y:405, w:560, align:'left', a:'#f97316', b:'#facc15'},
   {id:'curiosidade', nome:'Curiosidade - visual científico', etiqueta:'CURIOSIDADE', x:42, y:395, w:560, align:'left', a:'#06b6d4', b:'#67e8f9'},
   {id:'voce_sabia', nome:'Você sabia? - impacto educativo', etiqueta:'VOCÊ SABIA?', x:42, y:405, w:560, align:'left', a:'#8b5cf6', b:'#ec4899'},
@@ -538,6 +604,47 @@ function drawLayoutDecor(c,W,H,s){
     c.fillStyle=rgba(a,.16); roundRect(c,22*s,70*s,610*s,925*s,38*s,true,false);
     c.strokeStyle=rgba(a,.85); c.lineWidth=3*s; roundRect(c,22*s,70*s,610*s,925*s,38*s,false,true);
     drawTag(c,s,m,48*s,105*s);
+  }else if(m.id==='frase_dia'){
+    c.fillStyle=rgba(a,.18); roundRect(c,28*s,84*s,585*s,120*s,28*s,true,false);
+    c.strokeStyle=rgba(b,.70); c.lineWidth=2.5*s; roundRect(c,28*s,84*s,585*s,120*s,28*s,false,true);
+    drawTag(c,s,m,52*s,118*s);
+    c.globalAlpha=.24; c.strokeStyle=rgba(a,.90); c.lineWidth=4*s;
+    c.beginPath(); c.moveTo(60*s,312*s); c.lineTo(610*s,312*s); c.stroke();
+  }else if(m.id==='reflexao_plus'){
+    c.fillStyle='rgba(255,255,255,.055)'; roundRect(c,34*s,102*s,590*s,805*s,34*s,true,false);
+    c.strokeStyle=rgba(a,.38); c.lineWidth=2*s; roundRect(c,34*s,102*s,590*s,805*s,34*s,false,true);
+    c.strokeStyle=rgba(b,.24); c.lineWidth=7*s; roundRect(c,48*s,116*s,562*s,777*s,28*s,false,true);
+    drawTag(c,s,m,58*s,132*s);
+  }else if(m.id==='motivacional'){
+    drawTag(c,s,m,42*s,88*s);
+    c.globalAlpha=.32; c.strokeStyle=rgba(a,.85); c.lineWidth=7*s;
+    for(let i=0;i<5;i++){c.beginPath(); c.moveTo((40+i*88)*s,285*s); c.lineTo((145+i*88)*s,205*s); c.stroke();}
+    c.globalAlpha=.16; c.fillStyle=rgba(b,.70); c.beginPath(); c.arc(560*s,190*s,95*s,0,Math.PI*2); c.fill();
+  }else if(m.id==='luxo'){
+    c.fillStyle=rgba(a,.10); roundRect(c,30*s,78*s,600*s,860*s,34*s,true,false);
+    c.strokeStyle=rgba(b,.72); c.lineWidth=3*s; roundRect(c,30*s,78*s,600*s,860*s,34*s,false,true);
+    c.strokeStyle=rgba(a,.32); c.lineWidth=8*s; roundRect(c,52*s,100*s,556*s,816*s,28*s,false,true);
+    drawTag(c,s,m,55*s,115*s);
+  }else if(m.id==='azul_premium'){
+    drawTag(c,s,m,44*s,92*s);
+    c.globalAlpha=.22; c.fillStyle=rgba(a,.75); roundRect(c,36*s,180*s,560*s,135*s,34*s,true,false);
+    c.globalAlpha=.35; c.strokeStyle=rgba(b,.85); c.lineWidth=4*s;
+    c.beginPath(); c.moveTo(48*s,335*s); c.lineTo(620*s,335*s); c.stroke();
+  }else if(m.id==='neon'){
+    drawTag(c,s,m,42*s,92*s);
+    c.shadowColor=rgba(a,.85); c.shadowBlur=24*s; c.strokeStyle=rgba(a,.90); c.lineWidth=3*s;
+    roundRect(c,28*s,78*s,600*s,860*s,36*s,false,true);
+    c.shadowColor=rgba(b,.72); c.beginPath(); c.arc(560*s,230*s,80*s,0,Math.PI*2); c.stroke();
+    c.shadowBlur=0;
+  }else if(m.id==='alerta'){
+    c.fillStyle=rgba(a,.92); c.fillRect(0,76*s,W,74*s);
+    c.fillStyle='#fff'; c.font=`900 ${32*s}px Arial Black, sans-serif`; c.textBaseline='middle'; c.fillText('MENSAGEM IMPORTANTE',42*s,113*s);
+    c.strokeStyle=rgba(b,.85); c.lineWidth=5*s; c.beginPath(); c.moveTo(38*s,320*s); c.lineTo(620*s,320*s); c.stroke();
+  }else if(m.id==='biblico'){
+    c.globalAlpha=.30; c.strokeStyle=rgba(a,.92); c.lineWidth=5*s;
+    c.beginPath(); c.moveTo(102*s,126*s); c.lineTo(102*s,276*s); c.moveTo(48*s,182*s); c.lineTo(156*s,182*s); c.stroke();
+    c.globalAlpha=.20; c.fillStyle=rgba(b,.70); c.beginPath(); c.arc(110*s,185*s,135*s,0,Math.PI*2); c.fill();
+    c.globalAlpha=.95; drawTag(c,s,m,40*s,92*s);
   }else if(m.id==='humor'){
     drawTag(c,s,m,42*s,90*s);
     c.fillStyle=rgba(a,.22); c.beginPath(); c.arc(105*s,250*s,34*s,0,Math.PI*2); c.arc(220*s,185*s,20*s,0,Math.PI*2); c.arc(520*s,280*s,26*s,0,Math.PI*2); c.fill();
@@ -580,7 +687,25 @@ const presets = [
   {nome:'Vermelho', a:'#ff3131', b:'#ff8a3d'},
   {nome:'Verde', a:'#22c55e', b:'#a3e635'},
   {nome:'Roxo', a:'#8b5cf6', b:'#ec4899'},
-  {nome:'Ciano', a:'#06b6d4', b:'#67e8f9'}
+  {nome:'Ciano', a:'#06b6d4', b:'#67e8f9'},
+  {nome:'Branco/Cinza', a:'#f8fafc', b:'#94a3b8'},
+  {nome:'Preto/Prata', a:'#d1d5db', b:'#6b7280'},
+  {nome:'Azul Royal', a:'#2563eb', b:'#93c5fd'},
+  {nome:'Verde Neon', a:'#00ff88', b:'#b6ff00'},
+  {nome:'Rosa Premium', a:'#ec4899', b:'#f9a8d4'},
+  {nome:'Laranja Forte', a:'#f97316', b:'#fed7aa'},
+  {nome:'Vinho', a:'#be123c', b:'#fb7185'},
+  {nome:'Turquesa', a:'#14b8a6', b:'#99f6e4'},
+  {nome:'Lilás', a:'#a855f7', b:'#e9d5ff'},
+  {nome:'Brasil', a:'#16a34a', b:'#facc15'},
+  {nome:'Noite Azul', a:'#38bdf8', b:'#1e3a8a'},
+  {nome:'Fogo', a:'#ef4444', b:'#f59e0b'},
+  {nome:'Esmeralda', a:'#10b981', b:'#d9f99d'},
+  {nome:'Grafite', a:'#e5e7eb', b:'#374151'},
+  {nome:'Café', a:'#d97706', b:'#92400e'},
+  {nome:'Gelo', a:'#e0f2fe', b:'#38bdf8'},
+  {nome:'Magenta', a:'#d946ef', b:'#f0abfc'},
+  {nome:'Lima', a:'#84cc16', b:'#fef08a'}
 ];
 function hexToRgb(hex){hex=hex.replace('#','');return {r:parseInt(hex.slice(0,2),16),g:parseInt(hex.slice(2,4),16),b:parseInt(hex.slice(4,6),16)}}
 function rgba(hex,a){const c=hexToRgb(hex);return `rgba(${c.r},${c.g},${c.b},${a})`}
@@ -869,21 +994,21 @@ function obterAreaTexto(scale){
   const m=modeloAtual();
   if(!fraseExpandidaSemFoto()){
     let top=370*scale, bottom=860*scale;
-    if(m.id==='noticia'){ top=390*scale; bottom=850*scale; }
-    if(m.id==='palavra'){ top=375*scale; bottom=850*scale; }
-    if(m.id==='clean'){ top=395*scale; bottom=850*scale; }
+    if(m.id==='noticia' || m.id==='alerta'){ top=390*scale; bottom=850*scale; }
+    if(m.id==='palavra' || m.id==='frase_dia'){ top=375*scale; bottom=850*scale; }
+    if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo'){ top=395*scale; bottom=850*scale; }
     return {x:(m.x||32)*scale, w:(m.w||525)*scale, y:(m.y||430)*scale, top, bottom, maxLines:7};
   }
   const padX=(m.id==='clean'?60:(m.id==='noticia'?48:46))*scale;
   const largura=(m.id==='clean'?960:(m.id==='noticia'?975:970))*scale;
   let baseY=(m.y||430)-18;
-  if(m.id==='noticia') baseY=390;
-  if(m.id==='palavra') baseY=405;
-  if(m.id==='clean') baseY=420;
+  if(m.id==='noticia' || m.id==='alerta') baseY=390;
+  if(m.id==='palavra' || m.id==='frase_dia') baseY=405;
+  if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo') baseY=420;
   let top=360*scale, bottom=865*scale;
-  if(m.id==='noticia'){ top=392*scale; bottom=850*scale; }
-  if(m.id==='palavra'){ top=382*scale; bottom=850*scale; }
-  if(m.id==='clean'){ top=398*scale; bottom=850*scale; }
+  if(m.id==='noticia' || m.id==='alerta'){ top=392*scale; bottom=850*scale; }
+  if(m.id==='palavra' || m.id==='frase_dia'){ top=382*scale; bottom=850*scale; }
+  if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo'){ top=398*scale; bottom=850*scale; }
   return {x:padX, w:largura, y:baseY*scale, top, bottom, maxLines:8};
 }
 function calcularLayoutTexto(context, phrase, area, scale){
@@ -917,11 +1042,11 @@ function calcularLayoutTexto(context, phrase, area, scale){
 function calcularLayoutAspas(context, area, scale){
   const m=modeloAtual();
   const tagBottoms={
-    religiao:132, fe:136, palavra:153, humor:138, curiosidade:136,
+    religiao:132, fe:136, palavra:153, frase_dia:166, reflexao_plus:180, motivacional:136, luxo:163, azul_premium:140, neon:140, alerta:150, biblico:140, humor:138, curiosidade:136,
     voce_sabia:148, esporte:136, fofoca:138, noticia:150, clean:180
   };
   const tagBottom=(tagBottoms[m.id] || 0) * scale;
-  const quoteSize=(m.id==='clean' || m.id==='palavra' || m.id==='noticia') ? 148*scale : 156*scale;
+  const quoteSize=(m.id==='clean' || m.id==='reflexao_plus' || m.id==='palavra' || m.id==='frase_dia' || m.id==='noticia' || m.id==='alerta' || m.id==='luxo') ? 148*scale : 156*scale;
   context.font=`900 ${quoteSize}px Georgia,serif`;
   const mt=context.measureText('“');
   const ascent=mt.actualBoundingBoxAscent || quoteSize*.74;
