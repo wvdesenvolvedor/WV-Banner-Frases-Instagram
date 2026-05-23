@@ -48,7 +48,7 @@
 <body>
 <header>
   <h1>WV Banner</h1>
-  <p>@wellingtonviana.pego</p>
+  <p>Modelo escuro premium • fontes universais • 11 layouts • OCR de imagem • sem foto opcional • auto texto • PNG alta qualidade</p>
 </header>
 <div class="wrap">
   <section class="panel">
@@ -926,9 +926,12 @@ function calcularLayoutAspas(context, area, scale){
   const mt=context.measureText('“');
   const ascent=mt.actualBoundingBoxAscent || quoteSize*.74;
   const lineOffset=quoteSize*.42;
-  const minY=tagBottom + 18*scale + ascent;
+  // Ajuste fino: mantém a aspa automática, mas com 1mm visual a mais
+  // de distância abaixo das etiquetas/destaques superiores.
+  const ajuste1mm=4*scale;
+  const minY=tagBottom + 18*scale + ascent + ajuste1mm;
   const maxY=area.top - 40*scale - lineOffset;
-  let quoteY=Math.max(238*scale, minY);
+  let quoteY=Math.max((238*scale)+ajuste1mm, minY);
   if(maxY>0) quoteY=Math.min(quoteY,maxY);
   const lineY=Math.min(area.top-38*scale, quoteY+lineOffset);
   const lineEnd=(fraseExpandidaSemFoto()?760:560)*scale;
