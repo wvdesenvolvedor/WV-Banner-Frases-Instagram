@@ -347,17 +347,122 @@ function carregarBibliotecaOCR(){
   return ocrScriptPromise;
 }
 function limparTextoOCR(){ const input=$('imagemTextoOCR'); if(input) input.value=''; setStatusOCR('Aguardando imagem com texto...'); }
+
+function carregarImagemComoDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const imgOCR = new Image();
+    const url = URL.createObjectURL(file);
+    imgOCR.onload = ()=>{
+      try{
+        const maxLado = 2600;
+        const escalaBase = Math.min(3, Math.max(1.6, maxLado / Math.max(imgOCR.width, imgOCR.height)));
+        const w = Math.round(imgOCR.width * escalaBase);
+        const h = Math.round(imgOCR.height * escalaBase);
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const g = c.getContext('2d', { willReadFrequently:true });
+        g.imageSmoothingEnabled = true;
+        g.imageSmoothingQuality = 'high';
+        g.filter = 'contrast(175%) brightness(118%) saturate(0%)';
+        g.drawImage(imgOCR, 0, 0, w, h);
+        g.filter = 'none';
+
+        // Reforço leve de contraste para letras pequenas, sem destruir sinais como @, #, &, %, $ e pontuação.
+        const data = g.getImageData(0,0,w,h);
+        const px = data.data;
+        for(let i=0;i<px.length;i+=4){
+          const v = px[i];
+          const nv = v < 118 ? Math.max(0, v - 30) : Math.min(255, v + 18);
+          px[i]=px[i+1]=px[i+2]=nv;
+        }
+        g.putImageData(data,0,0);
+
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL('image/png'));
+      }catch(e){
+        URL.revokeObjectURL(url);
+        reject(e);
+      }
+    };
+    imgOCR.onerror = ()=>{
+      URL.revokeObjectURL(url);
+      reject(new Error('Não foi possível carregar a imagem para OCR.'));
+    };
+    imgOCR.src = url;
+  });
+}
+
+function limparDominioOCR(valor){
+  return (valor || '')
+    .replace(/\s+/g,'')
+    .replace(/[，,]/g,'.')
+    .replace(/\.{2,}/g,'.')
+    .replace(/\.$/,'')
+    .toLowerCase();
+}
+
+function normalizarTextoOCR(raw){
+  let texto = String(raw || '')
+    .replace(/\r/g,'\n')
+    .replace(/[“”„]/g,'"')
+    .replace(/[‘’´`]/g,"'")
+    .replace(/[–—]/g,'-')
+    .replace(/[|]/g,'I');
+
+  // Mantém quebras de linha úteis e limpa apenas espaços excessivos.
+  texto = texto.split('\n')
+    .map(l => l.replace(/[ \t]+/g,' ').trim())
+    .filter(Boolean)
+    .join('\n');
+
+  // Corrige WWW reconhecido em maiúsculo, com espaço ou vírgula no lugar do ponto.
+  texto = texto.replace(/\b[Ww]\s*[Ww]\s*[Ww]\s*[\.,]\s*/g,'www.');
+
+  // Corrige e-mails quando o OCR troca @ por &, Q, O, 0 ou combinações como &Q.
+  texto = texto.replace(
+    /\b([A-Za-z0-9._%+\-]{2,})\s*(?:@|&\s*Q|&Q|&|Q|O|0)\s*([A-Za-z0-9][A-Za-z0-9.\-\s]*[\.,]\s*[A-Za-z]{2,})\b/g,
+    (m, local, dominio)=> local.toLowerCase() + '@' + limparDominioOCR(dominio)
+  );
+
+  // Corrige URLs iniciadas com www. e deixa o endereço em minúsculo.
+  texto = texto.replace(/\bwww\.\s*([A-Za-z0-9][A-Za-z0-9.\-\s]*[\.,]\s*[A-Za-z]{2,})\b/g,
+    (m, dominio)=> 'www.' + limparDominioOCR(dominio)
+  );
+
+  // Remove espaços antes/depois de pontuação, preservando os sinais importantes.
+  texto = texto
+    .replace(/[ \t]+([,.;:!?%])/g,'$1')
+    .replace(/([¿¡])\s+/g,'$1')
+    .replace(/\s+([@#$%&*+=/\\])/g,'$1')
+    .replace(/([@#$%&*+=/\\])\s+/g,'$1')
+    .replace(/\.com\s*\.\s*br/gi,'.com.br')
+    .replace(/\.com\s+br/gi,'.com.br')
+    .replace(/\n{3,}/g,'\n\n')
+    .trim();
+
+  return texto;
+}
+
 async function extrairTextoDaImagem(){
   const input=$('imagemTextoOCR');
   if(!input || !input.files || !input.files[0]){ alert('Escolha uma imagem com texto primeiro.'); return; }
   try{
-    setStatusOCR('Carregando OCR...');
+    setStatusOCR('Preparando imagem para OCR preciso...');
     await carregarBibliotecaOCR();
-    const result = await window.Tesseract.recognize(input.files[0], 'por', { logger: m=>{ if(m.status==='recognizing text') setStatusOCR('Extraindo texto: '+Math.round((m.progress||0)*100)+'%'); } });
-    let texto=((result && result.data && result.data.text) || '').replace(/\s+/g,' ').replace(/[|_~`^]/g,'').trim();
+    const imagemOCR = await carregarImagemComoDataURL(input.files[0]);
+    const caracteresPermitidos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇáàâãäéèêëíìîïóòôõöúùûüç@#*&$%?!.,:;/-_+=\"\\\'()[]{}<>| \n';
+    const result = await window.Tesseract.recognize(imagemOCR, 'por+eng', {
+      logger: m=>{
+        if(m.status==='recognizing text') setStatusOCR('Extraindo texto: '+Math.round((m.progress||0)*100)+'%');
+      },
+      tessedit_char_whitelist: caracteresPermitidos,
+      tessedit_pageseg_mode: '6',
+      preserve_interword_spaces: '1'
+    });
+    let texto = normalizarTextoOCR((result && result.data && result.data.text) || '');
     if(!texto){ setStatusOCR('Não consegui identificar texto nessa imagem.'); alert('Não consegui identificar texto. Tente uma imagem mais nítida.'); return; }
     $('frase').value=texto;
-    setStatusOCR('Texto extraído e aplicado no banner.');
+    setStatusOCR('Texto extraído com símbolos, e-mail, site e pontuação preservados.');
     draw();
   }catch(err){
     console.error(err);
