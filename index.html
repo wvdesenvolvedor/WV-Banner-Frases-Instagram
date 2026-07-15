@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>WV Banner</title>
 <style>
   :root{
@@ -48,7 +47,7 @@
 <body>
 <header>
   <h1>WV Banner</h1>
-  <p>@wv.curiosidades</p>
+  <p>@wv_wellingtonviana</p>
 </header>
 <div class="wrap">
   <section class="panel">
@@ -66,7 +65,7 @@
       </div>
       <div class="group">
         <label>Imagem com texto / print / versículo</label>
-        <input type="file" id="imagemTextoOCR" accept="image/*" />
+        <input type="file" id="imagemTextoOCR" accept="image/*">
         <div class="hint">Carregue um print, frase, versículo ou imagem com texto. O painel extrai a mensagem e envia direto para o campo Frase principal.</div>
       </div>
       <div class="buttons">
@@ -94,19 +93,19 @@
 
 
     <div class="row">
-      <div class="group"><label>Cor da letra</label><input type="color" id="corTexto" value="#ffffff" /></div>
-      <div class="group"><label>Rodapé editável</label><input id="rodape" value="@wv.curiosidades" /></div>
+      <div class="group"><label>Cor da letra</label><input type="color" id="corTexto" value="#ffffff"></div>
+      <div class="group"><label>Rodapé editável</label><input id="rodape" value="@wv_wellingtonviana"></div>
     </div>
     <div class="row" style="margin-top:4px">
-      <label class="check"><input id="letraCorBanner" type="checkbox" /> Usar cor do banner na letra</label>
+      <label class="check"><input id="letraCorBanner" type="checkbox"> Usar cor do banner na letra</label>
       <div class="hint">Opcional: quando ligado, a frase principal usa a cor principal do banner. Padrão continua branco e Arial.</div>
     </div>
     <div class="row">
-      <div class="group"><label>Legenda pequena / Autor</label><input id="autor" value="" placeholder="Opcional" /></div>
-      <div class="group"><label>Tamanho base do texto</label><input id="fontSize" type="range" min="45" max="92" value="69" /></div>
+      <div class="group"><label>Legenda pequena / Autor</label><input id="autor" value="" placeholder="Opcional"></div>
+      <div class="group"><label>Tamanho base do texto</label><input id="fontSize" type="range" min="45" max="92" value="69"></div>
     </div>
     <div class="row" style="margin-top:4px">
-      <label class="check"><input id="autoFontSize" type="checkbox" checked /> Auto ajustar tamanho da frase ao banner</label>
+      <label class="check"><input id="autoFontSize" type="checkbox" checked=""> Auto ajustar tamanho da frase ao banner</label>
       <div class="hint">Quando ligado: frase curta aumenta; frase longa diminui automaticamente, com e sem foto.</div>
     </div>
 
@@ -122,7 +121,7 @@
         </div>
         <div class="group">
           <label>Fonte personalizada</label>
-          <input id="fontePersonalizada" placeholder="Ex.: Montserrat, Poppins, Arial" oninput="atualizarFonteTexto()" />
+          <input id="fontePersonalizada" placeholder="Ex.: Montserrat, Poppins, Arial" oninput="atualizarFonteTexto()">
         </div>
       </div>
       <div id="previewFonte" class="fontPreview">Prévia: José nos ensina que Deus está no negócio.</div>
@@ -131,22 +130,22 @@
 
     <div class="group">
       <label>Buscar foto no computador ou celular</label>
-      <input type="file" id="foto" accept="image/*" />
+      <input type="file" id="foto" accept="image/*">
       <div class="hint">Funciona no PC e no celular. A imagem fica do lado direito como no modelo.</div>
       <div class="hint">Novo: a foto carrega proporcional, sem esticar ou afinar o rosto. Depois você ajusta com 1 dedo ou zoom com 2 dedos.</div>
     </div>
 
     <div class="row">
-      <label class="check"><input id="removerFundo" type="checkbox" /> Tirar fundo da foto</label>
-      <label class="check"><input id="autoRemoverFundo" type="checkbox" /> Tirar fundo ao carregar</label>
+      <label class="check"><input id="removerFundo" type="checkbox"> Tirar fundo da foto</label>
+      <label class="check"><input id="autoRemoverFundo" type="checkbox"> Tirar fundo ao carregar</label>
     </div>
     <div class="row" style="margin-top:10px">
-      <div class="group"><label>Força da remoção</label><input id="forcaRemove" type="range" min="15" max="95" value="52" /></div>
-      <div class="group"><label>Suavizar recorte</label><input id="suavizarRemove" type="range" min="0" max="8" value="3" /></div>
+      <div class="group"><label>Força da remoção</label><input id="forcaRemove" type="range" min="15" max="95" value="52"></div>
+      <div class="group"><label>Suavizar recorte</label><input id="suavizarRemove" type="range" min="0" max="8" value="3"></div>
     </div>
     <div class="row" style="margin-top:10px">
-      <div class="group"><label>Modo de remoção</label><select id="modoRemove"><option value="seguro">Seguro - preserva rosto</option><option value="forte" selected>Forte inteligente</option><option value="ultra">Ultra parede clara</option></select></div>
-      <div class="group"><label>Limpar sobras da parede</label><input id="limparSobras" type="range" min="0" max="10" value="6" /></div>
+      <div class="group"><label>Modo de remoção</label><select id="modoRemove"><option value="seguro">Seguro - preserva rosto</option><option value="forte" selected="">Forte inteligente</option><option value="ultra">Ultra parede clara</option></select></div>
+      <div class="group"><label>Limpar sobras da parede</label><input id="limparSobras" type="range" min="0" max="10" value="6"></div>
     </div>
     <div class="buttons">
       <button type="button" onclick="ligarRemoveFundo()">Remover fundo agora</button>
@@ -155,21 +154,21 @@
     <div class="hint">Remoção segura: remove somente o fundo ligado às bordas da foto, protegendo rosto, pele e camisa contra manchas.</div>
 
     <div class="row" style="margin-top:10px">
-      <label class="check"><input id="corrigirCabelo" type="checkbox" checked /> Corrigir branco no cabelo</label>
-      <div class="group"><label>Força cabelo</label><input id="forcaCabelo" type="range" min="0" max="10" value="5" /></div>
+      <label class="check"><input id="corrigirCabelo" type="checkbox" checked=""> Corrigir branco no cabelo</label>
+      <div class="group"><label>Força cabelo</label><input id="forcaCabelo" type="range" min="0" max="10" value="5"></div>
     </div>
     <div class="row" style="margin-top:10px">
-      <label class="check"><input id="protegerOlhos" type="checkbox" checked /> Proteger olhos e rosto</label>
-      <div class="group"><label>Área cabelo segura</label><input id="areaCabelo" type="range" min="16" max="30" value="24" /></div>
+      <label class="check"><input id="protegerOlhos" type="checkbox" checked=""> Proteger olhos e rosto</label>
+      <div class="group"><label>Área cabelo segura</label><input id="areaCabelo" type="range" min="16" max="30" value="24"></div>
     </div>
     <div class="hint">Esta opção corrige somente pequenos halos brancos no topo/contorno do cabelo, usando a cor natural do próprio cabelo. A proteção bloqueia olhos, sobrancelhas, testa e rosto.</div>
 
     <div class="divider"></div>
 
     <div class="row3">
-      <div class="group"><label>Zoom foto</label><input id="zoom" type="range" min="70" max="260" value="122" /></div>
-      <div class="group"><label>Horizontal</label><input id="posX" type="range" min="-420" max="420" value="80" /></div>
-      <div class="group"><label>Vertical</label><input id="posY" type="range" min="-420" max="420" value="0" /></div>
+      <div class="group"><label>Zoom foto</label><input id="zoom" type="range" min="70" max="260" value="122"></div>
+      <div class="group"><label>Horizontal</label><input id="posX" type="range" min="-420" max="420" value="80"></div>
+      <div class="group"><label>Vertical</label><input id="posY" type="range" min="-420" max="420" value="0"></div>
     </div>
     <div class="mobileHelp">
       <strong>Ajuste pelo dedo no celular</strong>
@@ -177,9 +176,9 @@
       <button class="miniBtn" type="button" onclick="centralizarFoto()">Centralizar foto</button>
     </div>
     <div class="row3">
-      <div class="group"><label>Brilho</label><input id="brilho" type="range" min="60" max="145" value="104" /></div>
-      <div class="group"><label>Contraste</label><input id="contraste" type="range" min="70" max="155" value="112" /></div>
-      <div class="group"><label>Escurecer fundo</label><input id="sombra" type="range" min="0" max="90" value="58" /></div>
+      <div class="group"><label>Brilho</label><input id="brilho" type="range" min="60" max="145" value="104"></div>
+      <div class="group"><label>Contraste</label><input id="contraste" type="range" min="70" max="155" value="112"></div>
+      <div class="group"><label>Escurecer fundo</label><input id="sombra" type="range" min="0" max="90" value="58"></div>
     </div>
 
     <div class="phraseBox">
@@ -209,13 +208,13 @@
         </div>
         <div class="group">
           <label>Matiz / mudar cor</label>
-          <input id="matizFoto" type="range" min="-180" max="180" value="0" />
+          <input id="matizFoto" type="range" min="-180" max="180" value="0">
         </div>
       </div>
       <div class="row3">
-        <div class="group"><label>Saturação</label><input id="saturacaoFoto" type="range" min="0" max="220" value="100" /></div>
-        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaFoto" type="range" min="0" max="100" value="0" /></div>
-        <div class="group"><label>Preto e branco</label><input id="pbFoto" type="range" min="0" max="100" value="0" /></div>
+        <div class="group"><label>Saturação</label><input id="saturacaoFoto" type="range" min="0" max="220" value="100"></div>
+        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaFoto" type="range" min="0" max="100" value="0"></div>
+        <div class="group"><label>Preto e branco</label><input id="pbFoto" type="range" min="0" max="100" value="0"></div>
       </div>
       <div class="phraseActions">
         <button type="button" onclick="aplicarPresetEfeitoFoto()">Aplicar efeito</button>
@@ -260,13 +259,13 @@
       <div class="row">
         <div class="group">
           <label>Matiz / mudar cor</label>
-          <input id="matizBanner" type="range" min="-180" max="180" value="0" />
+          <input id="matizBanner" type="range" min="-180" max="180" value="0">
         </div>
       </div>
       <div class="row3">
-        <div class="group"><label>Saturação</label><input id="saturacaoBanner" type="range" min="0" max="220" value="100" /></div>
-        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaBanner" type="range" min="0" max="100" value="0" /></div>
-        <div class="group"><label>Preto e branco</label><input id="pbBanner" type="range" min="0" max="100" value="0" /></div>
+        <div class="group"><label>Saturação</label><input id="saturacaoBanner" type="range" min="0" max="220" value="100"></div>
+        <div class="group"><label>Sépia / envelhecer</label><input id="sepiaBanner" type="range" min="0" max="100" value="0"></div>
+        <div class="group"><label>Preto e branco</label><input id="pbBanner" type="range" min="0" max="100" value="0"></div>
       </div>
       <div class="phraseActions">
         <button type="button" onclick="aplicarPresetEfeitoBanner()">Aplicar efeito</button>
@@ -288,29 +287,29 @@
     </div>
 
     <div class="row">
-      <div class="group"><label>Paleta celular/Windows - cor principal do modelo</label><input type="color" id="cor1" value="#f7b718" /></div>
-      <div class="group"><label>Paleta celular/Windows - cor secundária do modelo</label><input type="color" id="cor2" value="#ffcf4a" /></div>
+      <div class="group"><label>Paleta celular/Windows - cor principal do modelo</label><input type="color" id="cor1" value="#f7b718"></div>
+      <div class="group"><label>Paleta celular/Windows - cor secundária do modelo</label><input type="color" id="cor2" value="#ffcf4a"></div>
     </div>
     <span class="pill">Toque no quadrado de cor para abrir a paleta nativa do celular ou Windows.</span>
 
     <div class="divider"></div>
 
     <div class="row">
-      <label class="check"><input id="mostrarAspas" type="checkbox" checked /> Aspas de citação padrão</label>
-      <label class="check"><input id="mostrarRodape" type="checkbox" checked /> Mostrar rodapé</label>
+      <label class="check"><input id="mostrarAspas" type="checkbox" checked=""> Aspas de citação padrão</label>
+      <label class="check"><input id="mostrarRodape" type="checkbox" checked=""> Mostrar rodapé</label>
     </div>
     <div class="row" style="margin-top:12px">
-      <label class="check"><input id="textura" type="checkbox" checked /> Textura premium</label>
-      <label class="check"><input id="fotoDireita" type="checkbox" checked /> Foto à direita</label>
+      <label class="check"><input id="textura" type="checkbox" checked=""> Textura premium</label>
+      <label class="check"><input id="fotoDireita" type="checkbox" checked=""> Foto à direita</label>
     </div>
     <div class="row" style="margin-top:12px">
-      <label class="check"><input id="modoSemFoto" type="checkbox" /> Banner sem foto (frase total)</label>
-      <label class="check"><input id="expandirSemFoto" type="checkbox" checked /> Expandir frase automaticamente sem foto</label>
+      <label class="check"><input id="modoSemFoto" type="checkbox"> Banner sem foto (frase total)</label>
+      <label class="check"><input id="expandirSemFoto" type="checkbox" checked=""> Expandir frase automaticamente sem foto</label>
     </div>
     <div class="hint">Novo: quando não carregar foto, o painel pode usar a arte inteira para a frase. Se quiser forçar esse estilo mesmo tendo foto carregada, marque “Banner sem foto”.</div>
     <div class="row" style="margin-top:12px">
-      <div class="group"><label>Tamanho rodapé</label><input id="footerSize" type="range" min="18" max="34" value="25" /></div>
-      <div class="group"><label>Largura rodapé</label><input id="footerWidth" type="range" min="250" max="520" value="400" /></div>
+      <div class="group"><label>Tamanho rodapé</label><input id="footerSize" type="range" min="18" max="34" value="25"></div>
+      <div class="group"><label>Largura rodapé</label><input id="footerWidth" type="range" min="250" max="520" value="400"></div>
     </div>
 
     <div class="buttons" style="margin-top:14px">
@@ -1733,5 +1732,6 @@ $('foto').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return;
 if($('imagemTextoOCR')) $('imagemTextoOCR').addEventListener('change',()=>{const f=$('imagemTextoOCR').files && $('imagemTextoOCR').files[0]; setStatusOCR(f ? 'Imagem carregada. Clique em Extrair mensagem.' : 'Aguardando imagem com texto...');});
 initPresets(); initFrasesProntas(); initCampanhasMes(); initModelosLayout(); initFontesTexto(); installTouchEditor(); resetarEfeitoFoto(); resetarEfeitoBanner();
 </script>
-</body>
-</html>
+
+
+</body></html>
