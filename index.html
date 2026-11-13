@@ -53,7 +53,7 @@
   <section class="panel">
     <h2>Configuração do banner</h2>
     <div class="phraseBox">
-      <div class="phraseBoxTitle"><span>Temas prontos de banner</span><span class="phraseBadge">5 modelos</span></div>
+      <div class="phraseBoxTitle"><span>Temas prontos de banner</span><span class="phraseBadge">6 modelos</span></div>
       <div class="group">
         <label>Escolha o tema</label>
         <select id="modeloLayout" onchange="aplicarModeloLayout()"></select>
@@ -727,9 +727,10 @@ function aplicarCampanhaMes(){
 }
 
 const modelosLayout = [
-  {id:'original', nome:'Padrão - original', etiqueta:'', a:'#f7b718', b:'#ffcf4a', x:32, y:430, w:525, align:'left'},
-  {id:'curiosidade', nome:'Curiosidades - Você sabia?', etiqueta:'CURIOSIDADES', a:'#06b6d4', b:'#67e8f9', x:32, y:430, w:525, align:'left'},
+  {id:'original', nome:'Tema padrão', etiqueta:'', a:'#f7b718', b:'#ffcf4a', x:32, y:430, w:525, align:'left'},
+  {id:'personalizado', nome:'Tema personalizado', etiqueta:'', a:'#2563eb', b:'#93c5fd', x:42, y:440, w:510, align:'left'},
   {id:'noticia', nome:'Novidades - Últimas notícias', etiqueta:'NOVIDADES', a:'#2563eb', b:'#93c5fd', x:42, y:440, w:510, align:'left'},
+  {id:'curiosidade', nome:'Curiosidades - Você sabia?', etiqueta:'CURIOSIDADES', a:'#06b6d4', b:'#67e8f9', x:32, y:430, w:525, align:'left'},
   {id:'minimal_artistico', nome:'Marketing - profissional', etiqueta:'MARKETING', a:'#8b5cf6', b:'#ec4899', x:42, y:440, w:510, align:'left'},
   {id:'alerta', nome:'Promoção - oferta especial', etiqueta:'PROMOÇÃO', a:'#ef2929', b:'#ffb020', x:42, y:440, w:510, align:'left'},
   {id:'luxo', nome:'Lançamento - premium', etiqueta:'LANÇAMENTO', a:'#d6b56d', b:'#fff0bd', x:48, y:445, w:500, align:'left'}
@@ -853,9 +854,9 @@ function drawLayoutDecor(c,W,H,s){
     c.fillStyle=rgba(a,.18); roundRect(c,34*s,178*s,540*s,85*s,34*s,true,false);
     c.fillStyle=rgba(b,.18); roundRect(c,110*s,265*s,420*s,62*s,28*s,true,false);
     c.font=`900 ${72*s}px Arial Black, Impact, sans-serif`; c.fillStyle=rgba(a,.28); c.fillText('!',545*s,160*s);
-  }else if(m.id==='noticia'){
+  }else if(m.id==='noticia' || m.id==='personalizado'){
     c.fillStyle=rgba(a,.92); c.fillRect(0,70*s,W,76*s);
-    c.fillStyle='#fff'; c.font=`900 ${32*s}px Arial Black, sans-serif`; c.textBaseline='middle'; c.fillText('ÚLTIMAS NOTÍCIAS',40*s,108*s);
+    if(m.id==='noticia'){ c.fillStyle='#fff'; c.font=`900 ${32*s}px Arial Black, sans-serif`; c.textBaseline='middle'; c.fillText('ÚLTIMAS NOTÍCIAS',40*s,108*s); }
     c.fillStyle=rgba('#000000',.45); c.fillRect(0,910*s,W,92*s);
     c.strokeStyle=rgba(b,.85); c.lineWidth=5*s; c.beginPath(); c.moveTo(38*s,330*s); c.lineTo(620*s,330*s); c.stroke();
   }else if(m.id==='clean'){
@@ -1432,19 +1433,19 @@ function obterAreaTexto(scale){
   const m=modeloAtual();
   if(!fraseExpandidaSemFoto()){
     let top=370*scale, bottom=860*scale;
-    if(m.id==='noticia' || m.id==='alerta'){ top=390*scale; bottom=850*scale; }
+    if(m.id==='noticia' || m.id==='personalizado' || m.id==='alerta'){ top=390*scale; bottom=850*scale; }
     if(m.id==='palavra' || m.id==='frase_dia'){ top=375*scale; bottom=850*scale; }
     if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo'){ top=395*scale; bottom=850*scale; }
     return {x:(m.x||32)*scale, w:(m.w||525)*scale, y:(m.y||430)*scale, top, bottom, maxLines:7};
   }
-  const padX=(m.id==='clean'?60:(m.id==='noticia'?48:46))*scale;
-  const largura=(m.id==='clean'?960:(m.id==='noticia'?975:970))*scale;
+  const padX=(m.id==='clean'?60:((m.id==='noticia'||m.id==='personalizado')?48:46))*scale;
+  const largura=(m.id==='clean'?960:((m.id==='noticia'||m.id==='personalizado')?975:970))*scale;
   let baseY=(m.y||430)-18;
-  if(m.id==='noticia' || m.id==='alerta') baseY=390;
+  if(m.id==='noticia' || m.id==='personalizado' || m.id==='alerta') baseY=390;
   if(m.id==='palavra' || m.id==='frase_dia') baseY=405;
   if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo') baseY=420;
   let top=360*scale, bottom=865*scale;
-  if(m.id==='noticia' || m.id==='alerta'){ top=392*scale; bottom=850*scale; }
+  if(m.id==='noticia' || m.id==='personalizado' || m.id==='alerta'){ top=392*scale; bottom=850*scale; }
   if(m.id==='palavra' || m.id==='frase_dia'){ top=382*scale; bottom=850*scale; }
   if(m.id==='clean' || m.id==='reflexao_plus' || m.id==='luxo'){ top=398*scale; bottom=850*scale; }
   return {x:padX, w:largura, y:baseY*scale, top, bottom, maxLines:8};
@@ -1481,10 +1482,10 @@ function calcularLayoutAspas(context, area, scale){
   const m=modeloAtual();
   const tagBottoms={
     religiao:132, fe:136, palavra:153, frase_dia:166, reflexao_plus:180, motivacional:136, luxo:163, azul_premium:140, neon:140, alerta:150, biblico:140, humor:138, curiosidade:136, minimal_artistico:162,
-    voce_sabia:148, esporte:136, fofoca:138, noticia:150, clean:180
+    voce_sabia:148, esporte:136, fofoca:138, noticia:150, personalizado:0, clean:180
   };
   const tagBottom=(tagBottoms[m.id] || 0) * scale;
-  const quoteSize=(m.id==='clean' || m.id==='reflexao_plus' || m.id==='palavra' || m.id==='frase_dia' || m.id==='noticia' || m.id==='alerta' || m.id==='luxo') ? 148*scale : 156*scale;
+  const quoteSize=(m.id==='clean' || m.id==='reflexao_plus' || m.id==='palavra' || m.id==='frase_dia' || m.id==='noticia' || m.id==='personalizado' || m.id==='alerta' || m.id==='luxo') ? 148*scale : 156*scale;
   context.font=`900 ${quoteSize}px Georgia,serif`;
   const mt=context.measureText('“');
   const ascent=mt.actualBoundingBoxAscent || quoteSize*.74;
@@ -1578,7 +1579,7 @@ function drawSombreamentoBanner(target,W,H,scale){
 function drawTextoPrincipal(target,scale){
   const phrase=$('frase').value.trim();
   const area=obterAreaTexto(scale);
-  if($('mostrarAspas').checked){
+  if($('mostrarAspas').checked && modeloAtual().id==='original'){
     const aspas=calcularLayoutAspas(target, area, scale);
     target.save();
     target.fillStyle=$('cor1').value;
