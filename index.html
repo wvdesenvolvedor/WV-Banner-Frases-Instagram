@@ -1538,7 +1538,9 @@ function drawPhoto(c,W,H,s){
   lc.clip();
   lc.drawImage(source,cx-dw/2,cy-dh/2,dw,dh);
   lc.restore();
-  desenharCanvasComFiltroManual(c, layer, valoresFiltroFoto());
+  // Foto protegida: desenhar os pixels originais, sem filtros globais ou de banner.
+  // A troca da cor da letra/tema nunca pode alterar a fotografia.
+  c.drawImage(layer,0,0);
   if(!$('removerFundo').checked){
     c.save();
     let grd=c.createLinearGradient(right?430*s:650*s,0,right?445*s:635*s,0);
@@ -1640,13 +1642,8 @@ function drawBanner(target=ctx, scale=1){
     return;
   }
   const modo=(($('alvoEfeitoBanner') && $('alvoEfeitoBanner').value) || 'banner');
-  if(modo==='completo'){
-    const full=makeCanvas(W,H);
-    const fc=full.getContext('2d');
-    renderBannerCompleto(fc,scale);
-    desenharCanvasComFiltroManual(target, full, valoresFiltroBanner());
-    return;
-  }
+  // Efeitos do banner são aplicados somente à camada gráfica; a foto é sempre preservada.
+  // Mesmo que uma configuração antiga esteja salva como 'completo', não filtramos a foto.
   const bannerLayer=makeCanvas(W,H);
   const photoLayer=makeCanvas(W,H);
   const bc=bannerLayer.getContext('2d');
