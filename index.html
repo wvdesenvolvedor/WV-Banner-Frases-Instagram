@@ -855,10 +855,11 @@ function drawLayoutDecor(c,W,H,s){
     c.fillStyle=rgba(b,.18); roundRect(c,110*s,265*s,420*s,62*s,28*s,true,false);
     c.font=`900 ${72*s}px Arial Black, Impact, sans-serif`; c.fillStyle=rgba(a,.28); c.fillText('!',545*s,160*s);
   }else if(m.id==='noticia' || m.id==='personalizado'){
-    c.fillStyle=rgba(a,.92); c.fillRect(0,70*s,W,76*s);
+    const faixa=c.createLinearGradient(0,70*s,W*.72,146*s); faixa.addColorStop(0,a); faixa.addColorStop(1,b);
+    c.fillStyle=faixa; c.fillRect(0,70*s,W,76*s);
     if(m.id==='noticia'){ c.fillStyle='#fff'; c.font=`900 ${32*s}px Arial Black, sans-serif`; c.textBaseline='middle'; c.fillText('ÚLTIMAS NOTÍCIAS',40*s,108*s); }
-    c.fillStyle=rgba('#000000',.45); c.fillRect(0,910*s,W,92*s);
-    c.strokeStyle=rgba(b,.85); c.lineWidth=5*s; c.beginPath(); c.moveTo(38*s,330*s); c.lineTo(620*s,330*s); c.stroke();
+    c.fillStyle=rgba(a,.22); c.fillRect(0,910*s,W,92*s);
+    c.strokeStyle=b; c.lineWidth=5*s; c.beginPath(); c.moveTo(38*s,330*s); c.lineTo(620*s,330*s); c.stroke();
   }else if(m.id==='clean'){
     c.fillStyle='rgba(255,255,255,.055)'; roundRect(c,34*s,102*s,590*s,805*s,34*s,true,false);
     c.strokeStyle=rgba(a,.35); c.lineWidth=2*s; roundRect(c,34*s,102*s,590*s,805*s,34*s,false,true);
@@ -1151,7 +1152,7 @@ function desenharCanvasComFiltroManual(destino, origem, vals){
   destino.drawImage(origem,0,0);
 }
 function wrapWords(context, text, maxWidth, font){context.font = font; const words=text.replace(/\s+/g,' ').trim().split(' '); let lines=[], line=''; for(const w of words){const test=line?line+' '+w:w; if(context.measureText(test).width>maxWidth && line){lines.push(line); line=w;} else line=test;} if(line) lines.push(line); return lines;}
-function corLetraPrincipal(){ if($('letraCorBanner') && $('letraCorBanner').checked) return ($('cor1') && $('cor1').value) ? $('cor1').value : '#ffffff'; return ($('corTexto') && $('corTexto').value) ? $('corTexto').value : '#ffffff'}
+function corLetraPrincipal(){ const modelo=(typeof modeloAtual==='function' ? modeloAtual().id : 'original'); if(modelo==='personalizado') return ($('corTexto') && $('corTexto').value) ? $('corTexto').value : '#ffffff'; if($('letraCorBanner') && $('letraCorBanner').checked) return ($('cor1') && $('cor1').value) ? $('cor1').value : '#ffffff'; return ($('corTexto') && $('corTexto').value) ? $('corTexto').value : '#ffffff'}
 function drawTextLine(c, line, x, y, size, maxWidth, scale){c.save(); const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let token=words[i] + (i<words.length-1?' ':''); c.fillStyle=corLetraPrincipal(); c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; } c.restore();}
 function background(c,W,H,s){let g=c.createLinearGradient(0,0,W,H); g.addColorStop(0,'#0a0a0a'); g.addColorStop(.45,'#050505'); g.addColorStop(1,'#12100a'); c.fillStyle=g; c.fillRect(0,0,W,H); let rg=c.createRadialGradient(W*.72,H*.48,0,W*.72,H*.48,W*.42); rg.addColorStop(0,rgba($('cor1').value,.30)); rg.addColorStop(.42,rgba($('cor1').value,.08)); rg.addColorStop(1,'rgba(0,0,0,0)'); c.fillStyle=rg; c.fillRect(0,0,W,H); if($('textura').checked){c.save(); c.globalAlpha=.38; for(let i=0;i<42;i++){c.strokeStyle=i%2?rgba($('cor1').value,.16):'rgba(255,255,255,.045)'; c.lineWidth=(2+((i*7)%13))*s; c.beginPath(); let x=-80*s+((i*97)%1080)*s, y=((i*61)%1080)*s; c.moveTo(x,y); c.lineTo(x+260*s+((i*37)%340)*s,y-80*s+((i*43)%160)*s); c.stroke();} c.restore(); }}
 function averageCornerColor(data,w,h){
