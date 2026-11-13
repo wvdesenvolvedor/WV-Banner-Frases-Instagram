@@ -52,6 +52,14 @@
 <div class="wrap">
   <section class="panel">
     <h2>Configuração do banner</h2>
+    <div class="phraseBox">
+      <div class="phraseBoxTitle"><span>Temas prontos de banner</span><span class="phraseBadge">5 modelos</span></div>
+      <div class="group">
+        <label>Escolha o tema</label>
+        <select id="modeloLayout" onchange="aplicarModeloLayout()"></select>
+        <div class="hint">Cada tema tem uma arte, identidade visual e paleta próprias. A foto, os textos e os demais ajustes continuam editáveis.</div>
+      </div>
+    </div>
     <div class="group">
       <label>Frase principal</label>
       <textarea id="frase" spellcheck="true">José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.</textarea>
@@ -176,8 +184,8 @@
       <button class="miniBtn" type="button" onclick="centralizarFoto()">Centralizar foto</button>
     </div>
     <div class="row3">
-      <div class="group"><label>Brilho</label><input id="brilho" type="range" min="60" max="145" value="104"></div>
-      <div class="group"><label>Contraste</label><input id="contraste" type="range" min="70" max="155" value="112"></div>
+      <div class="group"><label>Brilho</label><input id="brilho" type="range" min="60" max="145" value="100"></div>
+      <div class="group"><label>Contraste</label><input id="contraste" type="range" min="70" max="155" value="100"></div>
       <div class="group"><label>Escurecer fundo</label><input id="sombra" type="range" min="0" max="90" value="58"></div>
     </div>
 
@@ -719,7 +727,12 @@ function aplicarCampanhaMes(){
 }
 
 const modelosLayout = [
-  {id:'original', nome:'Banner padrão - aspas de citação', etiqueta:'', x:32, y:430, w:525, align:'left'}
+  {id:'original', nome:'Padrão - original', etiqueta:'', a:'#f7b718', b:'#ffcf4a', x:32, y:430, w:525, align:'left'},
+  {id:'curiosidade', nome:'Curiosidades - Você sabia?', etiqueta:'CURIOSIDADES', a:'#06b6d4', b:'#67e8f9', x:32, y:430, w:525, align:'left'},
+  {id:'noticia', nome:'Novidades - Últimas notícias', etiqueta:'NOVIDADES', a:'#2563eb', b:'#93c5fd', x:42, y:440, w:510, align:'left'},
+  {id:'minimal_artistico', nome:'Marketing - profissional', etiqueta:'MARKETING', a:'#8b5cf6', b:'#ec4899', x:42, y:440, w:510, align:'left'},
+  {id:'alerta', nome:'Promoção - oferta especial', etiqueta:'PROMOÇÃO', a:'#ef2929', b:'#ffb020', x:42, y:440, w:510, align:'left'},
+  {id:'luxo', nome:'Lançamento - premium', etiqueta:'LANÇAMENTO', a:'#d6b56d', b:'#fff0bd', x:48, y:445, w:500, align:'left'}
 ];
 function modeloAtual(){
   const sel=$('modeloLayout');
@@ -1138,7 +1151,7 @@ function desenharCanvasComFiltroManual(destino, origem, vals){
 }
 function wrapWords(context, text, maxWidth, font){context.font = font; const words=text.replace(/\s+/g,' ').trim().split(' '); let lines=[], line=''; for(const w of words){const test=line?line+' '+w:w; if(context.measureText(test).width>maxWidth && line){lines.push(line); line=w;} else line=test;} if(line) lines.push(line); return lines;}
 function corLetraPrincipal(){ if($('letraCorBanner') && $('letraCorBanner').checked) return ($('cor1') && $('cor1').value) ? $('cor1').value : '#ffffff'; return ($('corTexto') && $('corTexto').value) ? $('corTexto').value : '#ffffff'}
-function drawTextLine(c, line, x, y, size, maxWidth, scale){const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let token=words[i] + (i<words.length-1?' ':''); c.fillStyle=corLetraPrincipal(); c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; }}
+function drawTextLine(c, line, x, y, size, maxWidth, scale){c.save(); const words=line.split(' '); c.font=textoFont(size*scale); c.textBaseline='top'; let xx=x; for(let i=0;i<words.length;i++){let token=words[i] + (i<words.length-1?' ':''); c.fillStyle=corLetraPrincipal(); c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=8*scale; c.shadowOffsetX=2*scale; c.shadowOffsetY=3*scale; c.fillText(token,xx,y); xx += c.measureText(token).width; } c.restore();}
 function background(c,W,H,s){let g=c.createLinearGradient(0,0,W,H); g.addColorStop(0,'#0a0a0a'); g.addColorStop(.45,'#050505'); g.addColorStop(1,'#12100a'); c.fillStyle=g; c.fillRect(0,0,W,H); let rg=c.createRadialGradient(W*.72,H*.48,0,W*.72,H*.48,W*.42); rg.addColorStop(0,rgba($('cor1').value,.30)); rg.addColorStop(.42,rgba($('cor1').value,.08)); rg.addColorStop(1,'rgba(0,0,0,0)'); c.fillStyle=rg; c.fillRect(0,0,W,H); if($('textura').checked){c.save(); c.globalAlpha=.38; for(let i=0;i<42;i++){c.strokeStyle=i%2?rgba($('cor1').value,.16):'rgba(255,255,255,.045)'; c.lineWidth=(2+((i*7)%13))*s; c.beginPath(); let x=-80*s+((i*97)%1080)*s, y=((i*61)%1080)*s; c.moveTo(x,y); c.lineTo(x+260*s+((i*37)%340)*s,y-80*s+((i*43)%160)*s); c.stroke();} c.restore(); }}
 function averageCornerColor(data,w,h){
   // Amostra várias faixas de borda para entender a cor real da parede.
@@ -1467,7 +1480,7 @@ function calcularLayoutTexto(context, phrase, area, scale){
 function calcularLayoutAspas(context, area, scale){
   const m=modeloAtual();
   const tagBottoms={
-    religiao:132, fe:136, palavra:153, frase_dia:166, reflexao_plus:180, motivacional:136, luxo:163, azul_premium:140, neon:140, alerta:150, biblico:140, humor:138, curiosidade:136,
+    religiao:132, fe:136, palavra:153, frase_dia:166, reflexao_plus:180, motivacional:136, luxo:163, azul_premium:140, neon:140, alerta:150, biblico:140, humor:138, curiosidade:136, minimal_artistico:162,
     voce_sabia:148, esporte:136, fofoca:138, noticia:150, clean:180
   };
   const tagBottom=(tagBottoms[m.id] || 0) * scale;
@@ -1482,7 +1495,10 @@ function calcularLayoutAspas(context, area, scale){
   const minY=tagBottom + 18*scale + ascent + ajuste1mm;
   const maxY=area.top - 40*scale - lineOffset;
   let quoteY=Math.max((238*scale)+ajuste1mm, minY);
-  if(maxY>0) quoteY=Math.min(quoteY,maxY);
+  // Marketing usa etiqueta mais baixa (y=130, altura=48). Não aplicar
+  // o limite superior genérico, que puxava as aspas para cima da etiqueta.
+  if(m.id==='minimal_artistico') quoteY=Math.max(quoteY, 320*scale);
+  else if(maxY>0) quoteY=Math.min(quoteY,maxY);
   const lineY=Math.min(area.top-38*scale, quoteY+lineOffset);
   const lineEnd=(fraseExpandidaSemFoto()?760:560)*scale;
   return {quoteSize, quoteY, lineY, lineEnd};
@@ -1524,23 +1540,24 @@ function drawPhoto(c,W,H,s){
   desenharCanvasComFiltroManual(c, layer, valoresFiltroFoto());
   if(!$('removerFundo').checked){
     c.save();
-    let grd=c.createLinearGradient(right?445*s:635*s,0,right?640*s:440*s,0);
-    grd.addColorStop(0,'rgba(0,0,0,.96)');
+    let grd=c.createLinearGradient(right?430*s:650*s,0,right?445*s:635*s,0);
+    grd.addColorStop(0,'rgba(0,0,0,.18)');
     grd.addColorStop(1,'rgba(0,0,0,0)');
     c.fillStyle=grd;
-    c.fillRect(right?430*s:420*s,0,280*s,H);
+    c.fillRect(right?430*s:635*s,0,15*s,H);
     c.restore();
   }
 }
 function drawSombreamentoBanner(target,W,H,scale){
   const dark=+$('sombra').value/100;
   if(bannerUsaFoto()){
-    let sideGrad=target.createLinearGradient(0,0,W*.72,0);
+    const bannerW=445*scale;
+    let sideGrad=target.createLinearGradient(0,0,bannerW,0);
     sideGrad.addColorStop(0,`rgba(0,0,0,${.25+dark*.65})`);
-    sideGrad.addColorStop(.62,`rgba(0,0,0,${.10+dark*.18})`);
+    sideGrad.addColorStop(.72,`rgba(0,0,0,${.10+dark*.18})`);
     sideGrad.addColorStop(1,'rgba(0,0,0,0)');
     target.fillStyle=sideGrad;
-    target.fillRect(0,0,W,H);
+    target.fillRect(0,0,bannerW,H);
   }else{
     let fullGrad=target.createLinearGradient(0,0,W,H);
     fullGrad.addColorStop(0,`rgba(0,0,0,${.18+dark*.30})`);
@@ -1722,9 +1739,9 @@ function installTouchEditor(){
 }
 
 function corrigirTexto(){let t=$('frase').value; const rep={ 'voce':'você','Voce':'Você','nao':'não','Nao':'Não','esta ':'está ','Esta ':'Está ','negocio':'negócio','atrassar':'atrasar','atrazar':'atrasar','jose':'José','Jose':'José','ate':'até','Ate':'Até','tambem':'também','pra':'para','vc':'você','q ':'que '}; Object.keys(rep).forEach(k=>{t=t.replaceAll(k,rep[k])}); t=t.replace(/\s+/g,' ').trim(); if(t && !/[.!?]$/.test(t)) t+='.'; t=t.charAt(0).toUpperCase()+t.slice(1); $('frase').value=t; draw(); alert('Correção básica aplicada. O navegador também marca erros com sublinhado no campo de frase.');}
-function salvarConfig(){const ids=['frase','corTexto','letraCorBanner','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','forcaRemove','suavizarRemove','modoRemove','limparSobras','forcaCabelo','areaCabelo','footerSize','footerWidth','categoriaFrase','frasePronta','campanhaMes','efeitoFoto','saturacaoFoto','sepiaFoto','pbFoto','matizFoto','alvoEfeitoBanner','efeitoBanner','saturacaoBanner','sepiaBanner','pbBanner','matizBanner']; const cfg={}; ids.forEach(id=>cfg[id]=$(id).value); ['mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','corrigirCabelo','protegerOlhos','letraCorBanner'].forEach(id=>cfg[id]=$(id).checked); localStorage.setItem('wv_banner_frase_cfg_v5',JSON.stringify(cfg)); alert('Configuração salva neste navegador.');}
+function salvarConfig(){const ids=['frase','corTexto','letraCorBanner','rodape','autor','fontSize','fonteTexto','fontePersonalizada','zoom','posX','posY','brilho','contraste','sombra','cor1','cor2','forcaRemove','suavizarRemove','modoRemove','limparSobras','forcaCabelo','areaCabelo','footerSize','footerWidth','categoriaFrase','frasePronta','campanhaMes','modeloLayout','efeitoFoto','saturacaoFoto','sepiaFoto','pbFoto','matizFoto','alvoEfeitoBanner','efeitoBanner','saturacaoBanner','sepiaBanner','pbBanner','matizBanner']; const cfg={}; ids.forEach(id=>cfg[id]=$(id).value); ['mostrarAspas','mostrarRodape','textura','fotoDireita','modoSemFoto','expandirSemFoto','autoFontSize','removerFundo','autoRemoverFundo','corrigirCabelo','protegerOlhos','letraCorBanner'].forEach(id=>cfg[id]=$(id).checked); localStorage.setItem('wv_banner_frase_cfg_v5',JSON.stringify(cfg)); alert('Configuração salva neste navegador.');}
 function carregarConfig(){const cfg=JSON.parse(localStorage.getItem('wv_banner_frase_cfg_v5')||localStorage.getItem('wv_banner_frase_cfg_v4')||localStorage.getItem('wv_banner_frase_cfg_v3')||localStorage.getItem('wv_banner_frase_cfg_v2')||localStorage.getItem('wv_banner_frase_cfg')||'{}'); Object.keys(cfg).forEach(id=>{if($(id)){if(typeof cfg[id]==='boolean') $(id).checked=cfg[id]; else $(id).value=cfg[id];}}); if($('categoriaFrase')) carregarFrasesProntas(); if($('efeitoFoto') && !$('efeitoFoto').value) $('efeitoFoto').value='normal'; if($('efeitoBanner') && !$('efeitoBanner').value) $('efeitoBanner').value='normal'; if($('alvoEfeitoBanner') && !$('alvoEfeitoBanner').value) $('alvoEfeitoBanner').value='banner'; processedImgCanvas=null; draw();}
-function resetar(){if(!confirm('Zerar os campos do banner?'))return; $('frase').value='José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.'; if($('corTexto')) $('corTexto').value='#ffffff'; if($('letraCorBanner')) $('letraCorBanner').checked=false; if($('categoriaFrase')){$('categoriaFrase').value='Homens históricos da Bíblia'; carregarFrasesProntas(); $('frasePronta').value='0';} if($('campanhaMes')) $('campanhaMes').value='0'; $('rodape').value='@wv.curiosidades'; $('autor').value=''; $('fontSize').value=69; if($('fonteTexto')) $('fonteTexto').value='Arial, Helvetica, sans-serif'; if($('fontePersonalizada')) $('fontePersonalizada').value=''; atualizarFonteTexto(); $('zoom').value=122; $('posX').value=80; $('posY').value=0; $('brilho').value=104; $('contraste').value=112; $('sombra').value=58; if($('efeitoFoto')) $('efeitoFoto').value='normal'; if($('saturacaoFoto')) $('saturacaoFoto').value=100; if($('sepiaFoto')) $('sepiaFoto').value=0; if($('pbFoto')) $('pbFoto').value=0; if($('matizFoto')) $('matizFoto').value=0; if($('alvoEfeitoBanner')) $('alvoEfeitoBanner').value='banner'; if($('efeitoBanner')) $('efeitoBanner').value='normal'; if($('saturacaoBanner')) $('saturacaoBanner').value=100; if($('sepiaBanner')) $('sepiaBanner').value=0; if($('pbBanner')) $('pbBanner').value=0; if($('matizBanner')) $('matizBanner').value=0; $('forcaRemove').value=52; $('suavizarRemove').value=3; if($('modoRemove')) $('modoRemove').value='forte'; if($('limparSobras')) $('limparSobras').value=6; if($('forcaCabelo')) $('forcaCabelo').value=5; if($('areaCabelo')) $('areaCabelo').value=24; if($('corrigirCabelo')) $('corrigirCabelo').checked=true; if($('protegerOlhos')) $('protegerOlhos').checked=true; $('footerSize').value=25; $('footerWidth').value=400; $('mostrarAspas').checked=true; $('mostrarRodape').checked=true; $('textura').checked=true; $('fotoDireita').checked=true; if($('modoSemFoto')) $('modoSemFoto').checked=false; if($('expandirSemFoto')) $('expandirSemFoto').checked=true; if($('autoFontSize')) $('autoFontSize').checked=true; $('removerFundo').checked=false; img=null; processedImgCanvas=null; $('foto').value=''; draw();}
+function resetar(){if(!confirm('Zerar os campos do banner?'))return; $('frase').value='José nos ensina que quando Deus está no negócio, até quem tenta atrasar, te promove.'; if($('corTexto')) $('corTexto').value='#ffffff'; if($('letraCorBanner')) $('letraCorBanner').checked=false; if($('categoriaFrase')){$('categoriaFrase').value='Homens históricos da Bíblia'; carregarFrasesProntas(); $('frasePronta').value='0';} if($('campanhaMes')) $('campanhaMes').value='0'; $('rodape').value='@wv.curiosidades'; $('autor').value=''; $('fontSize').value=69; if($('modeloLayout')) $('modeloLayout').value='original'; if($('fonteTexto')) $('fonteTexto').value='Arial, Helvetica, sans-serif'; if($('fontePersonalizada')) $('fontePersonalizada').value=''; atualizarFonteTexto(); $('zoom').value=122; $('posX').value=80; $('posY').value=0; $('brilho').value=100; $('contraste').value=100; $('sombra').value=58; if($('efeitoFoto')) $('efeitoFoto').value='normal'; if($('saturacaoFoto')) $('saturacaoFoto').value=100; if($('sepiaFoto')) $('sepiaFoto').value=0; if($('pbFoto')) $('pbFoto').value=0; if($('matizFoto')) $('matizFoto').value=0; if($('alvoEfeitoBanner')) $('alvoEfeitoBanner').value='banner'; if($('efeitoBanner')) $('efeitoBanner').value='normal'; if($('saturacaoBanner')) $('saturacaoBanner').value=100; if($('sepiaBanner')) $('sepiaBanner').value=0; if($('pbBanner')) $('pbBanner').value=0; if($('matizBanner')) $('matizBanner').value=0; $('forcaRemove').value=52; $('suavizarRemove').value=3; if($('modoRemove')) $('modoRemove').value='forte'; if($('limparSobras')) $('limparSobras').value=6; if($('forcaCabelo')) $('forcaCabelo').value=5; if($('areaCabelo')) $('areaCabelo').value=24; if($('corrigirCabelo')) $('corrigirCabelo').checked=true; if($('protegerOlhos')) $('protegerOlhos').checked=true; $('footerSize').value=25; $('footerWidth').value=400; $('mostrarAspas').checked=true; $('mostrarRodape').checked=true; $('textura').checked=true; $('fotoDireita').checked=true; if($('modoSemFoto')) $('modoSemFoto').checked=false; if($('expandirSemFoto')) $('expandirSemFoto').checked=true; if($('autoFontSize')) $('autoFontSize').checked=true; $('removerFundo').checked=false; img=null; processedImgCanvas=null; $('foto').value=''; draw();}
 function baixarPNG(){const out=document.createElement('canvas'); out.width=3240; out.height=3240; const oc=out.getContext('2d'); drawBanner(oc,3); const a=document.createElement('a'); a.download='WV_Banner_Instagram_Alta_Qualidade.png'; a.href=out.toDataURL('image/png',1.0); a.click();}
 
 $('foto').addEventListener('change',e=>{const f=e.target.files[0]; if(!f)return; const reader=new FileReader(); reader.onload=ev=>{img=new Image(); img.onload=()=>{processedImgCanvas=null; if($('modoSemFoto')) $('modoSemFoto').checked=false; setRangeValue('zoom',122); setRangeValue('posX',80); setRangeValue('posY',0); if($('autoRemoverFundo').checked){$('removerFundo').checked=true; processBackgroundRemoval();} draw();}; img.onerror=()=>{img=null; processedImgCanvas=null; alert('Não foi possível carregar essa foto. Tente outra imagem.'); draw();}; img.src=ev.target.result}; reader.readAsDataURL(f);});
